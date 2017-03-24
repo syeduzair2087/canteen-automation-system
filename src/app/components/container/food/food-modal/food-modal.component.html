@@ -1,0 +1,71 @@
+<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">FOOD ITEM</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" class="form-control" #txtTitle [(ngModel)]="this.foodItem.food_title" placeholder="Title">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" class="form-control" #txtPrice [(ngModel)]="this.foodItem.food_price" placeholder="Price">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" *ngIf="this.foodItem.food_prefs && this.foodItem.food_prefs.length > 0">
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>TITLE</th>
+                                    <th>TYPE</th>
+                                    <th>VALUES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pref of this.foodItem.food_prefs; let prefIndex = index">
+                                    <td>{{pref.pref_title}}</td>
+                                    <td>{{pref.pref_type}}</td>
+                                    <td>
+                                        <ul>
+                                            <li *ngFor="let prefValue of pref.pref_values">
+                                                {{prefValue}}
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div class="p-b-5">
+                                            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#preferenceModal" (click)="clickEdit(pref, prefIndex)">
+                                            EDIT
+                                            </button>
+                                        </div>
+                                        <div class="p-b-5">
+                                            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="clickRemove(prefIndex)">
+                                            REMOVE
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#preferenceModal">ADD PREFERENCE</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+</div>
+<preference-form (prefObjectEvent)="receivePrefObject($event)" [prefObject]="this.prefObject"></preference-form>

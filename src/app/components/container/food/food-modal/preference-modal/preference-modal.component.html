@@ -1,0 +1,41 @@
+<div class="modal fade" id="preferenceModal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">FOOD PREFERENCE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="demo-radio-button  p-b-15">
+                        <input name="group1" type="radio" id="rdSingle" [(ngModel)]="prefObject.pref_type" (change)="changeType()" value="Single Value"
+                            class="radio-col-black with-gap" />
+                        <label for="rdSingle">SINGLE VALUE</label>
+                        <input name="group1" type="radio" id="rdMulti" [(ngModel)]="prefObject.pref_type" (change)="changeType()" value="Multi Value"
+                            class="radio-col-black with-gap" />
+                        <label for="rdMulti">MULTI VALUE</label>
+                        <input name="group1" type="radio" id="rdBinary" [(ngModel)]="prefObject.pref_type" (change)="changeType()" value="Binary"
+                            class="radio-col-black with-gap" />
+                        <label for="rdBinary">BINARY</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12  p-b--10">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" class="form-control" [(ngModel)]="prefObject.pref_title" placeholder="Preference Title">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 p-b-15" *ngIf="prefObject.pref_type && prefObject.pref_type != 'Binary'">
+                    <tag-input [(ngModel)]="prefObject.pref_values" [theme]="'dark minimal'" [modelAsStrings]="true" placeholder="Add new value..."
+                        secondaryPlaceholder="Enter values...">
+                        </tag-input>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+</div>
