@@ -11,6 +11,7 @@ import { ContainerComponent } from './components/container/container.component';
 import { FoodComponent } from './components/container/food/food.component';
 import { FoodModalComponent } from './components/container/food/food-modal/food-modal.component';
 import { PreferenceModalComponent } from './components/container/food/food-modal/preference-modal/preference-modal.component';
+import { LoginComponent } from './components/login/login.component';
 
 //MODULES
 import { RoutingModule } from './app.routes';
@@ -36,7 +37,8 @@ const config = {
     ContainerComponent,
     FoodComponent,
     FoodModalComponent,
-    PreferenceModalComponent
+    PreferenceModalComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
