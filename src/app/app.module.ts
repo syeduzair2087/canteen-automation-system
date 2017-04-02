@@ -15,11 +15,13 @@ import { LoginComponent } from './components/login/login.component';
 
 //MODULES
 import { RoutingModule } from './app.routes';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { TagInputModule } from 'ng2-tag-input';
 
 //SERVICES
 import { FoodService } from './services/food-service';
+import { AccountService } from './services/account-service';
+import { UserService } from './services/user-service';
 
 //CONFIG
 const config = {
@@ -28,6 +30,11 @@ const config = {
   databaseURL: "https://canteenautomationsystem.firebaseio.com",
   storageBucket: "canteenautomationsystem.appspot.com",
   messagingSenderId: "490551661425"
+};
+
+const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password,
 };
 
 @NgModule({
@@ -46,10 +53,12 @@ const config = {
     HttpModule,
     RoutingModule,
     TagInputModule,
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config, firebaseAuthConfig)
   ],
   providers: [
-    FoodService
+    FoodService,
+    AccountService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

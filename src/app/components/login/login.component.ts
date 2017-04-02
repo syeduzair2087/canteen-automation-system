@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../../services/account-service';
 
 @Component({
     selector: 'login-component',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class LoginComponent {
-    constructor() { }
+    constructor(private accountService: AccountService) { }
+
+    clickLogin(email: string, password: string) {
+        this.accountService.loginAdmin(email, password).then(() => {}).catch((error) => console.log(error));
+    }
 }
