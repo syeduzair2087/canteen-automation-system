@@ -2,6 +2,8 @@ import { Route, Routes, RouterModule } from '@angular/router';
 import { FoodComponent } from './components/container/food/food.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './components/container/user/user.component';
+import { StaffComponent } from './components/container/staff/staff.component';
 
 const baseRoute: Route = {
     path: '',
@@ -22,15 +24,30 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: FoodComponent,
+                component: StaffComponent,
                 outlet: 'container'
             }
+            // {
+            //     path: '',
+            //     component: UserComponent,
+            //     outlet: 'container'
+            // }
+            // ,
+            // {
+            //     path: '',
+            //     component: FoodComponent,
+            //     outlet: 'container'
+            // }
         ]
     },
     {
         path: 'login',
         component: LoginComponent
     },
+    // {
+    //     path: ':user',
+    //     component: UserComponent
+    // },
     fallbackRoute,
     baseRoute
 ];

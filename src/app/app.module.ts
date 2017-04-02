@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+// PIPE
+import { UserNameFilter } from './pipe/name.pipe'
+
 //COMPONENTS
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -12,6 +15,8 @@ import { FoodComponent } from './components/container/food/food.component';
 import { FoodModalComponent } from './components/container/food/food-modal/food-modal.component';
 import { PreferenceModalComponent } from './components/container/food/food-modal/preference-modal/preference-modal.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './components/container/user/user.component';
+import { StaffComponent } from './components/container/staff/staff.component'
 
 //MODULES
 import { RoutingModule } from './app.routes';
@@ -45,7 +50,10 @@ const firebaseAuthConfig = {
     FoodComponent,
     FoodModalComponent,
     PreferenceModalComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    UserNameFilter,
+    StaffComponent
   ],
   imports: [
     BrowserModule,
