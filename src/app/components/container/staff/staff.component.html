@@ -7,14 +7,14 @@
   <div class="body">
     <ul class="nav nav-tabs tab-nav-right" role="tablist">
       <li role="presentation" class="active"><a href="#admin" data-toggle="tab" aria-expanded="true">Admin</a></li>
-      <li role="presentation" class=""><a href="#cheif" data-toggle="tab" aria-expanded="false">Cheif</a></li>
+      <li role="presentation" class=""><a href="#chef" data-toggle="tab" aria-expanded="false">Chef</a></li>
       <li role="presentation" class=""><a href="#delivery_boy" data-toggle="tab" aria-expanded="false">Delivery Boy</a></li>
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade active in" id="admin">
-           <div class="col-md-2 p-t-5 pull-right">
-                <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" >ADD ADMIN</button>
-            </div>
+        <div class="col-md-2 p-t-5 pull-right">
+          <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickAddAdmin()">ADD ADMIN</button>
+        </div>
         <div class="body table-responsive">
           <table class="table table-hover">
             <thead>
@@ -23,54 +23,85 @@
               <th>CONTACT #</th>
               <th>CNIC #</th>
               <th>ADDRESS</th>
+              <th>EDIT</th>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let admin of adminDetails | async">
+                <td>{{admin.name}}</td>
+                <td>{{admin.email}}</td>
+                <td>{{admin.contact}}</td>
+                <td>{{admin.cnic}}</td>
+                <td>{{admin.address}}</td>
+                <td>
+                  <button type="button" class="btn btn btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
+                                    <i class="material-icons">settings</i>
+                                </button>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane fade" id="cheif">
+      <div role="tabpanel" class="tab-pane fade" id="chef">
+        <div class="body">
+          <div class="col-md-2 p-t-5 pull-right">
+            <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickAddChef()">ADD CHEF</button>
+          </div>
+        </div>
         <div class="body table-responsive">
           <table class="table table-hover">
             <thead>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact #</th>
-              <th>cabin #</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>CONTACT #</th>
+              <th>CNIC #</th>
+              <th>ADDRESS</th>
+              <th>EDIT</th>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let chef of ChefDetails | async">
+                <td>{{chef.name}}</td>
+                <td>{{chef.email}}</td>
+                <td>{{chef.contact}}</td>
+                <td>{{chef.cnic}}</td>
+                <td>{{chef.address}}</td>
+                <td>
+                  <button type="button" class="btn btn btn-primary waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickEditChef(chef)">
+                                    <i class="material-icons">settings</i>
+                                </button>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div role="tabpanel" class="tab-pane fade" id="delivery_boy">
+        <div class="col-md-2 p-t-5 pull-right">
+          <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickAddDeliveryBoy()">ADD DELIVERY BOY</button>
+        </div>
         <div class="body table-responsive">
           <table class="table table-hover">
             <thead>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact #</th>
-              <th>Cabin #</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>CONTACT #</th>
+              <th>CNIC #</th>
+              <th>ADDRESS</th>
+              <th>EDIT</th>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let delivery_boy of deliveryBoyDetails | async">
+                <td>{{delivery_boy.name}}</td>
+                <td>{{delivery_boy.email}}</td>
+                <td>{{delivery_boy.contact}}</td>
+                <td>{{delivery_boy.cnic}}</td>
+                <td>{{delivery_boy.address}}</td>
+                <td>
+                  <button type="button" class="btn btn btn-primary waves-effect" (click)="clickEditDeliveryBoy(delivery_boy)" data-toggle="modal"
+                    data-target="#deliveryBoyModal">
+                                    <i class="material-icons">settings</i>
+                                </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -79,3 +110,6 @@
     </div>
   </div>
 </div>
+<admin-modal [staffService]="staffService" [selectedAdmin]="selectedAdmin"></admin-modal>
+<chef-modal [staffService]="staffService" [selectedChef]="selectedChef"></chef-modal>
+<delivery-boy-modal [staffService]="staffService" [selectedDeliveryBoy]="selectedDeliveryBoy"></delivery-boy-modal>

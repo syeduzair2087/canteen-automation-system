@@ -11,7 +11,7 @@ export class FoodService {
     }
 
     addFoodItem(foodItem: FoodItem) {
-        return new Promise((res, rej) => {
+        return new Promise((res, rej) => {  
             this.angularFire.database.list('/food').push(foodItem).then((success) => {
                 res(success);
             }).catch((error) => {

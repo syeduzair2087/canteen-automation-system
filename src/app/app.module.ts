@@ -16,7 +16,10 @@ import { FoodModalComponent } from './components/container/food/food-modal/food-
 import { PreferenceModalComponent } from './components/container/food/food-modal/preference-modal/preference-modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
-import { StaffComponent } from './components/container/staff/staff.component'
+import { StaffComponent } from './components/container/staff/staff.component';
+import { AdminModalComponent } from './components/container/staff/admin-modal/admin-modal.component';
+import { ChefModalComponent } from './components/container/staff/chef-modal/chef-modal.component';
+import { DeliveryBoyModalComponent } from './components/container/staff/delivery-boy-modal/delivery-boy-modal.component';
 
 //MODULES
 import { RoutingModule } from './app.routes';
@@ -27,6 +30,7 @@ import { TagInputModule } from 'ng2-tag-input';
 import { FoodService } from './services/food-service';
 import { AccountService } from './services/account-service';
 import { UserService } from './services/user-service';
+import { StaffService } from './services/staff-service';
 
 //CONFIG
 const config = {
@@ -53,7 +57,11 @@ const firebaseAuthConfig = {
     LoginComponent,
     UserComponent,
     UserNameFilter,
-    StaffComponent
+    StaffComponent,
+    StaffComponent,
+    AdminModalComponent,
+    ChefModalComponent,
+    DeliveryBoyModalComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +74,8 @@ const firebaseAuthConfig = {
   providers: [
     FoodService,
     AccountService,
-    UserService
+    UserService,
+    StaffService
   ],
   bootstrap: [AppComponent]
 })

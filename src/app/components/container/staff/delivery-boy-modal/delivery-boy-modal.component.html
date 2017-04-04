@@ -1,42 +1,42 @@
-<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" style="display: none;">
+<div class="modal fade" id="deliveryBoyModal" tabindex="-1" role="dialog" style="display: none;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">Add Admin</h4>
+                <h4 class="modal-title" id="defaultModalLabel">Add Chef</h4>
             </div>
             <div class="modal-body">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.name" placeholder="Enter name">
+                            <input type="text" class="form-control" #txtAdminName [(ngModel)]="this.selectedDeliveryBoy.name" placeholder="Enter name">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" class="form-control" #txtEmail placeholder="Enter email" [(ngModel)]="this.selectedAdmin.email">
+                            <input type="text" class="form-control" #txtEmail [(ngModel)]="this.selectedDeliveryBoy.email"  placeholder="Enter email">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" class="form-control" #txtContactNo placeholder="Enter contact number" [(ngModel)]="this.selectedAdmin.contact">
+                            <input type="text" class="form-control" #txtContactNo placeholder="Enter contact number" [(ngModel)]="this.selectedDeliveryBoy.contact">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" class="form-control" #txtCnic placeholder="Enter CNIC number" [(ngModel)]="this.selectedAdmin.cnic">
+                            <input type="text" class="form-control" #txtCnic placeholder="Enter CNIC number" [(ngModel)]="this.selectedDeliveryBoy.cnic">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" class="form-control" #txtCnic placeholder="Enter Address" [(ngModel)]="this.selectedAdmin.address">
+                            <input type="text" class="form-control" #txtCnic placeholder="Enter Address" [(ngModel)]="this.selectedDeliveryBoy.address">
                         </div>
                     </div>
                 </div>

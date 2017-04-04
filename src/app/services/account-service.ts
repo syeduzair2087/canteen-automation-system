@@ -27,4 +27,26 @@ export class AccountService {
             });
         })
     }
+
+    createUser(email: string, password: string, name: string) {
+        console.log(email + " " + password + " " + name );
+        
+        return new Promise((res, rej) => {
+            this.angularFire.auth.createUser({
+                email: email,
+                password: password
+            }).then((user: FirebaseAuthState) => {
+                user.auth.updateProfile({
+                    displayName: name,
+                    photoURL: 'https://firebasestorage.googleapis.com/v0/b/canteenautomationsystem.appspot.com/o/assets%2Fno-image.jpg?alt=media&token=ee3b6fc2-8906-4dac-abea-43f728190f22'
+                }).then((success) => {
+                    res();
+                }).catch((error) => {
+                    rej(error.message);
+                });
+            }).catch((error) => {
+                rej(error.message);
+            });
+        });
+    }
 }
