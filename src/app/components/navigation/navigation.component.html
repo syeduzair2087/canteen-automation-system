@@ -230,7 +230,7 @@
                         <li><a href="javascript:void(0);" class=" waves-effect waves-block"><i class="material-icons">shopping_cart</i>Sales</a></li>
                         <li><a href="javascript:void(0);" class=" waves-effect waves-block"><i class="material-icons">favorite</i>Likes</a></li>
                         <li role="seperator" class="divider"></li>
-                        <li><a href="javascript:void(0);" class=" waves-effect waves-block"><i class="material-icons">input</i>Sign Out</a></li>
+                        <li><a  (click)="clickLogout()" href="javascript:void(0);" class=" waves-effect waves-block"><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -242,19 +242,19 @@
                 <ul class="list" style="height: 98px; overflow: hidden; width: auto;">
                     <li class="header">MAIN NAVIGATION</li>
                     <li>
-                        <a class="waves-effect waves-block">
+                        <a class="waves-effect waves-block" [routerLink]="'food'">
                             <i class="material-icons">local_pizza</i>
                             <span>Food</span>
                         </a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-block">
+                        <a class="waves-effect waves-block" [routerLink]="'users'">
                             <i class="material-icons">contacts</i>
                             <span>Users</span>
                         </a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-block">
+                        <a class="waves-effect waves-block" [routerLink]="'staff'">
                             <i class="material-icons">perm_identity</i>
                             <span>Staff</span>
                         </a>

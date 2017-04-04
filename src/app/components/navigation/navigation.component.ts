@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../../services/account-service';
 
 @Component({
     selector: 'navigation-component',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class NavigationComponent {
-    constructor() { }
+    constructor(private accountService: AccountService) { }
+
+    clickLogout() {
+        this.accountService.logoutAdmin().then(() => {}).catch((error) => console.log(error));
+    }
 }

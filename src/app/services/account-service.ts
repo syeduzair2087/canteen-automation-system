@@ -7,30 +7,45 @@ export class AccountService {
 
     loginAdmin(email: string, password: string) {
         return new Promise((res, rej) => {
-            this.angularFire.database.list('/roles/admins/', {
+
+            let adminSubscription = this.angularFire.database.list('/roles/admins/', {
                 query: {
                     orderByChild: 'email',
                     equalTo: email
                 }
-            }).subscribe((client) => {
-                if (client.length == 1) {
+            }).subscribe((admin) => {
+                if (admin.length == 1) {
                     this.angularFire.auth.login({ email: email, password: password }).then((user: FirebaseAuthState) => {
                         localStorage.setItem('uid', user.uid);
                         res(user);
+                        adminSubscription.unsubscribe();
                     }).catch((error) => {
                         rej(error);
+                        adminSubscription.unsubscribe();
                     })
                 }
                 else {
                     rej('User not found. Please check your credentials and try again');
+                    adminSubscription.unsubscribe();
                 }
             });
         })
     }
 
+    logoutAdmin() {
+        return new Promise((res, rej) => {
+            this.angularFire.auth.logout().then(() => {
+                localStorage.removeItem('uid');
+                res();
+            }).catch((error) => {
+                rej(error);
+            })
+        })
+    }
+
     createUser(email: string, password: string, name: string) {
-        console.log(email + " " + password + " " + name );
-        
+        console.log(email + " " + password + " " + name);
+
         return new Promise((res, rej) => {
             this.angularFire.auth.createUser({
                 email: email,

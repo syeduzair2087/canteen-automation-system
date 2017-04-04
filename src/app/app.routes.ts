@@ -19,37 +19,37 @@ const fallbackRoute: Route = {
 
 const routes: Routes = [
     {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
         path: 'home',
         component: NavigationComponent,
         children: [
             {
+                path: 'food',
+                component: FoodComponent
+                // outlet: 'container'
+            },
+            {
+                path: 'staff',
+                component: StaffComponent
+                // outlet: 'container'
+            },
+            {
+                path: 'users',
+                component: UserComponent
+                // outlet: 'container'
+            },
+            {
                 path: '',
-                component: StaffComponent,
-                outlet: 'container'
+                redirectTo: 'food',
+                pathMatch: 'full'
             }
-            // {
-            //     path: '',
-            //     component: UserComponent,
-            //     outlet: 'container'
-            // }
-            // ,
-            // {
-            //     path: '',
-            //     component: FoodComponent,
-            //     outlet: 'container'
-            // }
         ]
     },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    // {
-    //     path: ':user',
-    //     component: UserComponent
-    // },
-    fallbackRoute,
-    baseRoute
+    baseRoute,
+    fallbackRoute
 ];
 
 export const RoutingModule = RouterModule.forRoot(routes, { useHash: true });
