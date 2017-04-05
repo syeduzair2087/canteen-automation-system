@@ -64,4 +64,12 @@ export class AccountService {
             });
         });
     }
+
+    isLoggedIn() {
+        if (localStorage.getItem('uid')) {
+            return true;
+        }
+
+        else return false;
+    }
 }

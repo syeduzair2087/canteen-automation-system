@@ -31,6 +31,7 @@ import { FoodService } from './services/food-service';
 import { AccountService } from './services/account-service';
 import { UserService } from './services/user-service';
 import { StaffService } from './services/staff-service';
+import { LoginGuard, LogoutGuard } from './services/guard-service';
 
 //CONFIG
 const config = {
@@ -75,7 +76,9 @@ const firebaseAuthConfig = {
     FoodService,
     AccountService,
     UserService,
-    StaffService
+    StaffService,
+    LoginGuard,
+    LogoutGuard
   ],
   bootstrap: [AppComponent]
 })

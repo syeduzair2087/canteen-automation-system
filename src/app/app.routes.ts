@@ -4,6 +4,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
 import { StaffComponent } from './components/container/staff/staff.component';
+import { LoginGuard, LogoutGuard } from './services/guard-service';
 
 const baseRoute: Route = {
     path: '',
@@ -20,11 +21,13 @@ const fallbackRoute: Route = {
 const routes: Routes = [
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [LogoutGuard]
     },
     {
         path: 'home',
         component: NavigationComponent,
+        canActivate: [LoginGuard],
         children: [
             {
                 path: 'food',
