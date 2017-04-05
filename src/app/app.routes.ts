@@ -22,12 +22,12 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        canActivate: [LogoutGuard]
+        // canActivate: [LogoutGuard]
     },
     {
         path: 'home',
         component: NavigationComponent,
-        canActivate: [LoginGuard],
+        // canActivate: [LoginGuard],
         children: [
             {
                 path: 'food',

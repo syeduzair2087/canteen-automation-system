@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2'
 import { StaffService } from '../../../services/staff-service';
 import { Staff } from '../../../models/staff.model';
+import { StaffNameFilter } from '../../../pipes/staff-filter.pipe'
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
+  adminName: string;
+  chefName: string;
+  deliveryBoyName: string;
+
   adminDetails: FirebaseListObservable<Array<Staff>>;
   ChefDetails: FirebaseListObservable<Array<Staff>>;
   deliveryBoyDetails: FirebaseListObservable<Array<Staff>>;
@@ -48,9 +53,9 @@ export class StaffComponent implements OnInit {
     this.ChefDetails = this.staffService.fetchChefDetails();
 
     this.deliveryBoyDetails = this.staffService.fetchDeliveryBoyDetails();
-    
+
     console.log(this.ChefDetails);
-    
+
 
   }
 
@@ -65,8 +70,8 @@ export class StaffComponent implements OnInit {
       contact: '',
       address: ''
     }
-    
-    
+
+
   }
 
   clickAddChef() {

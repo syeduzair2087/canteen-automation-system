@@ -2,7 +2,7 @@ import { Component, OnInit, PipeTransform } from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2';
 import {UserService} from '../../../services/user-service';
 import {UserDetail} from '../../../models/userDetail.model';
-import {UserNameFilter} from '../../../pipe/name.pipe';
+import {UserNameFilter} from '../../../pipes/name.pipe';
 @Component({
     selector: 'user-component',
     templateUrl: 'user.component.html'

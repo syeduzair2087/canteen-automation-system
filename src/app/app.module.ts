@@ -5,8 +5,11 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-// PIPE
-import { UserNameFilter } from './pipe/name.pipe'
+// // PIPE
+// import { UserNameFilter } from './pipes/name.pipe';
+// import { StaffNameFilter } from './pipes/staff-filter.pipe';
+import { StaffNameFilter} from './pipes/staff-filter.pipe';
+import { UserNameFilter } from './pipes/name.pipe';
 
 //COMPONENTS
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -31,7 +34,6 @@ import { FoodService } from './services/food-service';
 import { AccountService } from './services/account-service';
 import { UserService } from './services/user-service';
 import { StaffService } from './services/staff-service';
-import { LoginGuard, LogoutGuard } from './services/guard-service';
 
 //CONFIG
 const config = {
@@ -59,7 +61,7 @@ const firebaseAuthConfig = {
     UserComponent,
     UserNameFilter,
     StaffComponent,
-    StaffComponent,
+    StaffNameFilter,
     AdminModalComponent,
     ChefModalComponent,
     DeliveryBoyModalComponent
@@ -76,9 +78,7 @@ const firebaseAuthConfig = {
     FoodService,
     AccountService,
     UserService,
-    StaffService,
-    LoginGuard,
-    LogoutGuard
+    StaffService
   ],
   bootstrap: [AppComponent]
 })
