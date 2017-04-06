@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 // // PIPE
 // import { UserNameFilter } from './pipes/name.pipe';
 // import { StaffNameFilter } from './pipes/staff-filter.pipe';
-import { StaffNameFilter} from './pipes/staff-filter.pipe';
-import { UserNameFilter } from './pipes/name.pipe';
+import { StaffNameFilter } from './pipes/staff-filter.pipe';
+import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
 
 //COMPONENTS
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -19,6 +19,7 @@ import { FoodModalComponent } from './components/container/food/food-modal/food-
 import { PreferenceModalComponent } from './components/container/food/food-modal/preference-modal/preference-modal.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
+import { UserDetailsComponent } from './components/container/user/user-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { AdminModalComponent } from './components/container/staff/admin-modal/admin-modal.component';
 import { ChefModalComponent } from './components/container/staff/chef-modal/chef-modal.component';
@@ -34,6 +35,8 @@ import { FoodService } from './services/food-service';
 import { AccountService } from './services/account-service';
 import { UserService } from './services/user-service';
 import { StaffService } from './services/staff-service';
+import { OrderService } from './services/order-service';
+import { LoginGuard, LogoutGuard } from './services/guard-service';
 
 //CONFIG
 const config = {
@@ -59,7 +62,11 @@ const firebaseAuthConfig = {
     PreferenceModalComponent,
     LoginComponent,
     UserComponent,
-    UserNameFilter,
+    UserDetailsComponent,
+    FilterUserByNamePipe,
+    FilterUserByEmailPipe,
+    FilterUserByContactPipe,
+    FilterUserByCabinPipe,
     StaffComponent,
     StaffNameFilter,
     AdminModalComponent,
@@ -78,7 +85,10 @@ const firebaseAuthConfig = {
     FoodService,
     AccountService,
     UserService,
-    StaffService
+    StaffService,
+    OrderService,
+    LoginGuard,
+    LogoutGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { FoodComponent } from './components/container/food/food.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
+import { UserDetailsComponent } from './components/container/user/user-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
 
@@ -22,27 +23,28 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        // canActivate: [LogoutGuard]
+        canActivate: [LogoutGuard]
     },
     {
         path: 'home',
         component: NavigationComponent,
-        // canActivate: [LoginGuard],
+        canActivate: [LoginGuard],
         children: [
             {
                 path: 'food',
                 component: FoodComponent
-                // outlet: 'container'
             },
             {
                 path: 'staff',
                 component: StaffComponent
-                // outlet: 'container'
             },
             {
                 path: 'users',
                 component: UserComponent
-                // outlet: 'container'
+            },
+            {
+                path: 'users/:userId/:userName',
+                component: UserDetailsComponent
             },
             {
                 path: '',

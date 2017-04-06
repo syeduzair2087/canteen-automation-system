@@ -1,21 +1,21 @@
 <div class="card">
   <div class="header">
     <h2>
-      Staff
+      STAFF
     </h2>
   </div>
   <div class="body">
     <ul class="nav nav-tabs tab-nav-right" role="tablist">
-      <li role="presentation" class="active"><a href="#admin" data-toggle="tab" aria-expanded="true">Admin</a></li>
-      <li role="presentation" class=""><a href="#chef" data-toggle="tab" aria-expanded="false">Chef</a></li>
-      <li role="presentation" class=""><a href="#delivery_boy" data-toggle="tab" aria-expanded="false">Delivery Boy</a></li>
+      <li role="presentation" class="active"><a href="#administrator" data-toggle="tab" aria-expanded="true">ADMINISTRATORS</a></li>
+      <li role="presentation" class=""><a href="#" data-toggle="tab" aria-expanded="false">CHEFS</a></li>
+      <li role="presentation" class=""><a href="#" data-toggle="tab" aria-expanded="false">DELIVERY BOYS</a></li>
     </ul>
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade active in" id="admin">
+      <div role="tabpanel" class="tab-pane fade active in" id="administrator">
         <!--<div class="col-md-2 p-t-5 pull-right">
           <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickAddAdmin()">ADD ADMIN</button>
         </div>-->
-           <div class="row">
+        <div class="row">
           <div class="col-sm-4 p-t-15">
           </div>
           <div class="col-md-4 col-md-offset-2 p-t-5">
@@ -32,25 +32,27 @@
         <div class="body table-responsive">
           <table class="table table-hover">
             <thead>
-              <th>NAME</th>
-              <th>EMAIL</th>
-              <th>CONTACT #</th>
-              <th>CNIC #</th>
-              <th>ADDRESS</th>
-              <th>EDIT</th>
+              <tr>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>CONTACT #</th>
+                <th>CNIC #</th>
+                <th>ADDRESS</th>
+                <!--<th>EDIT</th>-->
+              </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let admin of adminDetails | async |  sortStaffByName: this.adminName">
+              <tr *ngFor="let admin of adminDetails | async">
                 <td>{{admin.name}}</td>
                 <td>{{admin.email}}</td>
                 <td>{{admin.contact}}</td>
                 <td>{{admin.cnic}}</td>
                 <td>{{admin.address}}</td>
-                <td>
+                <!--<td>
                   <button type="button" class="btn btn btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
                                     <i class="material-icons">settings</i>
                                 </button>
-                </td>
+                </td>-->
               </tr>
             </tbody>
           </table>
@@ -62,7 +64,7 @@
             <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickAddChef()">ADD CHEF</button>
           </div>
         </div>-->
-         <div class="row">
+        <div class="row">
           <div class="col-sm-4 p-t-15">
           </div>
           <div class="col-md-4 col-md-offset-2 p-t-5">
@@ -81,8 +83,8 @@
             <thead>
               <th>NAME</th>
               <th>EMAIL</th>
-              <th>CONTACT #</th>
-              <th>CNIC #</th>
+              <th>CONTACT</th>
+              <th>CNIC</th>
               <th>ADDRESS</th>
               <th>EDIT</th>
             </thead>
@@ -93,11 +95,13 @@
                 <td>{{chef.contact}}</td>
                 <td>{{chef.cnic}}</td>
                 <td>{{chef.address}}</td>
-                <td>
+                <!--<td>
                   <button type="button" class="btn btn btn-primary waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickEditChef(chef)">
-                                    <i class="material-icons">settings</i>
+                                    <i class="material-icons">
+                                      settings
+                                      </i>
                                 </button>
-                </td>
+                </td>-->
               </tr>
             </tbody>
           </table>
@@ -107,7 +111,7 @@
         <!--<div class="col-md-2 p-t-5 pull-right">
           <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickAddDeliveryBoy()">ADD DELIVERY BOY</button>
         </div>-->
-         <div class="row">
+        <div class="row">
           <div class="col-sm-3 p-t-15">
           </div>
           <div class="col-md-4 col-md-offset-2 p-t-5">

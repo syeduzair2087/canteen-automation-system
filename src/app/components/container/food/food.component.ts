@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FoodService } from '../../../services/food-service';
 import { FirebaseListObservable } from 'angularfire2';
 import { FoodItem } from '../../../models/food.model';
+import loadTheme = require('../../../../js/admin');
 
 @Component({
     selector: 'food-component',
@@ -26,6 +27,11 @@ export class FoodComponent {
             food_price: null,
             food_prefs: []
         }
+
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10)
     }
 
     ////////BUTTONS////////

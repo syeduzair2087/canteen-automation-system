@@ -3,21 +3,18 @@
         <div class="row">
             <div class="col-sm-4 p-t-15">
                 <h2>
-                    USERS
+                    {{userName}}
                 </h2>
             </div>
-            <div class="col-md-2 col-md-offset-2 p-t-5">
-                <!--<div class="col-sm-6">-->
+            <!--<div class="col-md-2 col-md-offset-2 p-t-5">
                 <select class="form-control show-tick" [(ngModel)]="filterBy" (change)="onFilterTypeChange()">
                                         <option value="name">Name</option>
                                         <option value="email">Email</option>
                                         <option value="contact">Contact</option>
                                         <option value="cabin">Cabin</option>
                                     </select>
-                <!--</div>-->
-            </div>
-            <div class="col-md-4 p-t-5">
-                <!--<button class="btn btn-lg btn-block btn-primary waves-effect">User</button>-->
+            </div>-->
+            <!--<div class="col-md-4 p-t-5">
                 <div class="form-group form-group-no-bottom-margin">
                     <div class="form-line">
                         <input class="form-control" placeholder="Enter name to filter" type="text" [(ngModel)]="filterUserName" *ngIf="filterBy == 'name'">
@@ -26,25 +23,25 @@
                         <input class="form-control" placeholder="Enter cabin number to filter" type="text" [(ngModel)]="filterCabin" *ngIf="filterBy == 'cabin'">
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="body table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>CONTACT</th>
-                    <th>CABIN</th>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>TIME</th>
+                    <th>AMOUNT</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users | filterUserByName: filterUserName | filterUserByEmail: filterEmail | filterUserByContact: filterContact | filterUserByCabin: filterCabin" (click)="clickUser(user)">
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.contact}}</td>
-                    <td>{{user.cabin}}</td>
+                <tr *ngFor="let order of orders">
+                    <td>12345</td>
+                    <td>{{order.orderTime | date: 'mediumDate'}}</td>
+                    <td>{{order.orderTime | date: 'shortTime'}}</td>
+                    <td>Rs. {{order.amount}}</td>
                 </tr>
             </tbody>
         </table>

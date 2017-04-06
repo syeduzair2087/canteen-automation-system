@@ -1,21 +1,44 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
-import {FirebaseListObservable} from 'angularfire2';
-import {UserService} from '../../../services/user-service';
-import {UserDetail} from '../../../models/userDetail.model';
-import {UserNameFilter} from '../../../pipes/name.pipe';
+import { Router } from '@angular/router';
+import { FirebaseListObservable } from 'angularfire2';
+import { UserService } from '../../../services/user-service';
+import { UserDetail } from '../../../models/userDetail.model';
+import loadTheme = require('../../../../js/admin');
+import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from '../../../pipes/filter-user.pipe';
+
 @Component({
     selector: 'user-component',
     templateUrl: 'user.component.html'
 })
 
 export class UserComponent {
-    userDetails: Array<UserDetail> = [];
-    userName:string = '';
-    constructor(private userService: UserService) { }
+    users: Array<UserDetail> = [];
+    filterUserName: string = '';
+    filterEmail: string = '';
+    filterContact: string = '';
+    filterCabin: string = '';
+    filterBy: string = 'name';
+
+    constructor(private userService: UserService, private router: Router) { }
     ngOnInit(){
-        this.userService.fetchUserDetails().then( (success: Array<UserDetail>) =>{
-            this.userDetails = success;
+        this.userService.fetchUserDetails().then( (data: Array<UserDetail>) =>{
+            this.users = data;
             //  console.log(this.userData);
         });
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10)
+    }
+
+    onFilterTypeChange() {
+        this.filterUserName = '';
+        this.filterEmail = '';
+        this.filterContact = '';
+        this.filterCabin = '';
+    }
+
+    clickUser(user) {
+        this.router.navigate(['/home/users/' + user.$key + '/' + user.name]);
     }
 }
