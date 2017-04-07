@@ -20,6 +20,7 @@ import { PreferenceModalComponent } from './components/container/food/food-modal
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
+import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { AdminModalComponent } from './components/container/staff/admin-modal/admin-modal.component';
 import { ChefModalComponent } from './components/container/staff/chef-modal/chef-modal.component';
@@ -63,6 +64,7 @@ const firebaseAuthConfig = {
     LoginComponent,
     UserComponent,
     UserDetailsComponent,
+    OrderDetailsComponent,
     FilterUserByNamePipe,
     FilterUserByEmailPipe,
     FilterUserByContactPipe,

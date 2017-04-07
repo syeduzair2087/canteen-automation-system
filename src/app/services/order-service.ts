@@ -43,4 +43,13 @@ export class OrderService {
             });
         })
     }
+
+    fetchOrderItems(orderId: string) {
+        return new Promise((res, rej) => {
+            let orderSubscription = this.angularFire.database.object('/orders/' + orderId).subscribe((data: Order) => {
+                orderSubscription.unsubscribe();
+                res(data.items);
+            })
+        })
+    }
 }

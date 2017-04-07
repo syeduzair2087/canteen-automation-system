@@ -30,18 +30,18 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>DATE</th>
-                    <th>TIME</th>
+                    <th>TITLE</th>
+                    <th>QUANTITY</th>
                     <th>AMOUNT</th>
+                    <!--<th>AMOUNT</th>-->
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders" (click)="clickOrder(order.$key)">
-                    <td>12345</td>
-                    <td>{{order.orderTime | date: 'mediumDate'}}</td>
-                    <td>{{order.orderTime | date: 'shortTime'}}</td>
-                    <td>Rs. {{order.amount}}</td>
+                <tr *ngFor="let foodItem of foodList">
+                    <td>{{foodItem.title}}</td>
+                    <td>{{foodItem.quantity}}</td>
+                    <td>{{foodItem.amount}}</td>
+                    <!--<td>Rs. {{order.amount}}</td>-->
                 </tr>
             </tbody>
         </table>

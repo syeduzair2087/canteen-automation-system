@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Order } from '../../../models/order.model';
 import { OrderService } from '../../../services/order-service';
 
@@ -12,7 +12,7 @@ export class UserDetailsComponent {
     orders: Array<Order> = [];
     userName: string = 'demo name'
 
-    constructor(private orderService: OrderService, private activatedRoute: ActivatedRoute) { }
+    constructor(private orderService: OrderService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
         this.userName = (this.activatedRoute.snapshot.params['userName']).toLocaleUpperCase();
@@ -23,5 +23,10 @@ export class UserDetailsComponent {
             console.log(data);
             this.orders = data;
         }).catch((error) => console.log(error));
+    }
+
+    clickOrder(orderId: string) {
+        // console.log(order);
+        this.router.navigate(['home/orders/' + orderId]);
     }
 }

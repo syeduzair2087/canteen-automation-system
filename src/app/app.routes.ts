@@ -4,6 +4,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
+import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
 
@@ -45,6 +46,10 @@ const routes: Routes = [
             {
                 path: 'users/:userId/:userName',
                 component: UserDetailsComponent
+            },
+            {
+                path: 'orders/:orderId',
+                component: OrderDetailsComponent
             },
             {
                 path: '',
