@@ -7,8 +7,8 @@
   <div class="body">
     <ul class="nav nav-tabs tab-nav-right" role="tablist">
       <li role="presentation" class="active"><a href="#administrator" data-toggle="tab" aria-expanded="true">ADMINISTRATORS</a></li>
-      <li role="presentation" class=""><a href="#" data-toggle="tab" aria-expanded="false">CHEFS</a></li>
-      <li role="presentation" class=""><a href="#" data-toggle="tab" aria-expanded="false">DELIVERY BOYS</a></li>
+      <li role="presentation" class=""><a href="#chef" data-toggle="tab" aria-expanded="false">CHEFS</a></li>
+      <li role="presentation" class=""><a href="#delivery-boy" data-toggle="tab" aria-expanded="false">DELIVERY BOYS</a></li>
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade active in" id="administrator">
@@ -42,7 +42,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let admin of adminDetails | async">
+              <tr *ngFor="let admin of adminDetails | async | filterStaffByName: this.adminName">
                 <td>{{admin.name}}</td>
                 <td>{{admin.email}}</td>
                 <td>{{admin.contact}}</td>
@@ -89,7 +89,7 @@
               <th>EDIT</th>
             </thead>
             <tbody>
-              <tr *ngFor="let chef of ChefDetails | async |  sortStaffByName: this.chefName">
+              <tr *ngFor="let chef of ChefDetails | async | filterStaffByName: this.chefName">
                 <td>{{chef.name}}</td>
                 <td>{{chef.email}}</td>
                 <td>{{chef.contact}}</td>
@@ -107,7 +107,7 @@
           </table>
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane fade" id="delivery_boy">
+      <div role="tabpanel" class="tab-pane fade" id="delivery-boy">
         <!--<div class="col-md-2 p-t-5 pull-right">
           <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickAddDeliveryBoy()">ADD DELIVERY BOY</button>
         </div>-->
@@ -136,7 +136,7 @@
               <th>EDIT</th>
             </thead>
             <tbody>
-              <tr *ngFor="let delivery_boy of deliveryBoyDetails | async |  sortStaffByName: this.deliveryBoyName">
+              <tr *ngFor="let delivery_boy of deliveryBoyDetails | async |  filterStaffByName: this.deliveryBoyName">
                 <td>{{delivery_boy.name}}</td>
                 <td>{{delivery_boy.email}}</td>
                 <td>{{delivery_boy.contact}}</td>
