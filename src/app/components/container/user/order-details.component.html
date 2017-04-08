@@ -33,7 +33,7 @@
                     <th>TITLE</th>
                     <th>QUANTITY</th>
                     <th>AMOUNT</th>
-                    <!--<th>AMOUNT</th>-->
+                    <th>PREFERENCES</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +41,36 @@
                     <td>{{foodItem.title}}</td>
                     <td>{{foodItem.quantity}}</td>
                     <td>{{foodItem.amount}}</td>
-                    <!--<td>Rs. {{order.amount}}</td>-->
+                    <td>
+                        <ul>
+                            <ng-container *ngFor="let pref of foodItem.binaryPrefs">
+                                <li *ngIf="pref.value">
+                                    <p>
+                                        {{pref.title}}
+                                    </p>
+                                </li>
+                            </ng-container>
+                            <li *ngFor="let pref of foodItem.singlePrefs">
+                                <p>
+                                    {{pref.title}}: {{pref.value}}
+                                </p>
+                            </li>
+                            <li *ngFor="let pref of foodItem.multiPrefs">
+                                <p>
+                                    {{pref.title}}
+                                </p>
+                                <ul>
+                                    <ng-container *ngFor="let val of pref.values">
+                                        <li *ngIf="val.value == true">
+                                            <p>
+                                                {{val.title}}
+                                            </p>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
                 </tr>
             </tbody>
         </table>

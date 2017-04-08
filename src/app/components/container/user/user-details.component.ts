@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Order } from '../../../models/order.model';
 import { OrderService } from '../../../services/order-service';
+import { ReversePipe } from '../../../pipes/reverse.pipe';
 
 @Component({
     selector: 'user-details-component',

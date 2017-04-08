@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 // import { StaffNameFilter } from './pipes/staff-filter.pipe';
 import { StaffNameFilter } from './pipes/staff-filter.pipe';
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 //COMPONENTS
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -69,6 +70,7 @@ const firebaseAuthConfig = {
     FilterUserByEmailPipe,
     FilterUserByContactPipe,
     FilterUserByCabinPipe,
+    ReversePipe,
     StaffComponent,
     StaffNameFilter,
     AdminModalComponent,
