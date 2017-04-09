@@ -30,18 +30,47 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>DATE</th>
-                    <th>TIME</th>
+                    <th>TITLE</th>
+                    <th>QUANTITY</th>
                     <th>AMOUNT</th>
+                    <th>PREFERENCES</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders | reverse" (click)="clickOrder(order.$key)">
-                    <td>12345</td>
-                    <td>{{order.orderTime | date: 'mediumDate'}}</td>
-                    <td>{{order.orderTime | date: 'shortTime'}}</td>
-                    <td>Rs. {{order.amount}}</td>
+                <tr *ngFor="let foodItem of foodList">
+                    <td>{{foodItem.title}}</td>
+                    <td>{{foodItem.quantity}}</td>
+                    <td>{{foodItem.amount}}</td>
+                    <td>
+                        <ul>
+                            <ng-container *ngFor="let pref of foodItem.binaryPrefs">
+                                <li *ngIf="pref.value">
+                                    <p>
+                                        {{pref.title}}
+                                    </p>
+                                </li>
+                            </ng-container>
+                            <li *ngFor="let pref of foodItem.singlePrefs">
+                                <p>
+                                    {{pref.title}}: {{pref.value}}
+                                </p>
+                            </li>
+                            <li *ngFor="let pref of foodItem.multiPrefs">
+                                <p>
+                                    {{pref.title}}
+                                </p>
+                                <ul>
+                                    <ng-container *ngFor="let val of pref.values">
+                                        <li *ngIf="val.value == true">
+                                            <p>
+                                                {{val.title}}
+                                            </p>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
                 </tr>
             </tbody>
         </table>

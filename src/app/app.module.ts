@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 // PIPE
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 //COMPONENTS
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -14,9 +15,11 @@ import { ContainerComponent } from './components/container/container.component';
 import { FoodComponent } from './components/container/food/food.component';
 import { FoodModalComponent } from './components/container/food/food-modal/food-modal.component';
 import { PreferenceModalComponent } from './components/container/food/food-modal/preference-modal/preference-modal.component';
+import { OrderComponent } from './components/container/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
+import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 
 //MODULES
@@ -56,13 +59,16 @@ const firebaseAuthConfig = {
     FoodComponent,
     FoodModalComponent,
     PreferenceModalComponent,
+    OrderComponent,
     LoginComponent,
     UserComponent,
     UserDetailsComponent,
+    OrderDetailsComponent,
     FilterUserByNamePipe,
     FilterUserByEmailPipe,
     FilterUserByContactPipe,
     FilterUserByCabinPipe,
+    ReversePipe,
     StaffComponent
   ],
   imports: [
@@ -72,7 +78,6 @@ const firebaseAuthConfig = {
     RoutingModule,
     TagInputModule,
      StaffModule,
-    //   staffRouteModule,
     AngularFireModule.initializeApp(config, firebaseAuthConfig)
   ],
   providers: [

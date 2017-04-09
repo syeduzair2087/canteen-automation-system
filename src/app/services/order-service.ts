@@ -41,6 +41,23 @@ export class OrderService {
             }).subscribe((data: Array<Order>) => {
                 res(data);
             });
-        })
+        });
+    }
+
+     fetchAllOrders() {
+        return new Promise((res, rej) => {
+            this.angularFire.database.list('/orders/').subscribe((data: Array<Order>) => {
+                res(data);
+            });
+        });
+    }
+
+    fetchOrderItems(orderId: string) {
+        return new Promise((res, rej) => {
+            let orderSubscription = this.angularFire.database.object('/orders/' + orderId).subscribe((data: Order) => {
+                // orderSubscription.unsubscribe();
+                res(data.items);
+            }).unsubscribe();
+        });
     }
 }

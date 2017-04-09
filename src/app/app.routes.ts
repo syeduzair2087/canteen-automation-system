@@ -1,9 +1,11 @@
 import { Route, Routes, RouterModule } from '@angular/router';
 import { FoodComponent } from './components/container/food/food.component';
+import { OrderComponent } from './components/container/order/order.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
+import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
 import { staffRoutes, staffRouteModule } from "./staff-modules/staff.routes";
@@ -40,6 +42,10 @@ const routes: Routes = [
                 component: FoodComponent
             },
             {
+                path: 'orders',
+                component: OrderComponent
+            },
+            {
                 path: 'staff',
                 component: StaffComponent,
                 children: [
@@ -53,6 +59,10 @@ const routes: Routes = [
             {
                 path: 'users/:userId/:userName',
                 component: UserDetailsComponent
+            },
+            {
+                path: 'orders/:orderId',
+                component: OrderDetailsComponent
             },
             {
                 path: '',
