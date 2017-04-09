@@ -1,0 +1,78 @@
+[33mcommit 475a4803cd12a0fc42b26927f383a0fd2681a10b[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Sun Apr 9 04:31:28 2017 +0500
+
+    Order details preferences added, order navigation link added
+
+[33mcommit b52c308c05a59218646c569bc87133f548c40672[m
+Merge: cffce5b f6d905c
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Sat Apr 8 04:03:36 2017 +0500
+
+    Merge branch 'master' of https://github.com/syeduzair2087/canteen-automation-system
+
+[33mcommit cffce5b5201d4536454894a024bba7843be6a5e5[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Sat Apr 8 04:02:37 2017 +0500
+
+    Order details component added
+
+[33mcommit f6d905cc93678a4bbe2773cb52a7aa4c59b86812[m
+Author: Taimoor Saleem <taimoorsalim@gmail.com>
+Date:   Sat Apr 8 03:00:12 2017 +0500
+
+    Filter refactored
+
+[33mcommit 558614fe640dd37defb7856e1a8f2c8dbed798da[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Fri Apr 7 04:29:31 2017 +0500
+
+    Guards fixed, js onload fixed, users and pipe refactored, user filters and user details component added
+
+[33mcommit aa667b6574c7b172886284dcfb0d12b658f8b2af[m
+Author: Taimoor Saleem <taimoorsalim@gmail.com>
+Date:   Thu Apr 6 04:41:09 2017 +0500
+
+    Staff filter added
+
+[33mcommit 2d9ce7a3b19c924b536dd666b82a742f7487b5bc[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Wed Apr 5 17:39:54 2017 +0500
+
+    Route guards added
+
+[33mcommit 1d7d17a9dfae49232a4c3b6aa88efecbaad2959d[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Wed Apr 5 04:18:31 2017 +0500
+
+    Routes fixed, log in/out added
+
+[33mcommit 6cf711729776a4eb6c99efe8e8c428bd9df1e4a1[m
+Author: Taimoor Saleem <taimoorsalim@gmail.com>
+Date:   Tue Apr 4 19:54:52 2017 +0500
+
+    Staff Add/Update added
+
+[33mcommit facc0aa6d11b6342fb31a903745e3a280fa20b6f[m
+Author: Taimoor Saleem <taimoorsalim@gmail.com>
+Date:   Mon Apr 3 01:49:36 2017 +0500
+
+    User and staff component added
+
+[33mcommit 3487c3d0fab956f58307db48ede81a15e7057f32[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Sun Apr 2 17:55:13 2017 +0500
+
+    User component created
+
+[33mcommit 05f30a14f43df2758a2b473780de049f432050ab[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Sat Apr 1 05:20:56 2017 +0500
+
+    Login component added, routes fixed
+
+[33mcommit 82af4c1ccb6819fc912a78debd09aebc068ee964[m
+Author: syeduzair2087 <syeduzair.2087@gmail.com>
+Date:   Fri Mar 24 18:10:35 2017 +0500
+
+    First commit

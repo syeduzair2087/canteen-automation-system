@@ -1,5 +1,6 @@
 import { Route, Routes, RouterModule } from '@angular/router';
 import { FoodComponent } from './components/container/food/food.component';
+import { OrderComponent } from './components/container/order/order.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
@@ -34,6 +35,10 @@ const routes: Routes = [
             {
                 path: 'food',
                 component: FoodComponent
+            },
+            {
+                path: 'orders',
+                component: OrderComponent
             },
             {
                 path: 'staff',

@@ -11,7 +11,7 @@ import { ReversePipe } from '../../../pipes/reverse.pipe';
 
 export class UserDetailsComponent {
     orders: Array<Order> = [];
-    userName: string = 'demo name'
+    userName: string = '';
 
     constructor(private orderService: OrderService, private activatedRoute: ActivatedRoute, private router: Router) { }
 

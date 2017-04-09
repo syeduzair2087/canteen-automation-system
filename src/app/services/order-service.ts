@@ -41,7 +41,15 @@ export class OrderService {
             }).subscribe((data: Array<Order>) => {
                 res(data);
             });
-        })
+        });
+    }
+
+     fetchAllOrders() {
+        return new Promise((res, rej) => {
+            this.angularFire.database.list('/orders/').subscribe((data: Array<Order>) => {
+                res(data);
+            });
+        });
     }
 
     fetchOrderItems(orderId: string) {
@@ -50,6 +58,6 @@ export class OrderService {
                 // orderSubscription.unsubscribe();
                 res(data.items);
             }).unsubscribe();
-        })
+        });
     }
 }
