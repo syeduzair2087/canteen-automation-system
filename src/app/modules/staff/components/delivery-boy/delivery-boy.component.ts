@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2'
-import { StaffService } from '../../services/staff-service';
-import { Staff } from '../../models/staff.model';
-import { StaffNameFilter } from '../../pipes/staff-filter.pipe';
+import { StaffService } from '../../../../services/staff-service';
+import { StaffMember } from '../../../../models/staff-member.model';
+import loadTheme = require('../../../../../js/admin');
+import * as staffFilters from '../../../../pipes/filter-staff.pipe';
 
 @Component({
     selector: 'delivery-boy-component',
     templateUrl: 'delivery-boy.component.html'
 })
 export class DeliveryBoyComponent {
-    filterDeliveryBoyName: string;
+    filterStaffName: string = '';
+    filterStaffEmail: string = '';
+    filterStaffContact: string = '';
+    filterStaffCnic: string = '';
+    filterStaffAddress: string = '';
+    filterBy: string = 'name';
 
-    deliveryBoyDetails: FirebaseListObservable<Array<Staff>>;
+    deliveryBoyDetails: FirebaseListObservable<Array<StaffMember>>;
 
-    selectedDeliveryBoy: Staff = {
+    selectedDeliveryBoy: StaffMember = {
         $key: '',
         name: '',
         email: '',
@@ -26,7 +32,11 @@ export class DeliveryBoyComponent {
     constructor(private staffService: StaffService) { }
 
     ngOnInit() {
-        this.deliveryBoyDetails = this.staffService.fetchDeliveryBoyDetails();
+        this.deliveryBoyDetails = this.staffService.fetchDeliveryBoys();
+        
+        setTimeout(() => {
+            loadTheme();
+        }, 10);
     }
 
     clickAddDeliveryBoy() {
@@ -43,7 +53,7 @@ export class DeliveryBoyComponent {
         }
     }
 
-    clickEditDeliveryBoy(deliveryBoy: Staff) {
+    clickEditDeliveryBoy(deliveryBoy: StaffMember) {
         this.selectedDeliveryBoy = {
             $key: deliveryBoy.$key,
             name: deliveryBoy.name,
@@ -60,5 +70,17 @@ export class DeliveryBoyComponent {
         }).catch((error) => {
             console.log(error);;
         });
+    }
+
+       onFilterTypeChange() {
+        this.filterStaffName= '';
+        this.filterStaffEmail = '';
+        this.filterStaffContact = '';
+        this.filterStaffCnic = '';
+        this.filterStaffAddress = '';
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10);
     }
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
-import { Staff } from '../../models/staff.model';
-import { StaffService } from "../../services/staff-service";
-import { StaffNameFilter } from '../../pipes/staff-filter.pipe';
+import { StaffMember } from '../../../../models/staff-member.model';
+import { StaffService } from '../../../../services/staff-service';
+import loadTheme = require('../../../../../js/admin');
+import * as staffFilters from '../../../../pipes/filter-staff.pipe';
 
 @Component({
     selector: 'chef-component',
@@ -10,10 +11,16 @@ import { StaffNameFilter } from '../../pipes/staff-filter.pipe';
 })
 
 export class ChefComponent {
-    filterChefName: string;
-    ChefDetails: FirebaseListObservable<Array<Staff>>;
+filterStaffName: string = '';
+    filterStaffEmail: string = '';
+    filterStaffContact: string = '';
+    filterStaffCnic: string = '';
+    filterStaffAddress: string = '';
+    filterBy: string = 'name';
 
-    selectedChef: Staff = {
+    ChefDetails: FirebaseListObservable<Array<StaffMember>>;
+
+    selectedChef: StaffMember = {
         $key: '',
         name: '',
         email: '',
@@ -25,7 +32,11 @@ export class ChefComponent {
     constructor(private staffService: StaffService) { }
 
     ngOnInit() {
-        this.ChefDetails = this.staffService.fetchChefDetails();
+        this.ChefDetails = this.staffService.fetchChefs();
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10);
     }
 
 
@@ -44,7 +55,7 @@ export class ChefComponent {
     }
 
 
-    clickEditChef(chef: Staff) {
+    clickEditChef(chef: StaffMember) {
         this.selectedChef = {
             $key: chef.$key,
             name: chef.name,
@@ -63,4 +74,15 @@ export class ChefComponent {
         });        
     }
 
+    onFilterTypeChange() {
+        this.filterStaffName= '';
+        this.filterStaffEmail = '';
+        this.filterStaffContact = '';
+        this.filterStaffCnic = '';
+        this.filterStaffAddress = '';
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10)
+    }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
-import { Staff } from '../../../models/staff.model';
-import { AccountService } from '../../../services/account-service';
-import { StaffService } from '../../../services/staff-service';
+import { StaffMember } from '../../../../../models/staff-member.model';
+import { AccountService } from '../../../../../services/account-service';
+import { StaffService } from '../../../../../services/staff-service';
 @Component({
     selector: 'delivery-boy-modal',
     templateUrl: 'delivery-boy-modal.component.html'
@@ -13,7 +13,7 @@ export class DeliveryBoyModalComponent {
 
     ////////INPUT////////
 
-    @Input() selectedDeliveryBoy: Staff;
+    @Input() selectedDeliveryBoy: StaffMember;
     @Input() staffService: StaffService;
 
     ////////EVENTS////////

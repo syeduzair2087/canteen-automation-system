@@ -1,7 +1,7 @@
 import { Route, Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
-import { ChefComponent } from './chef/chef.component';
-import { DeliveryBoyComponent } from './delivery-boy/delivery-boy.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ChefComponent } from './components/chef/chef.component';
+import { DeliveryBoyComponent } from './components/delivery-boy/delivery-boy.component';
 
 export const staffRoutes: Routes = [
     {

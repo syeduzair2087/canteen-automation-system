@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-md-2 p-t-5">
+    <select class="form-control show-tick" [(ngModel)]="filterBy" (change)="onFilterTypeChange()">
+                                        <option value="name">Name</option>
+                                        <option value="email">Email</option>
+                                        <option value="contact">Contact</option>
+                                        <option value="cnic">CNIC</option>
+                                        <option value="address">Address</option>
+                                    </select>
+  </div>
+  <div class="col-md-4 p-t-5">
+    <div class="form-group form-float form-group-no-bottom-margin">
+      <div class="form-line">
+        <ng-container *ngIf="filterBy == 'name'">
+          <input class="form-control" type="text" [(ngModel)]="this.filterStaffName">
+          <label class="form-label">Enter name to filter</label>
+        </ng-container>
+        <ng-container *ngIf="filterBy == 'email'">
+          <input class="form-control" type="text" [(ngModel)]="this.filterStaffEmail">
+          <label class="form-label">Enter email to filter</label>
+        </ng-container>
+        <ng-container *ngIf="filterBy == 'contact'">
+          <input class="form-control" type="text" [(ngModel)]="this.filterStaffContact">
+          <label class="form-label">Enter contact to filter</label>
+        </ng-container>
+        <ng-container *ngIf="filterBy == 'cnic'">
+          <input class="form-control" type="text" [(ngModel)]="this.filterStaffCnic">
+          <label class="form-label">Enter CNIC to filter</label>
+        </ng-container>
+        <ng-container *ngIf="filterBy == 'address'">
+          <input class="form-control" type="text" [(ngModel)]="this.filterStaffAddress">
+          <label class="form-label">Enter address to filter</label>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 p-t-5 col-md-offset-4">
+    <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickAddDeliveryBoy()">ADD DELIVERY BOY</button>
+  </div>
+</div>
+<div class="body table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>CONTACT #</th>
+      <th>CNIC #</th>
+      <th>ADDRESS</th>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let delivery_boy of deliveryBoyDetails | async | filterStaffByName: filterStaffName | filterStaffByEmail: filterStaffEmail | filterStaffByContact: filterStaffContact | filterStaffByCnic: filterStaffCnic | filterStaffByAddress: filterStaffAddress">
+        <tr [ngClass]="[delivery_boy.status == 'Remove' ? 'bg-danger' : '']">
+          <td>{{delivery_boy.name}}</td>
+          <td>{{delivery_boy.email}}</td>
+          <td>{{delivery_boy.contact}}</td>
+          <td>{{delivery_boy.cnic}}</td>
+          <td>{{delivery_boy.address}}</td>
+          <td>
+            <ng-container *ngIf='delivery_boy.status == "Active"'>
+              <div class="row p-b-5 p-r-5">
+                <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickEditDeliveryBoy(delivery_boy)">
+                            EDIT
+                            </button>
+              </div>
+              <div class="row p-b-5 p-r-5">
+                <button class="btn btn-lg btn-danger btn-block waves-effect" (click)=RemoveDeliveryBoy(delivery_boy.$key)>
+                            REMOVE
+                            </button>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<delivery-boy-modal [staffService]="staffService" [selectedDeliveryBoy]="selectedDeliveryBoy"></delivery-boy-modal>

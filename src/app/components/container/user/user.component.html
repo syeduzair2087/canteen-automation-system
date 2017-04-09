@@ -7,17 +7,14 @@
                 </h2>
             </div>
             <div class="col-md-2 col-md-offset-2 p-t-5">
-                <!--<div class="col-sm-6">-->
                 <select class="form-control show-tick" [(ngModel)]="filterBy" (change)="onFilterTypeChange()">
                                         <option value="name">Name</option>
                                         <option value="email">Email</option>
                                         <option value="contact">Contact</option>
                                         <option value="cabin">Cabin</option>
                                     </select>
-                <!--</div>-->
             </div>
             <div class="col-md-4 p-t-5">
-                <!--<button class="btn btn-lg btn-block btn-primary waves-effect">User</button>-->
                 <div class="form-group form-group-no-bottom-margin">
                     <div class="form-line">
                         <input class="form-control" placeholder="Enter name to filter" type="text" [(ngModel)]="filterUserName" *ngIf="filterBy == 'name'">
@@ -40,7 +37,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users | filterUserByName: filterUserName | filterUserByEmail: filterEmail | filterUserByContact: filterContact | filterUserByCabin: filterCabin" (click)="clickUser(user)">
+                <tr *ngFor="let user of users | filterUserByName: filterUserName | filterUserByEmail: filterEmail | filterUserByContact: filterContact | filterUserByCabin: filterCabin"
+                    (click)="clickUser(user)">
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.contact}}</td>

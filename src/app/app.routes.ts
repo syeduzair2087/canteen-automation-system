@@ -8,7 +8,7 @@ import { UserDetailsComponent } from './components/container/user/user-details.c
 import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
-import { staffRoutes, staffRouteModule } from "./staff-modules/staff.routes";
+import { staffRoutes, staffRouteModule } from "./modules/staff/staff.routes";
 // import { AdminComponent } from './staff-modules/admin/admin.component';
 // import { ChefComponent } from './staff-modules/chef/chef.component';
 // import { DeliveryBoyComponent } from './staff-modules/delivery-boy/delivery-boy.component';

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
-import { Staff } from '../models/staff.model';
+import { StaffMember } from '../models/staff-member.model';
 @Injectable()
 export class StaffService {
     constructor(private angularFire: AngularFire) { }
 
-    fetchAdminDetails() {
+    fetchAdmins() {
         // return new Promise((res, rej) => {
         return this.angularFire.database.list('roles/admins')
         //     .subscribe((data: Array<Staff>) => {
@@ -13,8 +13,8 @@ export class StaffService {
         //     });
         // });
     }
-p
-    fetchChefDetails() {
+
+    fetchChefs() {
         // return new Promise((res, rej) => {
         return this.angularFire.database.list('roles/chefs')
         //     .subscribe((data: Array<Staff>) => {
@@ -23,7 +23,7 @@ p
         // });
     }
 
-    fetchDeliveryBoyDetails() {
+    fetchDeliveryBoys() {
         // return new Promise((res, rej) => {
         return this.angularFire.database.list('roles/delivery_boys')
         //     .subscribe((data: Array<Staff>) => {
@@ -32,7 +32,7 @@ p
         // });
     }
 
-    addAdmin(admin: Staff) {
+    addAdmin(admin: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.list('roles/admins').push(admin).then((success) => {
                 res(success)
@@ -42,7 +42,7 @@ p
         });
     }
 
-    addChef(chef: Staff) {
+    addChef(chef: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.list('roles/chefs').push(chef).then((success) => {
                 res()
@@ -52,7 +52,7 @@ p
         });
     }
 
-    addDeliveryBoy(deliveryBoy: Staff) {
+    addDeliveryBoy(deliveryBoy: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.list('roles/delivery_boys').push(deliveryBoy).then((success) => {
                 res(success)
@@ -62,7 +62,7 @@ p
         });
     }
 
-    editAdmin(key: string, admin: Staff) {
+    editAdmin(key: string, admin: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.object('roles/admins/' + key + '/').update(admin).then((success) => {
                 res();
@@ -72,7 +72,7 @@ p
         });
     }
 
-    editChef(key: string, chef: Staff) {
+    editChef(key: string, chef: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.object('roles/chefs/' + key + '/').update(chef).then((success) => {
                 res();
@@ -83,7 +83,7 @@ p
     }
 
 
-    editDeliveryBoy(key: string, deliveryBoy: Staff) {
+    editDeliveryBoy(key: string, deliveryBoy: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.object('roles/delivery_boys/' + key + '/').update(deliveryBoy).then((success) => {
                 res();

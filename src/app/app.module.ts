@@ -26,8 +26,8 @@ import { StaffComponent } from './components/container/staff/staff.component';
 import { RoutingModule } from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { TagInputModule } from 'ng2-tag-input';
-import { StaffModule } from './staff-modules/staff.module';
- import { staffRouteModule } from './staff-modules/staff.routes';
+import { StaffModule } from './modules/staff/staff.module';
+ import { staffRouteModule } from './modules/staff/staff.routes';
 
 //SERVICES
 import { FoodService } from './services/food-service';
