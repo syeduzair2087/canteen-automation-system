@@ -22,6 +22,7 @@ export class AdminComponent {
         contact: '',
         status: '',
     };
+
     constructor(private staffService: StaffService) { }
 
     ngOnInit() {
@@ -54,13 +55,18 @@ export class AdminComponent {
         }
     }
 
-
     RemoveAdmin(key) {
         console.log(key);
         this.staffService.removeAdmin(key).then((success) => {
-
         }).catch((error) => {
             console.log(error);;
         })
+    }
+
+    getColor(activeStatus: string): string {
+        if (activeStatus == 'Active')
+            return "bg-danger";
+        else
+            return "";
     }
 }

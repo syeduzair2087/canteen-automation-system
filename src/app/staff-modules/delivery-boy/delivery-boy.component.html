@@ -22,27 +22,27 @@
       <th>ADDRESS</th>
     </thead>
     <tbody>
-      <tr *ngFor="let delivery_boy of deliveryBoyDetails | async |  filterStaffByName: this.filterDeliveryBoyName">
-        <td>{{delivery_boy.name}}</td>
-        <td>{{delivery_boy.email}}</td>
-        <td>{{delivery_boy.contact}}</td>
-        <td>{{delivery_boy.cnic}}</td>
-        <td>{{delivery_boy.address}}</td>
-
-
-        <td *ngIf='delivery_boy.status == "Active"' >
-          <div class="row p-b-5 p-r-5">
-            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickEditDeliveryBoy(delivery_boy)">
+      <ng-container *ngFor="let delivery_boy of deliveryBoyDetails | async |  filterStaffByName: this.filterDeliveryBoyName">
+        <tr [ngClass]="[delivery_boy.status === 'Remove' ? 'bg-danger' : '']">
+          <td>{{delivery_boy.name}}</td>
+          <td>{{delivery_boy.email}}</td>
+          <td>{{delivery_boy.contact}}</td>
+          <td>{{delivery_boy.cnic}}</td>
+          <td>{{delivery_boy.address}}</td>
+          <td *ngIf='delivery_boy.status == "Active"'>
+            <div class="row p-b-5 p-r-5">
+              <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickEditDeliveryBoy(delivery_boy)">
                             EDIT
                             </button>
-          </div>
-          <div class="row p-b-5 p-r-5">
-            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)=RemoveDeliveryBoy(delivery_boy.$key)>
+            </div>
+            <div class="row p-b-5 p-r-5">
+              <button class="btn btn-lg btn-danger btn-block waves-effect" (click)=RemoveDeliveryBoy(delivery_boy.$key)>
                             REMOVE
                             </button>
-          </div>
-        </td>
-      </tr>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

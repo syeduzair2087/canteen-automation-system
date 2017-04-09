@@ -24,26 +24,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let admin of adminDetails | async | filterStaffByName: this.filterAdminName">
-        <td>{{admin.name}}</td>
-        <td>{{admin.email}}</td>
-        <td>{{admin.contact}}</td>
-        <td>{{admin.cnic}}</td>
-        <td>{{admin.address}}</td>
-
-        <td *ngIf="admin.status == 'Active'">
-          <div class="row p-b-5 p-r-5">
-            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
+      <ng-container *ngFor="let admin of adminDetails | async | filterStaffByName: this.filterAdminName">
+        <tr [ngClass]="[admin.status === 'Remove' ? 'bg-danger' : '']">
+          <td>{{admin.name}}</td>
+          <td>{{admin.email}}</td>
+          <td>{{admin.contact}}</td>
+          <td>{{admin.cnic}}</td>
+          <td>{{admin.address}}</td>
+          <td *ngIf="admin.status == 'Active'">
+            <div class="row p-b-5 p-r-5">
+              <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
                             EDIT
                             </button>
-          </div>
-          <div class="row p-b-5 p-r-5">
-            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="RemoveAdmin(admin.$key)">
+            </div>
+            <div class="row p-b-5 p-r-5">
+              <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="RemoveAdmin(admin.$key)">
                             REMOVE
                             </button>
-          </div>
-        </td>
-      </tr>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>
