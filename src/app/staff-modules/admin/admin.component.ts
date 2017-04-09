@@ -62,11 +62,4 @@ export class AdminComponent {
             console.log(error);;
         })
     }
-
-    getColor(activeStatus: string): string {
-        if (activeStatus == 'Active')
-            return "bg-danger";
-        else
-            return "";
-    }
 }
