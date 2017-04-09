@@ -25,7 +25,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let admin of adminDetails | async | filterStaffByName: this.filterAdminName">
-        <tr [ngClass]="[admin.status === 'Remove' ? 'bg-danger' : '']">
+        <tr [ngClass]="[admin.status == 'Remove' ? 'bg-danger' : '']">
           <td>{{admin.name}}</td>
           <td>{{admin.email}}</td>
           <td>{{admin.contact}}</td>

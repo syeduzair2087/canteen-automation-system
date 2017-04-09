@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let chef of ChefDetails | async | filterStaffByName: this.filterChefName">
-        <tr [ngClass]="[chef.status === 'Remove' ? 'bg-danger' : '']">
+        <tr [ngClass]="[chef.status == 'Remove' ? 'bg-danger' : '']">
           <td>{{chef.name}}</td>
           <td>{{chef.email}}</td>
           <td>{{chef.contact}}</td>
