@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
+import loadTheme = require('../../../../../../js/admin');
 import { StaffMember } from '../../../../../models/staff-member.model';
 import { AccountService } from '../../../../../services/account-service';
 import { StaffService } from '../../../../../services/staff-service';
+
 @Component({
     selector: 'admin-modal',
     templateUrl: 'admin-modal.component.html'
@@ -20,6 +22,9 @@ export class AdminModalComponent {
     ////////EVENTS////////
 
     ngOnInit() {
+        setTimeout(() => {
+            loadTheme();
+        }, 10)
     }
 
     ////////BUTTONS////////

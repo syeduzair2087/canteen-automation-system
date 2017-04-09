@@ -28,7 +28,7 @@ export class UserComponent {
 
         setTimeout(() => {
             loadTheme();
-        }, 10)
+        }, 10);
     }
 
     onFilterTypeChange() {
