@@ -19,7 +19,7 @@ import { StaffMemberFilterByName, StaffMemberFilterByEmail, StaffMemberFilterByC
 import { StaffService } from '../../services/staff-service';
 
 // ROUTE
-import { staffRouteModule } from './staff.routes';
+// import { staffRouteModule } from './staff.routes';
 
 @NgModule({
     declarations: [
@@ -39,7 +39,7 @@ import { staffRouteModule } from './staff.routes';
         HttpModule,
         CommonModule,
         FormsModule,
-        staffRouteModule
+        // staffRouteModule
     ],
     providers: [
         StaffService
