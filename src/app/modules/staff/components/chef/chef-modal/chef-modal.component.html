@@ -6,37 +6,42 @@
             </div>
             <div class="modal-body">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtAdminName [(ngModel)]="this.selectedChef.name" placeholder="Enter name">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.selectedChef.name != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.name">
+                            <label class="form-label">Name</label>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtEmail placeholder="Enter email" [(ngModel)]="this.selectedChef.email">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.selectedChef.email != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.email">
+                            <label class="form-label">Email</label>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtContactNo placeholder="Enter contact number" [(ngModel)]="this.selectedChef.contact">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.selectedChef.contact != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.contact">
+                            <label class="form-label">Contact Number</label>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtCnic placeholder="Enter CNIC number" [(ngModel)]="this.selectedChef.cnic">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.selectedChef.cnic != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.cnic">
+                            <label class="form-label">CNIC Nnmber</label>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtCnic placeholder="Enter Address" [(ngModel)]="this.selectedChef.address">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.selectedChef.address != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.address">
+                            <label class="form-label">Address</label>
                         </div>
                     </div>
                 </div>
