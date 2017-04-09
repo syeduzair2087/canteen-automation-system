@@ -4,16 +4,15 @@ import { Staff } from '../models/staff.model';
 @Pipe({
     name: 'filterStaffByName'
 })
-export class StaffNameFilter  {
-    transform(inputArray: Array<Staff>, filterString: string) {
+export class StaffNameFilter {
+    transform(inputArray: FirebaseListObservable<Array<Staff>>, filterString: string) {
         if (inputArray == null) {
             return null;
         }
-        // return inputArray.map(staffDetails => staffDetails.filter(staff => staff.name.indexOf(filterString) != -1));
-        if(filterString == "" || filterString == null){
+        if (filterString == "" || filterString == null) {
             return inputArray;
         }
 
-        return inputArray.filter((staff : Staff) => staff.name.toLowerCase().includes(filterString.toLowerCase()));
+        return inputArray.filter((staff: Staff) => staff.name.toLocaleLowerCase().includes(filterString.toLocaleLowerCase()));
     }
 }

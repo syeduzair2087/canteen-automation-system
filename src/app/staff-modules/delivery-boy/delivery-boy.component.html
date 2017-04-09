@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-3 p-t-15">
+  </div>
+  <div class="col-md-4 col-md-offset-2 p-t-5">
+    <div class="form-group form-group-no-bottom-margin">
+      <div class="form-line">
+        <input class="form-control" placeholder="Search" type="text" [(ngModel)]="this.filterDeliveryBoyName" #txtDeliveryBoySearch>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 p-t-5">
+    <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickAddDeliveryBoy()">ADD DELIVERY BOY</button>
+  </div>
+</div>
+<div class="body table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>CONTACT #</th>
+      <th>CNIC #</th>
+      <th>ADDRESS</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let delivery_boy of deliveryBoyDetails | async |  filterStaffByName: this.filterDeliveryBoyName">
+        <td>{{delivery_boy.name}}</td>
+        <td>{{delivery_boy.email}}</td>
+        <td>{{delivery_boy.contact}}</td>
+        <td>{{delivery_boy.cnic}}</td>
+        <td>{{delivery_boy.address}}</td>
+
+
+        <td *ngIf='delivery_boy.status == "Active"' >
+          <div class="row p-b-5 p-r-5">
+            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#deliveryBoyModal" (click)="clickEditDeliveryBoy(delivery_boy)">
+                            EDIT
+                            </button>
+          </div>
+          <div class="row p-b-5 p-r-5">
+            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)=RemoveDeliveryBoy(delivery_boy.$key)>
+                            REMOVE
+                            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<delivery-boy-modal [staffService]="staffService" [selectedDeliveryBoy]="selectedDeliveryBoy"></delivery-boy-modal>

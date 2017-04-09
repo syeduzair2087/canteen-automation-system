@@ -5,10 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-// // PIPE
-// import { UserNameFilter } from './pipes/name.pipe';
-// import { StaffNameFilter } from './pipes/staff-filter.pipe';
-import { StaffNameFilter } from './pipes/staff-filter.pipe';
+// PIPE
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
 
 //COMPONENTS
@@ -21,14 +18,13 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
-import { AdminModalComponent } from './components/container/staff/admin-modal/admin-modal.component';
-import { ChefModalComponent } from './components/container/staff/chef-modal/chef-modal.component';
-import { DeliveryBoyModalComponent } from './components/container/staff/delivery-boy-modal/delivery-boy-modal.component';
 
 //MODULES
 import { RoutingModule } from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { TagInputModule } from 'ng2-tag-input';
+import { StaffModule } from './staff-modules/staff.module';
+ import { staffRouteModule } from './staff-modules/staff.routes';
 
 //SERVICES
 import { FoodService } from './services/food-service';
@@ -67,11 +63,7 @@ const firebaseAuthConfig = {
     FilterUserByEmailPipe,
     FilterUserByContactPipe,
     FilterUserByCabinPipe,
-    StaffComponent,
-    StaffNameFilter,
-    AdminModalComponent,
-    ChefModalComponent,
-    DeliveryBoyModalComponent
+    StaffComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +71,8 @@ const firebaseAuthConfig = {
     HttpModule,
     RoutingModule,
     TagInputModule,
+     StaffModule,
+    //   staffRouteModule,
     AngularFireModule.initializeApp(config, firebaseAuthConfig)
   ],
   providers: [

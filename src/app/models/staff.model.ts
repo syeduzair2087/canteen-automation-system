@@ -4,5 +4,6 @@ export interface Staff {
     contact: string,
     cnic: string,
     address: string
-    $key?: string
+    $key?: string,
+    status: string
 }

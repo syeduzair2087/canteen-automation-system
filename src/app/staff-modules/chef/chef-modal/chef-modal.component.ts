@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
-import { Staff } from '../../../../models/staff.model';
-import { AccountService } from '../../../../services/account-service';
-import { StaffService } from '../../../../services/staff-service';
+import { Staff } from '../../../models/staff.model';
+import { AccountService } from '../../../services/account-service';
+import { StaffService } from '../../../services/staff-service';
 @Component({
     selector: 'chef-modal',
     templateUrl: 'chef-modal.component.html'
@@ -20,43 +20,9 @@ export class ChefModalComponent {
     ////////EVENTS////////
 
     ngOnInit() {
-        // this.foodList = this.foodService.getFoodItems();
-
-        // this.foodItem = {
-        //     food_title: '',
-        //     food_price: null,
-        //     food_prefs: []
-        // }
     }
 
     ////////BUTTONS////////
-
-    // clickEdit(foodItem: FoodItem) {
-    //     this.foodItem = {
-    //         food_title: foodItem.food_title,
-    //         food_price: foodItem.food_price,
-    //         food_prefs: foodItem.food_prefs,
-    //         $key: foodItem.$key
-    //     }
-    // }
-
-    // clickAdd() {
-    //     if ('$key' in this.foodItem) {
-    //         delete this.foodItem.$key;
-    //     }
-
-    //     this.foodItem = {
-    //         food_title: '',
-    //         food_price: null,
-    //         food_prefs: []
-    //     }
-    // }
-
-    // clickRemove(key: string) {
-    //     this.foodService.deleteFoodItem(key).catch((error) => {
-    //         console.log(error);
-    //     })
-    // }
 
     clickConfirm() {
         if (this.selectedChef.$key) {
@@ -65,7 +31,7 @@ export class ChefModalComponent {
             this.staffService.editChef(key, this.selectedChef).then((success) => {
 
             }).catch((error) => {
-
+                console.log(error);
             })
         }
         else {
@@ -74,11 +40,9 @@ export class ChefModalComponent {
 
                 }).catch((error) => {
                     console.log(error);
-
                 });
             }).catch((error) => {
                 console.log(error);
-
             });
 
         }

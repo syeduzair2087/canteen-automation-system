@@ -13,7 +13,7 @@ export class StaffService {
         //     });
         // });
     }
-
+p
     fetchChefDetails() {
         // return new Promise((res, rej) => {
         return this.angularFire.database.list('roles/chefs')
@@ -25,7 +25,7 @@ export class StaffService {
 
     fetchDeliveryBoyDetails() {
         // return new Promise((res, rej) => {
-       return this.angularFire.database.list('roles/delivery_boys')
+        return this.angularFire.database.list('roles/delivery_boys')
         //     .subscribe((data: Array<Staff>) => {
         //         res(data);
         //     });
@@ -86,6 +86,36 @@ export class StaffService {
     editDeliveryBoy(key: string, deliveryBoy: Staff) {
         return new Promise((res, rej) => {
             this.angularFire.database.object('roles/delivery_boys/' + key + '/').update(deliveryBoy).then((success) => {
+                res();
+            }).catch((error) => {
+                rej(error.message);
+            });
+        });
+    }
+
+    removeAdmin(key: string) {
+        return new Promise((res, rej) => {
+            this.angularFire.database.object('roles/admins/' + key).update({ status: "Remove" }).then((success) => {
+                res();
+            }).catch((error) => {
+                rej(error.message);
+            });
+        });
+    }
+
+    removeChef(key: string) {
+        return new Promise((res, rej) => {
+            this.angularFire.database.object('roles/chefs/' + key).update({ status: "Remove" }).then((success) => {
+                res();
+            }).catch((error) => {
+                rej(error.message);
+            });
+        });
+    }
+
+    removeDeliveryBoy(key: string) {
+        return new Promise((res, rej) => {
+            this.angularFire.database.object('roles/delivery_boys/' + key).update({ status: "Remove" }).then((success) => {
                 res();
             }).catch((error) => {
                 rej(error.message);

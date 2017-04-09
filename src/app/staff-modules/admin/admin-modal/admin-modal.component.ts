@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
-import { Staff } from '../../../../models/staff.model';
-import { AccountService } from '../../../../services/account-service';
-import { StaffService } from '../../../../services/staff-service';
+import { Staff } from '../../../models/staff.model';
+import { AccountService } from '../../../services/account-service';
+import { StaffService } from '../../../services/staff-service';
 @Component({
     selector: 'admin-modal',
     templateUrl: 'admin-modal.component.html'
@@ -10,7 +10,6 @@ import { StaffService } from '../../../../services/staff-service';
 
 export class AdminModalComponent {
     constructor(private accountService: AccountService) {
-        console.log(this.selectedAdmin);
     }
 
     ////////INPUT////////
@@ -21,8 +20,6 @@ export class AdminModalComponent {
     ////////EVENTS////////
 
     ngOnInit() {
-        console.log("this.");
-        console.log(this.selectedAdmin);
     }
 
     ////////BUTTONS////////
@@ -43,14 +40,11 @@ export class AdminModalComponent {
                 this.staffService.addAdmin(this.selectedAdmin).then((success) => {
 
                 }).catch((error) => {
-                console.log(error);
+                    console.log(error);
                 });
             }).catch((error) => {
                 console.log(error);
             });
         }
-
-        //console.log(this.selectedAdmin.$key);
-
     }
 }

@@ -6,6 +6,11 @@ import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
+import { staffRoutes, staffRouteModule } from "./staff-modules/staff.routes";
+// import { AdminComponent } from './staff-modules/admin/admin.component';
+// import { ChefComponent } from './staff-modules/chef/chef.component';
+// import { DeliveryBoyComponent } from './staff-modules/delivery-boy/delivery-boy.component';
+
 
 const baseRoute: Route = {
     path: '',
@@ -36,7 +41,10 @@ const routes: Routes = [
             },
             {
                 path: 'staff',
-                component: StaffComponent
+                component: StaffComponent,
+                children: [
+                    ...staffRoutes
+                ]
             },
             {
                 path: 'users',
