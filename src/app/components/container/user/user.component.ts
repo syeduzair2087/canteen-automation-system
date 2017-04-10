@@ -2,7 +2,7 @@ import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseListObservable } from 'angularfire2';
 import { UserService } from '../../../services/user-service';
-import { UserDetail } from '../../../models/userDetail.model';
+import { User } from '../../../models/user.model';
 import loadTheme = require('../../../../js/admin');
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from '../../../pipes/filter-user.pipe';
 
@@ -12,7 +12,7 @@ import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, F
 })
 
 export class UserComponent {
-    users: Array<UserDetail> = [];
+    users: Array<User> = [];
     filterUserName: string = '';
     filterEmail: string = '';
     filterContact: string = '';
@@ -21,7 +21,7 @@ export class UserComponent {
 
     constructor(private userService: UserService, private router: Router) { }
     ngOnInit(){
-        this.userService.fetchUserDetails().then( (data: Array<UserDetail>) =>{
+        this.userService.fetchUserDetails().then( (data: Array<User>) =>{
             this.users = data;
             //  console.log(this.userData);
         });

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { StaffMember } from '../models/staff-member.model';
 
 @Injectable()
 export class AccountService {
@@ -70,6 +71,17 @@ export class AccountService {
             return true;
         }
 
-        else return false;
+        else {
+            return false;
+        }
+    }
+
+    getData() {
+        return new Promise ((res, rej) => {
+            let userDataSubscription = this.angularFire.database.object('/roles/admins/' + localStorage.getItem('uid')).subscribe((data: StaffMember) => {
+                res(data);
+                userDataSubscription.unsubscribe();
+            });
+        })
     }
 }
