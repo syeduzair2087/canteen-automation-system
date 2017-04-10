@@ -1,19 +1,20 @@
 <div class="card">
     <div class="header">
         <div class="row">
-            <div class="col-sm-4 p-t-15">
+            <div class="col-md-4 p-t-15 p-b-5">
                 <h2>
                     FOOD ITEMS
                 </h2>
             </div>
-            <div class="col-md-4 col-md-offset-2 p-t-5">
-                <div class="form-group form-group-no-bottom-margin">
+            <div class="col-md-4 col-md-offset-1 p-t-5">
+                <div class="form-group form-float form-group-no-bottom-margin">
                     <div class="form-line">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" type="text" [(ngModel)]="filterFoodName">
+                        <label class="form-label">Enter food name to filter</label>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 p-t-5">
+            <div class="col-md-3 p-t-5">
                 <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#foodModal" (click)="clickAdd()">ADD FOOD ITEM</button>
             </div>
         </div>
@@ -28,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let foodItem of foodList | async">
+                <tr *ngFor="let foodItem of foodList | async | filterFoodByName : filterFoodName">
                     <td>{{foodItem.food_title}}</td>
                     <td>
                         <ul>

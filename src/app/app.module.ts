@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 // PIPE
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
+import { FilterFoodByNamePipe } from './pipes/filter-food.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 
 //COMPONENTS
@@ -62,6 +63,7 @@ const firebaseAuthConfig = {
     OrderComponent,
     LoginComponent,
     UserComponent,
+    FilterFoodByNamePipe,
     UserDetailsComponent,
     OrderDetailsComponent,
     FilterUserByNamePipe,

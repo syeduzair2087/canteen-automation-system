@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FoodService } from '../../../services/food-service';
 import { FirebaseListObservable } from 'angularfire2';
 import { FoodItem } from '../../../models/food.model';
+import { FilterFoodByNamePipe } from '../../../pipes/filter-food.pipe';
 import loadTheme = require('../../../../js/admin');
 
 @Component({
@@ -16,6 +17,7 @@ export class FoodComponent {
 
     foodList: FirebaseListObservable<Array<FoodItem>>;
     foodItem: FoodItem;
+    filterFoodName: string = '';
 
     ////////EVENTS////////
 
