@@ -49,7 +49,7 @@ export class AdminComponent {
             cnic: '',
             contact: '',
             address: '',
-            status: 'Active'
+            status: 'active'
         }
     }
 
@@ -61,7 +61,7 @@ export class AdminComponent {
             cnic: admin.cnic,
             contact: admin.contact,
             address: admin.address,
-            status: 'Active'
+            status: 'active'
         }
     }
 

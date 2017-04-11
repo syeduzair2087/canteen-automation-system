@@ -49,7 +49,7 @@ export class DeliveryBoyComponent {
             cnic: '',
             contact: '',
             address: '',
-            status: 'Active'
+            status: 'active'
         }
     }
 
@@ -61,7 +61,7 @@ export class DeliveryBoyComponent {
             cnic: deliveryBoy.cnic,
             contact: deliveryBoy.contact,
             address: deliveryBoy.address,
-            status: 'Active'
+            status: 'active'
         }
     }
 

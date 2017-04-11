@@ -50,7 +50,7 @@ filterStaffName: string = '';
             cnic: '',
             contact: '',
             address: '',
-            status: 'Active'
+            status: 'active'
         }
     }
 
@@ -63,7 +63,7 @@ filterStaffName: string = '';
             cnic: chef.cnic,
             contact: chef.contact,
             address: chef.address,
-            status: 'Active'
+            status: 'active'
         }
     }
 

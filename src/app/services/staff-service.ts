@@ -144,7 +144,7 @@ export class StaffService {
 
     removeStaffMember(role: string, userId: string) {
         return new Promise((res, rej) => {
-            this.angularFire.database.object('roles/' + role + '/' + userId).update({ status: 'remove' }).then(() => {
+            this.angularFire.database.object('roles/' + role + '/' + userId).update({ status: 'removed' }).then(() => {
                 res();
             }).catch((error) => {
                 rej(error.message);
