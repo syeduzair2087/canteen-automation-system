@@ -52,6 +52,10 @@ export class OrderService {
         });
     }
 
+    getOrderSubscription() {
+        return this.angularFire.database.list('/orders/');
+    }
+
     fetchOrderItems(orderId: string) {
         return new Promise((res, rej) => {
             let orderSubscription = this.angularFire.database.object('/orders/' + orderId).subscribe((data: Order) => {
@@ -100,7 +104,13 @@ export class OrderService {
                         staffMemberId: data.$key
                     }
                 }).then(() => {
-                    res();
+                    this.angularFire.database.object('roles/chefs/' + data.$key).update({
+                        job_count: <number>data.job_count + 1
+                    }).then(() => {
+                        res();
+                    }).catch(() => {
+                        rej();
+                    })
                 }).catch(() => {
                     rej();
                 })

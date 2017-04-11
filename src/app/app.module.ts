@@ -5,9 +5,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-// PIPE
+// PIPES
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
 import { FilterFoodByNamePipe } from './pipes/filter-food.pipe';
+import { FilterOrdersByStatusPipe } from './pipes/filter-order.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 
 //COMPONENTS
@@ -72,6 +73,7 @@ const firebaseAuthConfig = {
     FilterUserByEmailPipe,
     FilterUserByContactPipe,
     FilterUserByCabinPipe,
+    FilterOrdersByStatusPipe,
     ReversePipe,
     StaffComponent
   ],
