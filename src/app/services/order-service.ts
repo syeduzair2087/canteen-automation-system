@@ -44,7 +44,7 @@ export class OrderService {
         });
     }
 
-     fetchAllOrders() {
+    fetchAllOrders() {
         return new Promise((res, rej) => {
             this.angularFire.database.list('/orders/').subscribe((data: Array<Order>) => {
                 res(data);
@@ -59,5 +59,52 @@ export class OrderService {
                 res(data.items);
             }).unsubscribe();
         });
+    }
+
+    getLeastJobCount(role: string) {
+        return new Promise((res, rej) => {
+            let countSubscription = this.angularFire.database.list('/roles/' + role, {
+                query: {
+                    orderByChild: 'job_count',
+                    limitToFirst: 1
+                }
+            }).subscribe((data: any) => {
+                countSubscription.unsubscribe();
+                res(data[0].job_count);
+            });
+        });
+    }
+
+    getChefToAssign(role: string) {
+        return new Promise((res, rej) => {
+            this.getLeastJobCount(role).then((data: number) => {
+                let chefsSubscription = this.angularFire.database.list('/roles/' + role, {
+                    query: {
+                        orderByChild: 'job_count',
+                        equalTo: data
+                    }
+                }).subscribe((datalist: Array<any>) => {
+                    chefsSubscription.unsubscribe();
+                    res(datalist[Math.floor(Math.random() * datalist.length)]);
+                });
+            }).catch(() => rej());
+        })
+    }
+
+    assignToChef(orderId: string) {
+        return new Promise((res, rej) => {
+            this.getChefToAssign('chefs').then((data: any) => {
+                this.angularFire.database.object('/orders/' + orderId).update({
+                    status: {
+                        state: 'Assigned to Chef',
+                        staffMemberId: data.$key
+                    }
+                }).then(() => {
+                    res();
+                }).catch(() => {
+                    rej();
+                })
+            })
+        })
     }
 }

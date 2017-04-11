@@ -40,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders | reverse" (click)="clickOrder(order.$key)">
+                <tr *ngFor="let order of orders | reverse">
                     <td>12345</td>
                     <td>{{order.orderTime | date: 'mediumDate'}}</td>
                     <td>{{order.orderTime | date: 'shortTime'}}</td>
@@ -49,7 +49,15 @@
                     <td>{{order.user.email}}</td>
                     <td>{{order.user.contact}}</td>
                     <td>{{order.user.cabin}}</td>
+                    <td>
+                        <div class="row p-b-5 p-r-5">
+                            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToChef(order.$key)">
+                            ASSIGN TO CHEF
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <chef-list-modal></chef-list-modal>

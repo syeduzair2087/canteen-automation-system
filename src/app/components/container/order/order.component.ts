@@ -31,6 +31,10 @@ export class OrderComponent {
 
         setTimeout(() => {
             loadTheme();
-        }, 10)
+        }, 10);
+    }
+
+    clickAssignToChef(orderId: string) {
+        this.orderService.assignToChef(orderId).then((data) => {}).catch(() => {});
     }
 }
