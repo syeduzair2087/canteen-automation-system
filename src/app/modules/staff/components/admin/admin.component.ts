@@ -67,7 +67,7 @@ export class AdminComponent {
 
     RemoveAdmin(key) {
         console.log(key);
-        this.staffService.removeAdmin(key).then((success) => {
+        this.staffService.removeStaffMember('admins', key).then((success) => {
         }).catch((error) => {
             console.log(error);
         });

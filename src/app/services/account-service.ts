@@ -56,7 +56,7 @@ export class AccountService {
                     displayName: name,
                     photoURL: 'https://firebasestorage.googleapis.com/v0/b/canteenautomationsystem.appspot.com/o/assets%2Fno-image.jpg?alt=media&token=ee3b6fc2-8906-4dac-abea-43f728190f22'
                 }).then((success) => {
-                    res();
+                    res(user.uid);
                 }).catch((error) => {
                     rej(error.message);
                 });

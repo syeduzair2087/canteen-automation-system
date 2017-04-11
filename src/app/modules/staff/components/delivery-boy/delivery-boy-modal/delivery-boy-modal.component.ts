@@ -27,22 +27,16 @@ export class DeliveryBoyModalComponent {
         if (this.selectedDeliveryBoy.$key) {
             let key = this.selectedDeliveryBoy.$key;
             delete this.selectedDeliveryBoy.$key;
-            this.staffService.editDeliveryBoy(key, this.selectedDeliveryBoy).then((success) => {
+            this.staffService.editStaffMember('delivery_boys', key, this.selectedDeliveryBoy).then((success) => {
 
             }).catch((error) => {
                 console.log(error);
             })
         }
         else {
-            this.accountService.createUser(this.selectedDeliveryBoy.email, "u123456", this.selectedDeliveryBoy.name).then((success) => {
-                this.staffService.addDeliveryBoy(this.selectedDeliveryBoy).then((success) => {
-
-                }).catch((error) => {
-
-                });
-            }).catch((error) => {
-
-            });
+            this.accountService.createUser(this.selectedDeliveryBoy.email, "u123456", this.selectedDeliveryBoy.name).then((userId: string) => {
+                this.staffService.addStaffMember('delivery_boys', userId, this.selectedDeliveryBoy).then((success) => { }).catch((error) => { });
+            }).catch((error) => { });
         }
     }
 }

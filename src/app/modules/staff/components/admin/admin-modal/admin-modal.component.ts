@@ -34,15 +34,16 @@ export class AdminModalComponent {
         if ('$key' in this.selectedAdmin) {
             let key = this.selectedAdmin.$key;
             delete this.selectedAdmin.$key
-            this.staffService.editAdmin(key, this.selectedAdmin).then((success) => {
+            this.staffService.editStaffMember('admins', key, this.selectedAdmin).then((success) => {
 
             }).catch((error) => {
                 console.log(error);
             });
         }
         else {
-            this.accountService.createUser(this.selectedAdmin.email, "u123456", this.selectedAdmin.name).then((success) => {
-                this.staffService.addAdmin(this.selectedAdmin).then((success) => {
+            this.accountService.createUser(this.selectedAdmin.email, "u123456", this.selectedAdmin.name).then((userId: string) => {
+                console.log(userId);
+                this.staffService.addStaffMember('admins', userId, this.selectedAdmin).then((success) => {
 
                 }).catch((error) => {
                     console.log(error);

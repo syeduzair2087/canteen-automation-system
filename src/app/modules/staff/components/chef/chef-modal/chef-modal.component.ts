@@ -28,15 +28,15 @@ export class ChefModalComponent {
         if (this.selectedChef.$key) {
             let key = this.selectedChef.$key;
             delete this.selectedChef.$key
-            this.staffService.editChef(key, this.selectedChef).then((success) => {
+            this.staffService.editStaffMember('chefs', key, this.selectedChef).then((success) => {
 
             }).catch((error) => {
                 console.log(error);
             })
         }
         else {
-            this.accountService.createUser(this.selectedChef.email, 'u123456', this.selectedChef.name).then((success) => {
-                this.staffService.addChef(this.selectedChef).then((success) => {
+            this.accountService.createUser(this.selectedChef.email, 'u123456', this.selectedChef.name).then((userId: string) => {
+                this.staffService.addStaffMember('chefs', userId, this.selectedChef).then((success) => {
 
                 }).catch((error) => {
                     console.log(error);

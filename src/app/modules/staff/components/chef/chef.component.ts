@@ -68,7 +68,7 @@ filterStaffName: string = '';
     }
 
     RemoveChef(key) {
-        this.staffService.removeChef(key).then((success) => {
+        this.staffService.removeStaffMember('chefs', key).then((success) => {
         }).catch((error) => {
             console.log(error);
         });        

@@ -66,7 +66,7 @@ export class DeliveryBoyComponent {
     }
 
     RemoveDeliveryBoy(key) {
-        this.staffService.removeDeliveryBoy(key).then((success) => {
+        this.staffService.removeStaffMember('delivery_boys', key).then((success) => {
         }).catch((error) => {
             console.log(error);;
         });
