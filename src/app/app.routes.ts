@@ -1,7 +1,6 @@
 import { Route, Routes, RouterModule } from '@angular/router';
 import { FoodComponent } from './components/container/food/food.component';
 import { OrderComponent } from './components/container/order/order.component';
-import { ChefListModalComponent } from './components/container/order/chef-list-modal/chef-list-modal.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/container/user/user.component';
@@ -44,13 +43,7 @@ const routes: Routes = [
             },
             {
                 path: 'orders',
-                component: OrderComponent,
-                children: [
-                    {
-                        path: 'assignToChef',
-                        component: ChefListModalComponent
-                    }
-                ]
+                component: OrderComponent
             },
             {
                 path: 'staff',

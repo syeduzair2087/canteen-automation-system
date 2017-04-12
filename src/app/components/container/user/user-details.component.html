@@ -38,7 +38,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let order of orders | reverse" (click)="clickOrder(order.$key)">
-                    <td>12345</td>
+                    <td>{{order.orderId}}</td>
                     <td>{{order.orderTime | date: 'mediumDate'}}</td>
                     <td>{{order.orderTime | date: 'shortTime'}}</td>
                     <td>Rs. {{order.amount}}</td>
