@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy">
+                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy" (click)="clickOrder(order.$key)">
                     <td>{{order.orderId}}</td>
                     <td>{{order.orderTime | date: 'mediumDate'}}</td>
                     <td>{{order.orderTime | date: 'shortTime'}}</td>

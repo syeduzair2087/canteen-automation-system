@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import loadTheme = require('../../../../js/admin');
 import { OrderService } from '../../../services/order-service';
 import { UserService } from '../../../services/user-service';
@@ -18,7 +19,7 @@ export class OrderComponent {
     users: Array<User> = [];
     filterBy: string = 'Pending';
 
-    constructor(private orderService: OrderService, private userService: UserService) { }
+    constructor(private orderService: OrderService, private userService: UserService, private router: Router) { }
 
     ngOnInit() {
         this.orderSubscription = this.orderService.getOrderSubscription().subscribe((ordersData: Array<Order>) => {
@@ -55,5 +56,10 @@ export class OrderComponent {
 
     clickAssignToChef(orderId: string) {
         this.orderService.assignToChef(orderId).then((data) => { }).catch(() => { });
+    }
+
+    clickOrder(orderId: string) {
+        // console.log(order);
+        this.router.navigate(['home/orders/' + orderId]);
     }
 }
