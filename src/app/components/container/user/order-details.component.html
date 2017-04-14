@@ -2,28 +2,21 @@
     <div class="header">
         <div class="row">
             <div class="col-sm-4 p-t-15">
-                <h2>
-                    {{userName}}
+                <h2 class="p-b-10">
+                    STATUS: {{status?.state.toLocaleUpperCase()}}
                 </h2>
+                <ng-container *ngIf="status?.staffMemberId">
+                    <h2 class="p-b-10">
+                        ASSIGNED TO: {{staffMember?.name.toLocaleUpperCase()}}
+                    </h2>
+                    <h2 class="p-b-10">
+                        EMAIL: {{staffMember?.email}}
+                    </h2>
+                    <h2>
+                        CONTACT: {{staffMember?.contact}}
+                    </h2>
+                </ng-container>
             </div>
-            <!--<div class="col-md-2 col-md-offset-2 p-t-5">
-                <select class="form-control show-tick" [(ngModel)]="filterBy" (change)="onFilterTypeChange()">
-                                        <option value="name">Name</option>
-                                        <option value="email">Email</option>
-                                        <option value="contact">Contact</option>
-                                        <option value="cabin">Cabin</option>
-                                    </select>
-            </div>-->
-            <!--<div class="col-md-4 p-t-5">
-                <div class="form-group form-group-no-bottom-margin">
-                    <div class="form-line">
-                        <input class="form-control" placeholder="Enter name to filter" type="text" [(ngModel)]="filterUserName" *ngIf="filterBy == 'name'">
-                        <input class="form-control" placeholder="Enter email to filter" type="text" [(ngModel)]="filterEmail" *ngIf="filterBy == 'email'">
-                        <input class="form-control" placeholder="Enter contact to filter" type="text" [(ngModel)]="filterContact" *ngIf="filterBy == 'contact'">
-                        <input class="form-control" placeholder="Enter cabin number to filter" type="text" [(ngModel)]="filterCabin" *ngIf="filterBy == 'cabin'">
-                    </div>
-                </div>
-            </div>-->
         </div>
     </div>
     <div class="body table-responsive">

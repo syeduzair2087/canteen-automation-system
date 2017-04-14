@@ -59,9 +59,9 @@ export class OrderService {
     fetchOrderItems(orderId: string) {
         return new Promise((res, rej) => {
             let orderSubscription = this.angularFire.database.object('/orders/' + orderId).subscribe((data: Order) => {
-                // orderSubscription.unsubscribe();
                 res(data.items);
-            }).unsubscribe();
+                orderSubscription.unsubscribe();
+            });
         });
     }
 
@@ -137,6 +137,15 @@ export class OrderService {
                 }).catch(() => {
                     rej();
                 });
+            });
+        });
+    }
+
+    getOrderStatus(orderId: string) {
+        return new Promise((res, rej) => {
+            let statusSubscription = this.angularFire.database.object('/orders/' + orderId + '/status').subscribe((data) => {
+                res(data);
+                statusSubscription.unsubscribe();
             });
         });
     }

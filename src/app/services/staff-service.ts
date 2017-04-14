@@ -152,4 +152,29 @@ export class StaffService {
         });
     }
 
+    getStaffMemberDetails(staffMemberId: string, state: string) {
+        return new Promise((res, rej) => {
+            let role = '';
+
+            console.log('state is :' + state);
+
+            if (state === 'Assigned to Chef' || state === 'Accepted by Chef' || state === 'Order Ready') {
+                role = 'chefs';
+            }
+
+            else if (state === 'Assigned to Delivery Boy' || state === 'Received by Deliver Boy' || state === 'Order Delivered') {
+                role = 'delivery_boys';
+            }
+
+            else {
+                return rej();
+            }
+
+            let staffMemberSubscription = this.angularFire.database.object('/roles/' + role + '/' + staffMemberId).subscribe((data) => {
+                res(data);
+                staffMemberSubscription.unsubscribe();
+            });
+        });
+    }
+
 }
