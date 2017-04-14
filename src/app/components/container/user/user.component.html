@@ -46,4 +46,9 @@
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="(users | filterUserByName: filterUserName | filterUserByEmail: filterEmail | filterUserByContact: filterContact | filterUserByCabin: filterCabin).length == 0">
+            <h4 class="text-center">
+                No users.
+            </h4>
+        </div>
     </div>

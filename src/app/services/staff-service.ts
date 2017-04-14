@@ -161,8 +161,8 @@ export class StaffService {
             if (state === 'Assigned to Chef' || state === 'Accepted by Chef' || state === 'Order Ready') {
                 role = 'chefs';
             }
-
-            else if (state === 'Assigned to Delivery Boy' || state === 'Received by Deliver Boy' || state === 'Order Delivered') {
+                                                                        
+            else if (state === 'Assigned to Delivery Boy' || state === 'Received by Delivery Boy' || state === 'Order Delivered') {
                 role = 'delivery_boys';
             }
 

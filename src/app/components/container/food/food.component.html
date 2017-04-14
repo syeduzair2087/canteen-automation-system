@@ -63,7 +63,11 @@
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="(foodList | async | filterFoodByName : filterFoodName)?.length == 0">
+            <h4 class="text-center">
+                No food items.
+            </h4>
+        </div>
     </div>
-
 </div>
 <food-modal [foodService]="foodService" [foodItem]="foodItem"></food-modal>

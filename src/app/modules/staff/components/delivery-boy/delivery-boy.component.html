@@ -73,6 +73,11 @@
       </ng-container>
     </tbody>
   </table>
+  <div *ngIf="(deliveryBoyDetails | async | filterStaffByName: filterStaffName | filterStaffByEmail: filterStaffEmail | filterStaffByContact: filterStaffContact | filterStaffByCnic: filterStaffCnic | filterStaffByAddress: filterStaffAddress)?.length == 0">
+    <h4 class="text-center">
+      No staff members.
+    </h4>
+  </div>
 </div>
 
 <delivery-boy-modal [staffService]="staffService" [selectedDeliveryBoy]="selectedDeliveryBoy"></delivery-boy-modal>

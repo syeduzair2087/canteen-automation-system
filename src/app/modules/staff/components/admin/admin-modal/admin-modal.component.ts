@@ -22,6 +22,7 @@ export class AdminModalComponent {
     ////////EVENTS////////
 
     ngOnInit() {
+     console.log('click');
         setTimeout(() => {
             loadTheme();
         }, 10)

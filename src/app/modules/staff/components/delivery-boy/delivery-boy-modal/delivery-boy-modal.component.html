@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="form-group form-float">
+                    <div class="form-group form-float" *ngIf="this.selectedDeliveryBoy.email == ''">
                         <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.email != '' ? 'focused' : '']">
                             <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.email">
                             <label class="form-label">Email</label>

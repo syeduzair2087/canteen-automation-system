@@ -17,6 +17,8 @@ export class AdminComponent {
     filterStaffAddress: string = '';
     filterBy: string = 'name';
 
+    adminId: string;
+
     adminDetails: FirebaseListObservable<Array<StaffMember>>;
 
     selectedAdmin: StaffMember = {
@@ -33,7 +35,8 @@ export class AdminComponent {
 
     ngOnInit() {
         this.adminDetails = this.staffService.fetchAdmins();
-
+        this.adminId = localStorage.getItem('uid');
+        
         setTimeout(() => {
             loadTheme();
         }, 10);

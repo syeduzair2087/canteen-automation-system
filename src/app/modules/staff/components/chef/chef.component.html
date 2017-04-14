@@ -59,7 +59,6 @@
             <ng-container *ngIf='chef.status == "active"'>
               <div class="row p-b-5 p-r-5">
                 <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickEditChef(chef)">
-                            EDIT
                             </button>
               </div>
               <div class="row p-b-5 p-r-5">
@@ -73,5 +72,11 @@
       </ng-container>
     </tbody>
   </table>
+
+  <div *ngIf="(ChefDetails | async | filterStaffByName: filterStaffName | filterStaffByEmail: filterStaffEmail | filterStaffByContact: filterStaffContact | filterStaffByCnic: filterStaffCnic | filterStaffByAddress: filterStaffAddress)?.length == 0">
+    <h4 class="text-center">
+      No staff members.
+    </h4>
+  </div>
 </div>
 <chef-modal [staffService]="staffService" [selectedChef]="selectedChef"></chef-modal>
