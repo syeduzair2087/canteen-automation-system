@@ -50,12 +50,16 @@ export class OrderComponent {
         }, 10);
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         this.orderSubscription.unsubscribe();
     }
 
     clickAssignToChef(orderId: string) {
         this.orderService.assignToChef(orderId).then((data) => { }).catch(() => { });
+    }
+
+    clickAssignToDeliveryBoy(orderId: string) {
+        this.orderService.assignToDeliveryBoy(orderId).then((data) => {}).catch(() => {});
     }
 
     clickOrder(orderId: string) {

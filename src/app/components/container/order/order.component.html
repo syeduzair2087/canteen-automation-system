@@ -46,7 +46,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy" (click)="clickOrder(order.$key)">
+                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy">
                     <td>{{order.orderId}}</td>
                     <td>{{order.orderTime | date: 'mediumDate'}}</td>
                     <td>{{order.orderTime | date: 'shortTime'}}</td>
@@ -57,8 +57,18 @@
                     <td>{{order.user.cabin}}</td>
                     <td>
                         <div class="row p-b-5 p-r-5">
+                            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickOrder(order.$key)">
+                            VIEW DETAILS
+                            </button>
+                        </div>
+                        <div class="row p-b-5 p-r-5" *ngIf="order.status.state == 'Pending'">
                             <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToChef(order.$key)">
                             ASSIGN TO CHEF
+                            </button>
+                        </div>
+                        <div class="row p-b-5 p-r-5" *ngIf="order.status.state == 'Order Ready'">
+                            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToDeliveryBoy(order.$key)">
+                            ASSIGN TO DELIVERY BOY
                             </button>
                         </div>
                     </td>

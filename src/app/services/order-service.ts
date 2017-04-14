@@ -79,7 +79,7 @@ export class OrderService {
         });
     }
 
-    getChefToAssign(role: string) {
+    getStaffMemberToAssign(role: string) {
         return new Promise((res, rej) => {
             this.getLeastJobCount(role).then((data: number) => {
                 let chefsSubscription = this.angularFire.database.list('/roles/' + role, {
@@ -92,12 +92,12 @@ export class OrderService {
                     res(datalist[Math.floor(Math.random() * datalist.length)]);
                 });
             }).catch(() => rej());
-        })
+        });
     }
 
     assignToChef(orderId: string) {
         return new Promise((res, rej) => {
-            this.getChefToAssign('chefs').then((data: any) => {
+            this.getStaffMemberToAssign('chefs').then((data: any) => {
                 this.angularFire.database.object('/orders/' + orderId).update({
                     status: {
                         state: 'Assigned to Chef',
@@ -110,11 +110,34 @@ export class OrderService {
                         res();
                     }).catch(() => {
                         rej();
-                    })
+                    });
                 }).catch(() => {
                     rej();
-                })
-            })
-        })
+                });
+            });
+        });
+    }
+
+    assignToDeliveryBoy(orderId: string) {
+        return new Promise((res, rej) => {
+            this.getStaffMemberToAssign('delivery_boys').then((data: any) => {
+                this.angularFire.database.object('/orders/' + orderId).update({
+                    status: {
+                        state: 'Assigned to Delivery Boy',
+                        staffMemberId: data.$key
+                    }
+                }).then(() => {
+                    this.angularFire.database.object('roles/delivery_boys/' + data.$key).update({
+                        job_count: <number>data.job_count + 1
+                    }).then(() => {
+                        res();
+                    }).catch(() => {
+                        rej();
+                    });
+                }).catch(() => {
+                    rej();
+                });
+            });
+        });
     }
 }
