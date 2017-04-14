@@ -15,12 +15,25 @@
                                     </select>
             </div>
             <div class="col-md-4 p-t-5">
-                <div class="form-group form-group-no-bottom-margin">
+                <div class="form-group form-float form-group-no-bottom-margin">
                     <div class="form-line">
-                        <input class="form-control" placeholder="Enter name to filter" type="text" [(ngModel)]="filterUserName" *ngIf="filterBy == 'name'">
-                        <input class="form-control" placeholder="Enter email to filter" type="text" [(ngModel)]="filterEmail" *ngIf="filterBy == 'email'">
-                        <input class="form-control" placeholder="Enter contact to filter" type="text" [(ngModel)]="filterContact" *ngIf="filterBy == 'contact'">
-                        <input class="form-control" placeholder="Enter cabin number to filter" type="text" [(ngModel)]="filterCabin" *ngIf="filterBy == 'cabin'">
+                        <ng-container *ngIf="filterBy == 'name'">
+                            <input class="form-control" type="text" [(ngModel)]="filterUserName">
+                            <label class="form-label">Enter name to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterBy == 'email'">
+                            <input class="form-control" type="text" [(ngModel)]="filterEmail">
+                            <label class="form-label">Enter email to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterBy == 'contact'">
+                            <input class="form-control" type="text" [(ngModel)]="filterContact">
+                            <label class="form-label">Enter contact to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterBy == 'cabin'">
+                            <input class="form-control" type="text" [(ngModel)]="filterCabin">
+                            <label class="form-label">Enter cabin number to filter</label>
+                        </ng-container>
+
                     </div>
                 </div>
             </div>

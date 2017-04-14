@@ -36,6 +36,10 @@ export class UserComponent {
         this.filterEmail = '';
         this.filterContact = '';
         this.filterCabin = '';
+        
+         setTimeout(() => {
+            loadTheme();
+        }, 10);
     }
 
     clickUser(user) {
