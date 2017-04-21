@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Order } from '../models/order.model';
-
+var querybase = require('querybase');
 @Injectable()
 export class OrderService {
+
     public constructor(private angularFire: AngularFire) { }
 
     // placeOrder(order: Order) {
@@ -71,6 +72,7 @@ export class OrderService {
                 query: {
                     orderByChild: 'job_count',
                     limitToFirst: 1
+
                 }
             }).subscribe((data: any) => {
                 countSubscription.unsubscribe();
@@ -82,13 +84,14 @@ export class OrderService {
     getStaffMemberToAssign(role: string) {
         return new Promise((res, rej) => {
             this.getLeastJobCount(role).then((data: number) => {
-                let chefsSubscription = this.angularFire.database.list('/roles/' + role, {
+                let staffsSubscription = this.angularFire.database.list('/roles/' + role, {
                     query: {
                         orderByChild: 'job_count',
                         equalTo: data
                     }
                 }).subscribe((datalist: Array<any>) => {
-                    chefsSubscription.unsubscribe();
+                    staffsSubscription.unsubscribe();;
+                    datalist.filter
                     res(datalist[Math.floor(Math.random() * datalist.length)]);
                 });
             }).catch(() => rej());
@@ -148,5 +151,16 @@ export class OrderService {
                 statusSubscription.unsubscribe();
             });
         });
+    }
+
+    getActiveLeastCount(staff: string) {
+        // let databaseRef = firebase.database().ref().child('roles/' + staff);
+        // let queryBaseRef = querybase.ref(databaseRef);
+        // let result = queryBaseRef.where('job_count').greaterThan(0);
+        //     result.on('value', snap => console.log(snap))
+
+        let databaseRef = firebase.database().ref().child('roles/chefs');
+        let querybaseRef = querybase.ref(databaseRef);
+        querybaseRef.where('job_count').greaterThan(0);
     }
 }

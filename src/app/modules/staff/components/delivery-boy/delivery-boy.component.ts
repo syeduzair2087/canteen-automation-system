@@ -16,6 +16,7 @@ export class DeliveryBoyComponent {
     filterStaffCnic: string = '';
     filterStaffAddress: string = '';
     filterBy: string = 'name';
+    deliveryBoyStatus: string = 'active';
 
     deliveryBoyDetails: FirebaseListObservable<Array<StaffMember>>;
 
@@ -82,5 +83,12 @@ export class DeliveryBoyComponent {
         setTimeout(() => {
             loadTheme();
         }, 10);
+    }
+
+    onDeliveryBoyStatusChange(){
+        if(this.deliveryBoyStatus == 'active')
+        this.deliveryBoyStatus = 'removed';
+        else
+        this.deliveryBoyStatus = 'active';
     }
 }

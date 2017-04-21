@@ -36,6 +36,11 @@
       </div>
     </div>
   </div>
+  <div class="col-md-3 p-t-5 pull-right">
+    <input type="checkbox" name="showAdminType" id="showAdminType" class="filled-in chk-col-BLUE" (change)="onAdminStatusChange()">
+    <label for="showAdminType">Show remove admin</label>
+  </div>
+
   <div class="col-md-3 p-t-5 col-md-offset-3">
     <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickAddAdmin()">ADD ADMINISTRATOR</button>
   </div>
@@ -54,27 +59,29 @@
     <tbody>
       <ng-container *ngFor="let admin of adminDetails | async | filterStaffByName: filterStaffName | filterStaffByEmail: filterStaffEmail | filterStaffByContact: filterStaffContact | filterStaffByCnic: filterStaffCnic | filterStaffByAddress: filterStaffAddress">
         <ng-container *ngIf="admin.$key != this.adminId">
-          <tr [ngClass]="[admin.status == 'removed' ? 'bg-danger' : '']">
-            <td>{{admin.name}}</td>
-            <td>{{admin.email}}</td>
-            <td>{{admin.contact}}</td>
-            <td>{{admin.cnic}}</td>
-            <td>{{admin.address}}</td>
-            <td>
-              <ng-container *ngIf="admin.status == 'active'">
-                <div class="row p-b-5 p-r-5">
-                  <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
+          <ng-container *ngIf="admin.status == 'active' || admin.status == adminStatus">
+            <tr [ngClass]="[admin.status == 'removed' ? 'bg-danger' : '']">
+              <td>{{admin.name}}</td>
+              <td>{{admin.email}}</td>
+              <td>{{admin.contact}}</td>
+              <td>{{admin.cnic}}</td>
+              <td>{{admin.address}}</td>
+              <td>
+                <ng-container *ngIf="admin.status == 'active'">
+                  <div class="row p-b-5 p-r-5">
+                    <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
                             EDIT
                             </button>
-                </div>
-                <div class="row p-b-5 p-r-5">
-                  <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="RemoveAdmin(admin.$key)">
+                  </div>
+                  <div class="row p-b-5 p-r-5">
+                    <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="RemoveAdmin(admin.$key)">
                             REMOVE
                             </button>
-                </div>
-              </ng-container>
-            </td>
-          </tr>
+                  </div>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
         </ng-container>
       </ng-container>
     </tbody>

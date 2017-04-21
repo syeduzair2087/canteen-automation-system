@@ -17,6 +17,7 @@ export class AdminComponent {
     filterStaffAddress: string = '';
     filterBy: string = 'name';
 
+    adminStatus: string = 'active';
     adminId: string;
 
     adminDetails: FirebaseListObservable<Array<StaffMember>>;
@@ -36,7 +37,7 @@ export class AdminComponent {
     ngOnInit() {
         this.adminDetails = this.staffService.fetchAdmins();
         this.adminId = localStorage.getItem('uid');
-        
+
         setTimeout(() => {
             loadTheme();
         }, 10);
@@ -77,7 +78,7 @@ export class AdminComponent {
     }
 
     onFilterTypeChange() {
-        this.filterStaffName= '';
+        this.filterStaffName = '';
         this.filterStaffEmail = '';
         this.filterStaffContact = '';
         this.filterStaffCnic = '';
@@ -86,5 +87,12 @@ export class AdminComponent {
         setTimeout(() => {
             loadTheme();
         }, 10);
+    }
+
+    onAdminStatusChange() {
+        if (this.adminStatus == 'active')
+            this.adminStatus = 'removed';
+        else
+            this.adminStatus = 'active';
     }
 }

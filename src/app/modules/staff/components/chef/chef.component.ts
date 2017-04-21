@@ -11,12 +11,13 @@ import * as staffFilters from '../../../../pipes/filter-staff.pipe';
 })
 
 export class ChefComponent {
-filterStaffName: string = '';
+    filterStaffName: string = '';
     filterStaffEmail: string = '';
     filterStaffContact: string = '';
     filterStaffCnic: string = '';
     filterStaffAddress: string = '';
     filterBy: string = 'name';
+    chefStatus: string = 'active';
 
     ChefDetails: FirebaseListObservable<Array<StaffMember>>;
 
@@ -71,11 +72,11 @@ filterStaffName: string = '';
         this.staffService.removeStaffMember('chefs', key).then((success) => {
         }).catch((error) => {
             console.log(error);
-        });        
+        });
     }
 
     onFilterTypeChange() {
-        this.filterStaffName= '';
+        this.filterStaffName = '';
         this.filterStaffEmail = '';
         this.filterStaffContact = '';
         this.filterStaffCnic = '';
@@ -84,5 +85,12 @@ filterStaffName: string = '';
         setTimeout(() => {
             loadTheme();
         }, 10)
+    }
+
+    onChefStatusChange() {
+        if (this.chefStatus == 'active')
+            this.chefStatus = 'removed';
+        else
+            this.chefStatus = 'active';
     }
 }
