@@ -77,11 +77,40 @@ export class AccountService {
     }
 
     getData() {
-        return new Promise ((res, rej) => {
+        return new Promise((res, rej) => {
             let userDataSubscription = this.angularFire.database.object('/roles/admins/' + localStorage.getItem('uid')).subscribe((data: StaffMember) => {
                 res(data);
                 userDataSubscription.unsubscribe();
             });
+        })
+    }
+
+    getStaffDetail() {
+        return new Promise((res, rej) => {
+            let staffAuth = this.angularFire.auth;
+            let staffAuthSubscription = staffAuth.subscribe((data: FirebaseAuthState) => {
+                if (data) {
+                    let staffDataSubscription = this.angularFire.database.object('roles/admins/' + localStorage.getItem('uid')).subscribe((staffInfo: any) => {
+                        let staffData: StaffMember = {
+                            name: data.auth.displayName,
+                            email: data.auth.email,
+                            address: staffInfo.address,
+                            cnic: staffInfo.cnic,
+                            contact: staffInfo.contact,
+                            status: staffInfo.status
+                        }
+                        res(staffData);
+                        staffDataSubscription.unsubscribe();
+                        staffAuthSubscription.unsubscribe();
+                    })
+                }
+                else {
+                    rej("Error while fetching user data!");
+                    staffAuthSubscription.unsubscribe();
+                }
+            })
+        }).catch((error) => {
+            console.log(error.message);
         })
     }
 }

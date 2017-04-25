@@ -23,7 +23,7 @@ import { UserComponent } from './components/container/user/user.component';
 import { UserDetailsComponent } from './components/container/user/user-details.component';
 import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
-
+import { ProfileComponent } from './components/container/profile/profile.component';
 //MODULES
 import { RoutingModule } from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
@@ -74,7 +74,8 @@ const firebaseAuthConfig = {
     FilterUserByCabinPipe,
     FilterOrdersByStatusPipe,
     ReversePipe,
-    StaffComponent
+    StaffComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

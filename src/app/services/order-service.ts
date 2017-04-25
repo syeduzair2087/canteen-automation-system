@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Order } from '../models/order.model';
 var querybase = require('querybase');
+var firebase = require('firebase');
 @Injectable()
 export class OrderService {
 
@@ -154,13 +155,29 @@ export class OrderService {
     }
 
     getActiveLeastCount(staff: string) {
-        // let databaseRef = firebase.database().ref().child('roles/' + staff);
-        // let queryBaseRef = querybase.ref(databaseRef);
-        // let result = queryBaseRef.where('job_count').greaterThan(0);
-        //     result.on('value', snap => console.log(snap))
+        //     // let databaseRef = firebase.database().ref().child('roles/' + staff);
+        //     // let queryBaseRef = querybase.ref(databaseRef);
+        //     // let result = queryBaseRef.where('job_count').greaterThan(0);
+        //     //     result.on('value', snap => console.log(snap))
 
-        let databaseRef = firebase.database().ref().child('roles/chefs');
-        let querybaseRef = querybase.ref(databaseRef);
-        querybaseRef.where('job_count').greaterThan(0);
+        //     let databaseRef = firebase.database().ref().child('roles/   chefs');
+        //     let querybaseRef = querybase.ref(databaseRef, ['job_count', 'status']);
+        // //     let result = querybaseRef.where({status : 'active',
+        // // job_count : });
+
+        //     // result.on('value', snap => console.log(snap.val()));
+        //     // console.log(result)
+        // this.getActiveStaff('chefs');
     }
+
+    // getActiveStaff(role: string) {
+    //     let activeStaffSubscription = this.angularFire.database.list('roles/' + role, {
+    //         query: {
+    //             orderByChild: 'status',
+    //             equalTo: 'active'
+    //         }
+    //     }).subscribe((dataList) => {
+    //         console.log(dataList.sort((staff1 , staff2) => staff1.job_count - staff2.job_count))
+    //     })
+    // }
 }

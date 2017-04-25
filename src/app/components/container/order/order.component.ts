@@ -43,8 +43,6 @@ export class OrderComponent {
         //         });
         //     });
         // });
-        // this.orderService.getActiveLeastCount('chefs');
-
 
         setTimeout(() => {
             loadTheme();
@@ -60,7 +58,7 @@ export class OrderComponent {
     }
 
     clickAssignToDeliveryBoy(orderId: string) {
-        this.orderService.assignToDeliveryBoy(orderId).then((data) => {}).catch(() => {});
+        this.orderService.assignToDeliveryBoy(orderId).then((data) => { }).catch(() => { });
     }
 
     clickOrder(orderId: string) {
