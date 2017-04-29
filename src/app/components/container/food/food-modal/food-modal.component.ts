@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FoodItem } from '../../../../models/food.model';
 import { FoodPreference } from '../../../../models/preference.model';
-import { FoodService } from '../../../../services/food-service'
+import { FoodService } from '../../../../services/food-service';
+import { Item } from '../../../../models/inventory.model';
 
 @Component({
     selector: 'food-modal',
@@ -19,6 +20,8 @@ export class FoodModalComponent {
     ////////DECLARATIONS////////
 
     prefObject: FoodPreference;
+    item: Item;
+    inventoryItem: Array<Item> = [];
 
     ////////EVENTS////////
 
@@ -33,7 +36,7 @@ export class FoodModalComponent {
 
         else {
             console.log('add hai');
-            if(!(this.foodItem.food_prefs)) {
+            if (!(this.foodItem.food_prefs)) {
                 this.foodItem.food_prefs = []
             }
 
@@ -42,9 +45,19 @@ export class FoodModalComponent {
         }
     }
 
+    recivedInventoryItem(newItem: Item) {
+        //  this.inventoryItem.push(newItem);
+        // console.log(this.inventoryItem);
+
+        this.foodItem.inventory_item.push(newItem);
+        console.log(this.foodItem.inventory_item);
+        this.nullItem();
+    }
+
     ngOnInit() {
         this.nullFoodItem();
         this.nullPreference();
+        this.nullItem();
     }
 
     ////////BUTTONS////////
@@ -78,13 +91,24 @@ export class FoodModalComponent {
         this.foodItem.food_prefs.splice(prefIndex, 1);
     }
 
+
+    clickEditItem(inventoryItem: Item, itemIndex: number) {
+        this.foodItem.inventory_item[itemIndex] = inventoryItem;
+    }
+
+    clickRemoveItem(itemIndex: any) {
+        this.foodItem.inventory_item.splice(itemIndex, 1)
+    }
+
+
     ////////METHODS////////
 
     nullFoodItem() {
         this.foodItem = {
             food_title: '',
             food_price: null,
-            food_prefs: []
+            food_prefs: [],
+            inventory_item: []
         }
     }
 
@@ -93,6 +117,14 @@ export class FoodModalComponent {
             pref_title: '',
             pref_type: '',
             pref_values: []
+        }
+    }
+
+    nullItem() {
+        this.item = {
+            name: '',
+            quantity: '',
+            id: '',
         }
     }
 }

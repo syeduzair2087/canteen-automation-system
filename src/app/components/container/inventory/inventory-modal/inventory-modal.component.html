@@ -1,0 +1,31 @@
+<div class="modal fade" id="inventoryModal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Add Inventory</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.item.name != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="item.name">
+                            <label class="form-label">Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.item.quantity != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="item.quantity">
+                            <label class="form-label">Quality</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+</div>

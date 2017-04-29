@@ -10,6 +10,7 @@ import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, F
 import { FilterFoodByNamePipe } from './pipes/filter-food.pipe';
 import { FilterOrdersByStatusPipe } from './pipes/filter-order.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { InventoryFilterByName, InventoryFilterByQuantity } from './pipes/filter-inventory-pipe';
 
 //COMPONENTS
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -24,12 +25,15 @@ import { UserDetailsComponent } from './components/container/user/user-details.c
 import { OrderDetailsComponent } from './components/container/user/order-details.component';
 import { StaffComponent } from './components/container/staff/staff.component';
 import { ProfileComponent } from './components/container/profile/profile.component';
+import { InventoryComponent } from './components/container/inventory/inventory.component';
+import { InventoryModalComponent } from './components/container/inventory/inventory-modal/inventory-modal.component';
+import { InventoryItemConponent } from './components/container/food/food-modal/inventory-item-modal/inventory-item-modal.component';
 //MODULES
 import { RoutingModule } from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { TagInputModule } from 'ng2-tag-input';
 import { StaffModule } from './modules/staff/staff.module';
- import { staffRouteModule } from './modules/staff/staff.routes';
+import { staffRouteModule } from './modules/staff/staff.routes';
 
 //SERVICES
 import { FoodService } from './services/food-service';
@@ -38,6 +42,7 @@ import { UserService } from './services/user-service';
 import { StaffService } from './services/staff-service';
 import { OrderService } from './services/order-service';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
+import { InventoryService } from './services/inventory-service'
 
 
 //CONFIG
@@ -75,7 +80,12 @@ const firebaseAuthConfig = {
     FilterOrdersByStatusPipe,
     ReversePipe,
     StaffComponent,
-    ProfileComponent
+    ProfileComponent,
+    InventoryComponent,
+    InventoryModalComponent,
+    InventoryFilterByName,
+    InventoryFilterByQuantity,
+    InventoryItemConponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +93,7 @@ const firebaseAuthConfig = {
     HttpModule,
     RoutingModule,
     TagInputModule,
-     StaffModule,
+    StaffModule,
     AngularFireModule.initializeApp(config, firebaseAuthConfig)
   ],
   providers: [
@@ -93,7 +103,8 @@ const firebaseAuthConfig = {
     StaffService,
     OrderService,
     LoginGuard,
-    LogoutGuard
+    LogoutGuard,
+    InventoryService
   ],
   bootstrap: [AppComponent]
 })

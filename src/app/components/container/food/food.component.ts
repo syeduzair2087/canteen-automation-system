@@ -18,6 +18,7 @@ export class FoodComponent {
     foodList: FirebaseListObservable<Array<FoodItem>>;
     foodItem: FoodItem;
     filterFoodName: string = '';
+    
 
     ////////EVENTS////////
 
@@ -27,7 +28,9 @@ export class FoodComponent {
         this.foodItem = {
             food_title: '',
             food_price: null,
-            food_prefs: []
+            food_prefs: [],
+            inventory_item: []
+
         }
 
 
@@ -43,6 +46,7 @@ export class FoodComponent {
             food_title: foodItem.food_title,
             food_price: foodItem.food_price,
             food_prefs: foodItem.food_prefs,
+            inventory_item: foodItem.inventory_item,
             $key: foodItem.$key
         }
     }
@@ -55,7 +59,8 @@ export class FoodComponent {
         this.foodItem = {
             food_title: '',
             food_price: null,
-            food_prefs: []
+            food_prefs: [],
+            inventory_item: []
         }
     }
 

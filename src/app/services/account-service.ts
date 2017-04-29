@@ -97,7 +97,8 @@ export class AccountService {
                             address: staffInfo.address,
                             cnic: staffInfo.cnic,
                             contact: staffInfo.contact,
-                            status: staffInfo.status
+                            status: staffInfo.status,
+                            $key: data.auth.uid
                         }
                         res(staffData);
                         staffDataSubscription.unsubscribe();

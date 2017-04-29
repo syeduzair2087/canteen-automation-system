@@ -15,7 +15,7 @@ export class FoodService {
             this.angularFire.database.list('/food').push(foodItem).then((success) => {
                 res(success);
             }).catch((error) => {
-                rej(error);
+                rej(error.message);
             })
         })
     }

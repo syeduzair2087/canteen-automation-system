@@ -1,4 +1,4 @@
-<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" style="display: none;">
+<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" style="display: none; z-index:1400;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -22,9 +22,11 @@
 
                 <div class="col-sm-12" *ngIf="this.foodItem.food_prefs && this.foodItem.food_prefs.length > 0">
                     <div class="body table-responsive">
+                        <h5> Food Preference </h5>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    
                                     <th>TITLE</th>
                                     <th>TYPE</th>
                                     <th>VALUES</th>
@@ -59,13 +61,48 @@
                     </div>
                 </div>
 
+                
+                <div class="col-sm-12" *ngIf="this.foodItem.inventory_item && this.foodItem.inventory_item.length > 0">
+                    <div class="body table-responsive">
+                        <h5> Inventory Item </h5>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>      
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.foodItem.inventory_item; let itemIndex = index">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>
+                                        <!--<div class="p-b-5">
+                                            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#preferenceModal" (click)="clickEditItem(item, itemIndex)">
+                                            EDIT
+                                            </button>
+                                        </div>-->
+                                        <div class="p-b-5">
+                                            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="clickRemoveItem(itemIndex)">
+                                            REMOVE
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
                 <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#preferenceModal">ADD PREFERENCE</button>
+                <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#inventoryItemModal">ADD INVENTORY ITEM</button>
                 <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
             </div>
         </div>
     </div>
 </div>
 <preference-form (prefObjectEvent)="receivePrefObject($event)" [prefObject]="this.prefObject"></preference-form>
+<inventoryItem-modal (inventoryItemEvent)="recivedInventoryItem($event)" [item]="this.item" ></inventoryItem-modal>

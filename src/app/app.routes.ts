@@ -10,6 +10,7 @@ import { StaffComponent } from './components/container/staff/staff.component';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
 import { staffRoutes, staffRouteModule } from "./modules/staff/staff.routes";
 import { ProfileComponent } from './components/container/profile/profile.component';
+import { InventoryComponent } from './components/container/inventory/inventory.component';
 // import { AdminComponent } from './staff-modules/admin/admin.component';
 // import { ChefComponent } from './staff-modules/chef/chef.component';
 // import { DeliveryBoyComponent } from './staff-modules/delivery-boy/delivery-boy.component';
@@ -68,6 +69,10 @@ const routes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent
+            },
+            {
+                path: 'inventory',
+                component: InventoryComponent
             },
             {
                 path: '',
