@@ -29,6 +29,7 @@ export class InventoryModalComponent {
             })
         }
         else {
+            delete this.item.id;
             this.inventoryService.addInventoryItem(this.item).then((success) => {
                 this.nullItem();
             }).catch((error) => {
