@@ -22,6 +22,11 @@ export class InventoryComponent {
 
     ngOnInit() {
         this.loadInventoryData();
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10);
+
     }
 
     onFilterTypeChange() {
