@@ -51,9 +51,11 @@ const config = {
   authDomain: "canteenautomationsystem.firebaseapp.com",
   databaseURL: "https://canteenautomationsystem.firebaseio.com",
   storageBucket: "canteenautomationsystem.appspot.com",
+  projectId: "canteenautomationsystem",
   messagingSenderId: "490551661425"
 };
 
+// export const messaging = firebase.messaging();
 const firebaseAuthConfig = {
   provider: AuthProviders.Password,
   method: AuthMethods.Password,

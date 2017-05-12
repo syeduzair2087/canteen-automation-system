@@ -18,6 +18,16 @@ export class OrderComponent {
     orders: Array<Order> = [];
     users: Array<User> = [];
     filterBy: string = 'Pending';
+    filterOrderBy: string = 'name';
+    filterUserName: string = '';
+    filterEmail: string = '';
+    filterContact: string = '';
+    filterCabin: number = null;
+    filterTime: string = '';
+    filterDate: string = '';
+    filterAmount: number = null;
+    filterId: number = null;
+
 
     constructor(private orderService: OrderService, private userService: UserService, private router: Router) { }
 

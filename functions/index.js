@@ -11,8 +11,8 @@ var functions = require('firebase-functions');
 var admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-exports.sendNotificationToUser = functions.database.ref('orders/{pushId}/status').onWrite(event => {
-    const order = event.order.val();
+exports.sendNotificationToUser = functions.database.ref('orders/{pushId}/').onWrite(event => {
+    const order = event.data.val();
     console.log(order);
 })
 
@@ -21,7 +21,7 @@ exports.sendNotificationToUser = functions.database.ref('orders/{pushId}/status'
 //     const order = event.data.val();
 
 
-//     console.log("sender id = " + event.params.userId);
+//     console.log("sender id = " + event.params.userIdream524628d);
 //     if (!event.data.val()) {
 //         return console.log("user not register");
 //     }
