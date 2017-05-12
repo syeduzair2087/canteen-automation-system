@@ -116,14 +116,14 @@ export class AccountService {
     }
 
     addNotificationToken(token: string) {
-         return new Promise((res, rej) => {
-                this.angularFire.database.object('notificationTokens/admins/' + localStorage.getItem('uid') + '/id').set([token]).then(() => {
-                    console.log('Token added sucessfully!');
-                    res('')
-                }).catch((error) => {
-                    console.log(error);
-                    
-                })
+        return new Promise((res, rej) => {
+            this.angularFire.database.object('notificationTokens/admins/' + localStorage.getItem('uid') + '/id').set(token).then(() => {
+                console.log('Token added sucessfully!');
+                res('')
+            }).catch((error) => {
+                console.log(error);
+
             })
+        })
     }
 }
