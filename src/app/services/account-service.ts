@@ -122,7 +122,6 @@ export class AccountService {
                 res('')
             }).catch((error) => {
                 console.log(error);
-
             })
         })
     }

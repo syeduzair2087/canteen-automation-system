@@ -5,7 +5,7 @@ import { OrderService } from '../../../services/order-service';
 import { UserService } from '../../../services/user-service';
 import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
-import { FilterOrdersByStatusPipe } from '../../../pipes/filter-order.pipe';
+import * as orderFilters from '../../../pipes/filter-order.pipe';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -74,5 +74,22 @@ export class OrderComponent {
     clickOrder(orderId: string) {
         // console.log(order);
         this.router.navigate(['home/orders/' + orderId]);
+    }
+
+    onFilterTypeChange() {
+        this.filterAmount = null;
+        this.filterCabin = null;
+        this.filterContact = '';
+        this.filterDate = '';
+        this.filterEmail = '';
+        this.filterId = null;
+        this.filterTime = '';
+        this.filterUserName = '';
+
+        setTimeout(() => {
+            loadTheme();
+        }, 10);
+
+
     }
 }

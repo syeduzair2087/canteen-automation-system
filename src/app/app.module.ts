@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 // PIPES
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
 import { FilterFoodByNamePipe } from './pipes/filter-food.pipe';
-import { FilterOrdersByStatusPipe } from './pipes/filter-order.pipe';
+import { FilterOrdersByStatusPipe, FilterOrdersByAmountPipe, FilterOrdersByCabinPipe, FilterOrdersByContactPipe,FilterOrdersByEmailPipe, FilterOrdersByIdPipe,FilterOrdersByDatePipe, FilterOrdersByNamePipe,FilterOrdersByTimePipe } from './pipes/filter-order.pipe';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { InventoryFilterByName, InventoryFilterByQuantity } from './pipes/filter-inventory-pipe';
 
@@ -80,6 +80,14 @@ const firebaseAuthConfig = {
     FilterUserByContactPipe,
     FilterUserByCabinPipe,
     FilterOrdersByStatusPipe,
+    FilterOrdersByAmountPipe,
+    FilterOrdersByCabinPipe,
+    FilterOrdersByContactPipe,
+    FilterOrdersByEmailPipe, 
+    FilterOrdersByIdPipe,
+    FilterOrdersByDatePipe,
+    FilterOrdersByNamePipe,
+    FilterOrdersByTimePipe,
     ReversePipe,
     StaffComponent,
     ProfileComponent,

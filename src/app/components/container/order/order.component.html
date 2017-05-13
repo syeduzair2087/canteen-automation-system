@@ -7,7 +7,6 @@
                 </h2>
             </div>
             <div class="col-md-4 col-md-offset-4 p-t-5">
-                <!--<div class="col-sm-6">-->
                 <select class="form-control show-tick" [(ngModel)]="filterBy">
                                         <option value="Pending">Pending Orders</option>
                                         <option value="Assigned to Chef">Assigned to Chef</option>
@@ -16,8 +15,8 @@
                                         <option value="Assigned to Delivery Boy">Assigned to Delivery Boy</option>
                                         <option value="Received by Delivery Boy">Received by Delivery Boy</option>
                                         <option value="Order Delivered">Delivered</option>
+                                        <option value="Cancel">Cancel</option>
                                     </select>
-                <!--</div>-->
             </div>
             <!--<div class="col-md-4 p-t-5">
                 <div class="form-group form-group-no-bottom-margin">
@@ -30,15 +29,9 @@
                 </div>
             </div>-->
         </div>
-            <div class="row">
-            <!--<div class="col-sm-4 p-t-15">
-                <h2>
-                    ORDERS
-                </h2>
-            </div>-->
+        <div class="row">
             <div class="col-md-2 col-md-offset-6 p-t-5">
-                <!--<div class="col-sm-6">-->
-                <select class="form-control show-tick" [(ngModel)]="filterOrderBy">
+                <select class="form-control show-tick" [(ngModel)]="filterOrderBy" (change)="onFilterTypeChange()">
                                         <option value="name">Name</option>
                                         <option value="email">Email</option>
                                         <option value="contact">Contact</option>
@@ -48,19 +41,42 @@
                                         <option value="amount">Amount</option>
                                         <option value="id">ID</option>
                                     </select>
-                <!--</div>-->
             </div>
             <div class="col-md-4 p-t-5">
                 <div class="form-group form-group-no-bottom-margin">
                     <div class="form-line">
-                        <input class="form-control" placeholder="Enter name to filter" type="text" [(ngModel)]="filterUserName" *ngIf="filterOrderBy  == 'name'">
-                        <input class="form-control" placeholder="Enter email to filter" type="text" [(ngModel)]="filterEmail" *ngIf="filterOrderBy == 'email'">
-                        <input class="form-control" placeholder="Enter contact to filter" type="text" [(ngModel)]="filterContact" *ngIf="filterOrderBy == 'contact'">
-                        <input class="form-control" placeholder="Enter cabin number to filter" type="text" [(ngModel)]="filterCabin" *ngIf="filterOrderBy == 'cabin'">
-                        <input class="form-control" placeholder="Enter order time to filter" type="text" [(ngModel)]="filterTime" *ngIf="filterOrderBy == 'time'">
-                        <input class="form-control" placeholder="Enter order date to filter" type="text" [(ngModel)]="filterDate" *ngIf="filterOrderBy == 'date'">
-                        <input class="form-control" placeholder="Enter order amount to filter" type="text" [(ngModel)]="filterAmount" *ngIf="filterOrderBy == 'amount'">
-                        <input class="form-control" placeholder="Enter order id to filter" type="text" [(ngModel)]="filterId" *ngIf="filterOrderBy == 'id'">
+                        <ng-container *ngIf="filterOrderBy  == 'name'">
+                            <input class="form-control" type="text" [(ngModel)]="filterUserName">
+                            <label class="form-label">Enter name to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'email'">
+                            <input class="form-control" type="text" [(ngModel)]="filterEmail">
+                            <label class="form-label">Enter email to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'contact'">
+                            <input class="form-control" type="text" [(ngModel)]="filterContact">
+                            <label class="form-label">Enter contact to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'cabin'">
+                            <input class="form-control" type="text" [(ngModel)]="filterCabin">
+                            <label class="form-label">Enter cabin number to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'time'">
+                            <input class="form-control" type="text" [(ngModel)]="filterTime">
+                            <label class="form-label">Enter order time to filter (HH:MM)</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'date'">
+                            <input class="form-control" type="text" [(ngModel)]="filterDate">
+                            <label class="form-label">MM,DD,YYYY or MM/DD/YYYY</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'amount'">
+                            <input class="form-control" type="text" [(ngModel)]="filterAmount">
+                            <label class="form-label">Enter order amount to filter</label>
+                        </ng-container>
+                        <ng-container *ngIf="filterOrderBy == 'id'">
+                            <input class="form-control" type="text" [(ngModel)]="filterId">
+                            <label class="form-label">Enter order id to filter</label>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -81,7 +97,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy">
+                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy | filterOrderByDate: filterDate | filterOrderByCabin: filterCabin | filterOrderByAmount: filterAmount | filterOrderByContact: filterContact | filterOrderByEmail: filterEmail | filterOrderById: filterId | filterOrderByName: filterUserName | filterOrderByTime: filterTime">
                     <td>{{order.orderId}}</td>
                     <td>{{order.orderTime | date: 'mediumDate'}}</td>
                     <td>{{order.orderTime | date: 'shortTime'}}</td>
