@@ -40,7 +40,7 @@ export class FilterOrdersByIdPipe implements PipeTransform {
             return inputArray;
         }
         this.result.length = 0;
-        this.result.push(...inputArray.filter((order) => order.orderId == parseInt(filterId)));
+        this.result.push(...inputArray.filter((order) => order.orderId == Number(filterId)));
         return this.result;
     }
 }

@@ -1,12 +1,12 @@
 <div class="card">
     <div class="header">
         <div class="row">
-            <div class="col-sm-4 p-t-15">
+            <div class="col-sm-4 p-t-15 p-b-5">
                 <h2>
                     ORDERS
                 </h2>
             </div>
-            <div class="col-md-4 col-md-offset-4 p-t-5">
+            <!--<div class="col-md-4 col-md-offset-4 p-t-5">
                 <select class="form-control show-tick" [(ngModel)]="filterBy">
                                         <option value="Pending">Pending Orders</option>
                                         <option value="Assigned to Chef">Assigned to Chef</option>
@@ -17,7 +17,7 @@
                                         <option value="Order Delivered">Delivered</option>
                                         <option value="Cancel">Cancel</option>
                                     </select>
-            </div>
+            </div>-->
             <!--<div class="col-md-4 p-t-5">
                 <div class="form-group form-group-no-bottom-margin">
                     <div class="form-line">
@@ -30,7 +30,19 @@
             </div>-->
         </div>
         <div class="row">
-            <div class="col-md-2 col-md-offset-6 p-t-5">
+            <div class="col-md-3 p-t-14">
+                <select class="form-control show-tick" [(ngModel)]="filterBy">
+                                        <option value="Pending">Pending Orders</option>
+                                        <option value="Assigned to Chef">Assigned to Chef</option>
+                                        <option value="Accepted by Chef">Accepted by Chef</option>
+                                        <option value="Order Ready">Order Ready</option>
+                                        <option value="Assigned to Delivery Boy">Assigned to Delivery Boy</option>
+                                        <option value="Received by Delivery Boy">Received by Delivery Boy</option>
+                                        <option value="Order Delivered">Delivered</option>
+                                        <option value="Cancel">Cancel</option>
+                                    </select>
+            </div>
+            <div class="col-md-2 col-md-offset-3 p-t-4">
                 <select class="form-control show-tick" [(ngModel)]="filterOrderBy" (change)="onFilterTypeChange()">
                                         <option value="name">Name</option>
                                         <option value="email">Email</option>
@@ -42,7 +54,7 @@
                                         <option value="id">ID</option>
                                     </select>
             </div>
-            <div class="col-md-4 p-t-5">
+            <div class="col-md-4 p-t-4">
                 <div class="form-group form-group-no-bottom-margin">
                     <div class="form-line">
                         <ng-container *ngIf="filterOrderBy  == 'name'">
@@ -83,52 +95,59 @@
         </div>
     </div>
     <div class="body table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>DATE</th>
-                    <th>TIME</th>
-                    <th>AMOUNT</th>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>CONTACT</th>
-                    <th>CABIN</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy | filterOrderByDate: filterDate | filterOrderByCabin: filterCabin | filterOrderByAmount: filterAmount | filterOrderByContact: filterContact | filterOrderByEmail: filterEmail | filterOrderById: filterId | filterOrderByName: filterUserName | filterOrderByTime: filterTime">
-                    <td>{{order.orderId}}</td>
-                    <td>{{order.orderTime | date: 'mediumDate'}}</td>
-                    <td>{{order.orderTime | date: 'shortTime'}}</td>
-                    <td>Rs. {{order.amount}}</td>
-                    <td>{{order.user.name}}</td>
-                    <td>{{order.user.email}}</td>
-                    <td>{{order.user.contact}}</td>
-                    <td>{{order.user.cabin}}</td>
-                    <td>
-                        <div class="row p-b-5 p-r-5">
-                            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickOrder(order.$key)">
+        <div id='print-section'>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>DATE</th>
+                        <th>TIME</th>
+                        <th>AMOUNT</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>CONTACT</th>
+                        <th>CABIN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orders | reverse | filterOrderByStatus: filterBy | filterOrderByDate: filterDate | filterOrderByCabin: filterCabin | filterOrderByAmount: filterAmount | filterOrderByContact: filterContact | filterOrderByEmail: filterEmail | filterOrderById: filterId | filterOrderByName: filterUserName | filterOrderByTime: filterTime">
+                        <td>{{order.orderId}}</td>
+                        <td>{{order.orderTime | date: 'mediumDate'}}</td>
+                        <td>{{order.orderTime | date: 'shortTime'}}</td>
+                        <td>Rs. {{order.amount}}</td>
+                        <td>{{order.user.name}}</td>
+                        <td>{{order.user.email}}</td>
+                        <td>{{order.user.contact}}</td>
+                        <td>{{order.user.cabin}}</td>
+                        <ng-container *ngIf="!printClick">
+                            <td>
+                                <div class="row p-b-5 p-r-5">
+                                    <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickOrder(order.$key)">
                             VIEW DETAILS
                             </button>
-                        </div>
-                        <div class="row p-b-5 p-r-5" *ngIf="order.status.state == 'Pending'">
-                            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToChef(order.$key)">
+                                </div>
+                                <div class="row p-b-5 p-r-5" *ngIf="order.status.state == 'Pending'">
+                                    <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToChef(order.$key)">
                             ASSIGN TO CHEF
                             </button>
-                        </div>
-                        <div class="row p-b-5 p-r-5" *ngIf="order.status.state == 'Order Ready'">
-                            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToDeliveryBoy(order.$key)">
+                                </div>
+                                <div class="row p-b-5 p-r-5" *ngIf="order.status.state == 'Order Ready'">
+                                    <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="clickAssignToDeliveryBoy(order.$key)">
                             ASSIGN TO DELIVERY BOY
                             </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div *ngIf="(orders | reverse | filterOrderByStatus: filterBy).length == 0">
-            <h4 class="text-center">
-                No orders.
-            </h4>
+                                </div>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="(orders | reverse | filterOrderByStatus: filterBy).length == 0">
+                <h4 class="text-center">
+                    No orders.
+                </h4>
+            </div>
+             
         </div>
+       <button class="pull right" (click)="print()">print</button>
     </div>

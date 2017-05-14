@@ -27,7 +27,7 @@ export class OrderComponent {
     filterDate: string = '';
     filterAmount: number = null;
     filterId: number = null;
-
+    printClick: boolean = false;
 
     constructor(private orderService: OrderService, private userService: UserService, private router: Router) { }
 
@@ -89,7 +89,45 @@ export class OrderComponent {
         setTimeout(() => {
             loadTheme();
         }, 10);
+    }
 
+      print() {
+        this.printClick = true;
 
+        setTimeout(() => {
+            let printContents, popupWin;
+            printContents = document.getElementById('print-section').innerHTML;
+            // printContents.
+            popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+            popupWin.document.open();
+            popupWin.document.write(`
+          <html>
+            <head>
+<!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+  <!-- Bootstrap Core Css -->
+  <link href="https://firebasestorage.googleapis.com/v0/b/canteen-admin.appspot.com/o/plugins%2Fbootstrap.css?alt=media&token=0b2a81e0-c9cf-4a8e-a12a-9bbfdafe358d"
+    rel="stylesheet">
+  <!-- Custom Css -->
+  <link href="https://firebasestorage.googleapis.com/v0/b/canteen-admin.appspot.com/o/plugins%2Fstyle.css?alt=media&token=2dc90b2f-e28e-4896-990c-1b72d344e10e"
+    rel="stylesheet">   
+      <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="https://firebasestorage.googleapis.com/v0/b/canteen-admin.appspot.com/o/plugins%2Fall-themes.css?alt=media&token=ff8f92d3-b25f-42b4-91c3-58df66a88991"
+    rel="stylesheet" />
+            </head>
+        <body onload="window.print();window.close()">
+         <h3 class='align-center'>Order Report<h3>
+        ${printContents}
+        </body>
+          </html>`
+            );
+            popupWin.document.close();
+        }, 5);
+
+        setTimeout(() => {
+            this.printClick = false;
+        }, 10);
     }
 }
