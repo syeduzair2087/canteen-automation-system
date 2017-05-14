@@ -39,7 +39,7 @@
                                         <option value="Assigned to Delivery Boy">Assigned to Delivery Boy</option>
                                         <option value="Received by Delivery Boy">Received by Delivery Boy</option>
                                         <option value="Order Delivered">Delivered</option>
-                                        <option value="Cancel">Cancel</option>
+                                        <option value="Cancelled">Cancelled</option>
                                     </select>
             </div>
             <div class="col-md-2 col-md-offset-3 p-t-4">
@@ -55,7 +55,7 @@
                                     </select>
             </div>
             <div class="col-md-4 p-t-4">
-                <div class="form-group form-group-no-bottom-margin">
+                <div class="form-group form-float form-group-no-bottom-margin">
                     <div class="form-line">
                         <ng-container *ngIf="filterOrderBy  == 'name'">
                             <input class="form-control" type="text" [(ngModel)]="filterUserName">
@@ -79,14 +79,14 @@
                         </ng-container>
                         <ng-container *ngIf="filterOrderBy == 'date'">
                             <input class="form-control" type="text" [(ngModel)]="filterDate">
-                            <label class="form-label">MM,DD,YYYY or MM/DD/YYYY</label>
+                            <label class="form-label">MM DD,YYYY or MM/DD/YYYY</label>
                         </ng-container>
                         <ng-container *ngIf="filterOrderBy == 'amount'">
                             <input class="form-control" type="text" [(ngModel)]="filterAmount">
                             <label class="form-label">Enter order amount to filter</label>
                         </ng-container>
                         <ng-container *ngIf="filterOrderBy == 'id'">
-                            <input class="form-control" type="text" [(ngModel)]="filterId">
+                            <input class="form-control" type="number" [(ngModel)]="filterId">
                             <label class="form-label">Enter order id to filter</label>
                         </ng-container>
                     </div>
@@ -147,7 +147,12 @@
                     No orders.
                 </h4>
             </div>
-             
+
         </div>
-       <button class="pull right" (click)="print()">print</button>
+        <div class=" row p-b-5 p-r-5 col-md-2 col-md-offset-3 p-t-9 pull-right" *ngIf="(orders | reverse | filterOrderByStatus: filterBy).length > 0">
+            <button class="btn btn-lg btn-primary btn-block waves-effect" (click)="print()">
+                            PRINT DETAILS
+                            </button>
+        </div>
+
     </div>

@@ -42,7 +42,8 @@ export class InventoryModalComponent {
         this.item = {
             name: '',
             quantity: '',
-            id: ''
+            id: '',
+            unit: ''
         }
     }
 

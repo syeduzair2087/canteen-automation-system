@@ -38,12 +38,14 @@
                 <tr>
                     <th>NAME</th>
                     <th>Quantity</th>
+                    <th>Unit</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let inventory of inventoryData | async | filterInventoryByName: filterInventoryName | filterInventoryByQuantity: filterInventoryQuantity">
                     <td>{{inventory.name}}</td>
                     <td>{{inventory.quantity}}</td>
+                    <td>{{inventory.unit}}</td>
                      <td>
                   <div class="row p-b-5 p-r-5">
                     <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#inventoryModal" (click)="clickEditInventory(inventory)">

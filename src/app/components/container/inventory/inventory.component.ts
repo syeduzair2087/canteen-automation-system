@@ -16,6 +16,7 @@ export class InventoryComponent {
     item: Item = {
         name: '',
         quantity: '',
+        unit: '',
         id: ''
     }
     constructor(private inventoryService: InventoryService) { }
@@ -44,7 +45,8 @@ export class InventoryComponent {
 
         this.item = {
             name: '',
-            quantity: ''
+            quantity: '',
+            unit: ''
         }
     }
 
@@ -52,7 +54,8 @@ export class InventoryComponent {
         this.item = {
             name: item.name,
             quantity: item.quantity,
-            id: item.$key
+            id: item.$key,
+            unit: item.unit
         }
         console.log(item);
 

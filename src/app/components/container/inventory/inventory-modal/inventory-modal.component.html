@@ -21,6 +21,14 @@
                         </div>
                     </div>
                 </div>
+                  <div class="col-sm-12">
+                    <div class="form-group form-float">
+                        <div class="form-line" [ngClass]="[this.item.unit != '' ? 'focused' : '']">
+                            <input type="text" class="form-control" [(ngModel)]="item.unit">
+                            <label class="form-label">Unit</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
