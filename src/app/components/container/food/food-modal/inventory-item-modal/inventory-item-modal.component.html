@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-md-5 col-md-offset-3 p-t-5">
                         <div class="form-group form-float form-group-no-bottom-margin">
-                            <div class="form-line"  >
+                            <div class="form-line">
                                 <input class="form-control" type="text" [(ngModel)]="this.filterInventoryName">
                                 <label class="form-label">Enter Inventory name to filter</label>
                             </div>
@@ -19,52 +19,58 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="col-sm-10">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.item.name != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" disabled [(ngModel)]="item.name">
-                            <label class="form-label">NAME</label>
+                <form role="form" #inventoryItem="ngForm">
+                    <div class="col-sm-10">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.item.name != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" disabled [(ngModel)]="item.name" name="InventoryName">
+                                <label class="form-label">NAME</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" class="form-control" [(ngModel)]="item.quantity">
-                            <label class="form-label">QUANTITY</label>
+                    <div class="col-sm-2">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" [(ngModel)]="item.quantity" name="inventoryItemQuantity" #inventoryItemQuantity="ngModel" pattern="\d+" required >
+                                <label class="form-label">QUANTITY</label>
+                            </div>
+                            <div *ngIf="inventoryItemQuantity.errors && (inventoryItemQuantity.dirty || inventoryItemQuantity.touched)" class="text-danger text-font">
+                                <div [hidden]="!inventoryItemQuantity.errors.required">
+                                    Please enter the quantity
+                                </div>
+                                <div [hidden]="!inventoryItemQuantity.errors.pattern">
+                                    Quantity must contain digits only
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr >
-                                <th>NAME</th>
-                                <!--<th>Quantity</th>-->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let inventoryItem of inventoryItems | async | filterInventoryByName: filterInventoryName ">
-                                <td (click)="selectedItem(inventoryItem)">{{inventoryItem.name}}</td>
-                                <!--<td>
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>NAME</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let inventoryItem of inventoryItems | async | filterInventoryByName: filterInventoryName" (click)="selectedItem(inventoryItem)">
+                                    <td >{{inventoryItem.name}}</td>
+                                    <td>
+                                        {{inventoryItem.unit}}
                                 </td>
-                                adadsadad
-                                <td>
-                                    <div class="row p-b-5 p-r-5">
-                                        <button class="btn btn-lg btn-danger btn-block waves-effect">
-                            REMOVE
-                            </button>
-                                    </div>
-                                </td>-->
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!inventoryItem.valid">CONFIRM</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <!--<button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>

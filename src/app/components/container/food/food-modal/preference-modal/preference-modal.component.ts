@@ -1,9 +1,15 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FoodPreference } from '../../../../../models/preference.model'
 
 @Component({
     selector: 'preference-form',
-    templateUrl: 'preference-modal.component.html'
+    templateUrl: 'preference-modal.component.html',
+    styles: [
+        `.text-font{
+            padding: 5px;
+    font-size: 1.2em;
+    }`]
 })
 
 export class PreferenceModalComponent {

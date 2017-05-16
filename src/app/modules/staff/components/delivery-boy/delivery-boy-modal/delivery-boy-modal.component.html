@@ -5,51 +5,117 @@
                 <h4 class="modal-title" id="defaultModalLabel">DELIVERY BOY DETAILS</h4>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.name != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.name">
-                            <label class="form-label">Name</label>
+                <form role="form" #deliveryBoyForm="ngForm">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.name != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.name" name="deliveryBoyName" #deliveryBoyName="ngModel"
+                                    maxlength="24" minlength="3" required>
+                                <label class="form-label">Name</label>
+                            </div>
+                            <div *ngIf="deliveryBoyName.errors && (deliveryBoyName.dirty || deliveryBoyName.touched)" class="text-danger text-font">
+                                <div [hidden]="!deliveryBoyName.errors.required">
+                                    Please enter name
+                                </div>
+                                <div [hidden]="!deliveryBoyName.errors.minlength">
+                                    Name must be atleast 3 character long
+                                </div>
+                                <div [hidden]="!deliveryBoyName.errors.maxlength">
+                                    Name cannot be more than 24 character
+                                </div>
+                                <!--<div [hidden]="deliveryBoyName.errors.pattern">
+                                    Name cannot contain digit
+                                </div>-->
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float" *ngIf="this.selectedDeliveryBoy.email == ''">
-                        <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.email != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.email">
-                            <label class="form-label">Email</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.email != '' ? 'focused' : '']">
+                                <input type="email" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.email" name="deliveryBoyEmail" #deliveryBoyEmail="ngModel" required
+                                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                <label class="form-label">Email</label>
+                            </div>
+                            <div *ngIf="deliveryBoyEmail.errors && (deliveryBoyEmail.dirty || deliveryBoyEmail.touched)" class="text-danger text-font">
+                                <div [hidden]="!deliveryBoyEmail.errors.required">
+                                    Please enter email address
+                                </div>
+                                <div [hidden]="!deliveryBoyEmail.errors.pattern">
+                                    Please enter valid email
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.contact != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.contact">
-                            <label class="form-label">Contact Number</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.contact != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.contact" name="deliveryBoyContact" #deliveryBoyContact="ngModel"
+                                    minlength="11" maxlength="11" pattern="\d+" required>
+                                <label class="form-label">Contact Number</label>
+                            </div>
+                            <div *ngIf="deliveryBoyContact.errors && (deliveryBoyContact.dirty || deliveryBoyContact.touched)" class="text-danger text-font">
+                                <div [hidden]="!deliveryBoyContact.errors.required">
+                                    Please enter the contact
+                                </div>
+                                <div [hidden]="!deliveryBoyContact.errors.pattern">
+                                    Contact contain digit only
+                                </div>
+                                <div [hidden]="!deliveryBoyContact.errors.maxlength">
+                                    Contact cannot be more than 11 digit
+                                </div>
+                                <div [hidden]="!deliveryBoyContact.errors.minlength">
+                                    Contact must be atleast 11 digit long
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.cnic != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.cnic">
-                            <label class="form-label">CNIC Nnmber</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.cnic != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.cnic" maxlength="13" minlength="13" name="deliveryBoyCnic"
+                                    #deliveryBoyCnic="ngModel" pattern="\d+" required>
+                                <label class="form-label">CNIC Number</label>
+                            </div>
+                            <div *ngIf="deliveryBoyCnic.errors && (deliveryBoyCnic.dirty || deliveryBoyCnic.touched)" class="text-danger text-font">
+                                <div [hidden]="!deliveryBoyCnic.errors.required">
+                                    Please enter the cnic
+                                </div>
+                                <div [hidden]="!deliveryBoyCnic.errors.pattern">
+                                    Cnic contain digit only
+                                </div>
+                                <div [hidden]="!deliveryBoyCnic.errors.maxlength">
+                                    Cnic cannot be more than 13 digit
+                                </div>
+                                <div [hidden]="!deliveryBoyCnic.errors.minlength">
+                                    Cnic must be atleast 13 digit long
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.address != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.address">
-                            <label class="form-label">Address</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedDeliveryBoy.address != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedDeliveryBoy.address" name="deliveryBoyAddress" #deliveryBoyAddress="ngModel"
+                                    required>
+                                <label class="form-label">Address</label>
+                            </div>
+                            <div *ngIf="deliveryBoyAddress.errors && (deliveryBoyAddress.dirty || deliveryBoyAddress.touched)" class="text-danger text-font">
+                                <div [hidden]="!deliveryBoyAddress.errors.required">
+                                    Please enter the address
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!deliveryBoyForm.valid">CONFIRM</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <!--<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>

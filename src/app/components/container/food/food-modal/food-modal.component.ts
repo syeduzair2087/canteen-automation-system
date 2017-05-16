@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FoodItem } from '../../../../models/food.model';
 import { FoodPreference } from '../../../../models/preference.model';
 import { FoodService } from '../../../../services/food-service';
@@ -6,13 +7,18 @@ import { Item } from '../../../../models/inventory.model';
 
 @Component({
     selector: 'food-modal',
-    templateUrl: 'food-modal.component.html'
+    templateUrl: 'food-modal.component.html',
+     styles: [
+        `.text-font{
+            padding: 5px;
+    font-size: 1.2em;
+    }`]
 })
 
 export class FoodModalComponent {
     constructor() { }
-
     ////////INPUTS////////
+
 
     @Input() foodService: FoodService;
     @Input() foodItem: FoodItem;
@@ -125,6 +131,7 @@ export class FoodModalComponent {
             name: '',
             quantity: '',
             id: '',
+            unit: ''
         }
     }
 }

@@ -5,6 +5,7 @@
                 <h4 class="modal-title" id="defaultModalLabel">FOOD PREFERENCE</h4>
             </div>
             <div class="modal-body">
+                <form role="form" #perferenceForm="ngForm"></form>
                 <div class="col-sm-12">
                     <div class="demo-radio-button  p-b-15">
                         <input name="group1" type="radio" id="rdSingle" [(ngModel)]="prefObject.pref_type" (change)="changeType()" value="Single Value"
@@ -22,19 +23,29 @@
                 <div class="col-sm-12  p-b--10">
                     <div class="form-group">
                         <div class="form-line">
-                            <input type="text" class="form-control" [(ngModel)]="prefObject.pref_title" placeholder="Preference Title">
+                            <input type="text" class="form-control" [(ngModel)]="prefObject.pref_title" placeholder="Preference Title" name="perferenceTitle"
+                                #perferenceTitle="ngModel" required>
+                        </div>
+                        <div *ngIf="perferenceTitle.errors && (perferenceTitle.dirty || perferenceTitle.touched)" class="text-danger text-font">
+                            <div [hidden]="!perferenceTitle.errors.required">
+                                Please enter the title
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 p-b-15" *ngIf="prefObject.pref_type && prefObject.pref_type != 'Binary'">
                     <tag-input [(ngModel)]="prefObject.pref_values" [theme]="'dark minimal'" [modelAsStrings]="true" placeholder="Add new value..."
                         secondaryPlaceholder="Enter values...">
-                        </tag-input>
+                    </tag-input>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!perferenceForm.valid">CONFIRM</button>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <!--<button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>

@@ -5,51 +5,114 @@
                 <h4 class="modal-title" id="defaultModalLabel">ADMINISTRATOR DETAILS</h4>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedAdmin.name != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.name">
-                            <label class="form-label">Name</label>
+                <form #adminForm="ngForm">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedAdmin.name != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.name" #name="ngModel" name="name" id="name" minlength="3"
+                                    maxlength="24" required autocomplete="off">
+                                <label class="form-label">Name</label>
+                            </div>
+                            <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger font-setting">
+                                <div [hidden]="!name.errors.required">
+                                    Name is required
+                                </div>
+                                <div [hidden]="!name.errors.minlength">
+                                    Name must be atleast 3 character long
+                                </div>
+                                <div [hidden]="!name.errors.maxlength">
+                                    Name cannot be more than 24 character
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12" *ngIf="this.selectedAdmin.email == ''" >
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedAdmin.email != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.email">
-                            <label class="form-label">Email</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedAdmin.email != '' ? 'focused' : '']">
+                                <input type="email" class="form-control" [(ngModel)]="this.selectedAdmin.email" name="adminEmail" id="adminEmail" #adminEmail="ngModel"
+                                    required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                <!--/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i-->
+                                <label class="form-label">Email</label>
+                            </div>
+                            <div *ngIf="adminEmail.errors && (adminEmail.dirty || adminEmail.touched)" class="text-danger font-setting">
+                                <div [hidden]="!adminEmail.errors.required">
+                                    Please enter email address
+                                </div>
+                                <div [hidden]="!adminEmail.errors.pattern">
+                                    Please enter valid email
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedAdmin.contact != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.contact">
-                            <label class="form-label">Contact Number</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedAdmin.contact != '' ? 'focused' : '']">
+                                <input type="text" pattern="\d+" class="form-control" [(ngModel)]="this.selectedAdmin.contact" name="adminNumber" id="adminNumber"
+                                    #adminNumber="ngModel" required minlength="11" maxlength="11">
+                                <label class="form-label">Contact Number</label>
+                            </div>
+                            <div *ngIf="adminNumber.errors && (adminNumber.dirty || adminNumber.touched)" class="text-danger font-setting">
+                                <div [hidden]="!adminNumber.errors.required">
+                                    Please enter the number
+                                </div>
+                                <div [hidden]="!adminNumber.errors.minlength">
+                                    Number must be atleast 11 digit long
+                                </div>
+                                <div [hidden]="!adminNumber.errors.maxlength">
+                                    Number cannot be more than 13 digit
+                                </div>
+                                <div [hidden]="!adminNumber.errors.pattern">
+                                    Number can contain digit only
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedAdmin.cnic != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.cnic">
-                            <label class="form-label">CNIC Nnmber</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedAdmin.cnic != '' ? 'focused' : '']">
+                                <input type="text" pattern="\d+" class="form-control" [(ngModel)]="this.selectedAdmin.cnic" name="adminCnic" #adminCnic="ngModel"
+                                    maxlength="13" minlength="13" required>
+                                <label class="form-label">CNIC Number</label>
+                            </div>
+                            <div *ngIf="adminCnic.errors && (adminCnic.dirty || adminCnic.touched)" class="text-danger font-setting">
+                                <div [hidden]="!adminCnic.errors.required">
+                                    Please enter the cnic number
+                                </div>
+                                <div [hidden]="!adminCnic.errors.minlength">
+                                    Cnic number must be atleast 13 digit long
+                                </div>
+                                <div [hidden]="!adminCnic.errors.maxlength">
+                                    Cnic number cannot be more than 13 digit
+                                </div>
+                                <div [hidden]="!adminCnic.errors.pattern">
+                                    Cnic number can contain digit only
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedAdmin.address != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.address">
-                            <label class="form-label">Address</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedAdmin.address != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedAdmin.address" name="adminAdress" #adminAdress="ngModel"
+                                    required>
+                                <label class="form-label">Address</label>
+                            </div>
+                            <div *ngIf="adminAdress.errors && (adminAdress.dirty || adminAdress.touched)" class="text-danger text-setting">
+                                <div [hidden]="!adminAdress.errors.required">
+                                    Please enter the address
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!adminForm.valid">CONFIRM</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <!--<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>

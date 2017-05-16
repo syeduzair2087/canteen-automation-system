@@ -5,34 +5,59 @@
                 <h4 class="modal-title" id="defaultModalLabel">Add Inventory</h4>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.item.name != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="item.name">
-                            <label class="form-label">Name</label>
+                <form #inventoryForm="ngForm" role="form">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.item.name != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="item.name" name="inventoryName" #inventoryName="ngModel" required>
+                                <label class="form-label">Name</label>
+                            </div>
+                            <div *ngIf="inventoryName.errors && (inventoryName.dirty || inventoryName.touched)" class="text-danger text-font">
+                                <div [hidden]="!inventoryName.errors.required">
+                                    Please enter the name
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.item.quantity != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="item.quantity">
-                            <label class="form-label">Quality</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.item.quantity != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="item.quantity" name="inventoryQuantity" pattern="\d+" #inventoryQuantity="ngModel"
+                                    required>
+                                <label class="form-label">Quality</label>
+                            </div>
+                            <div *ngIf="inventoryQuantity.errors && (inventoryQuantity.dirty || inventoryQuantity.touched)" class="text-danger text-font">
+                                <div [hidden]="!inventoryQuantity.errors.required">
+                                    Please enter the quantity
+                                </div>
+                                <div [hidden]="!inventoryQuantity.errors.pattern">
+                                    Quantity contain only digits
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                  <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.item.unit != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="item.unit">
-                            <label class="form-label">Unit</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.item.unit != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="item.unit" name="inventoryUnit" #inventoryUnit="ngModel" required>
+                                <label class="form-label">Unit</label>
+                            </div>
+                            <div *ngIf="inventoryUnit.errors && (inventoryUnit.dirty || inventoryUnit.touched)" class="text-danger text-font">
+                                <div [hidden]="!inventoryUnit.required">
+                                    Please enter the Unit
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!inventoryForm.valid">CONFIRM</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <!--<button type="button" class="btn btn-link waves-effect" (click)="clickCancel()" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>

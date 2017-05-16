@@ -1,11 +1,17 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FirebaseListObservable } from 'angularfire2';
 import { InventoryFilterByName } from '../.../../../../../../pipes/filter-inventory-pipe';
 import { InventoryService } from '../../../../../services/inventory-service';
 import { Item } from '../../../../../models/inventory.model';
 @Component({
     selector: 'inventoryItem-modal',
-    templateUrl: 'inventory-item-modal.component.html'
+    templateUrl: 'inventory-item-modal.component.html',
+    styles: [
+        `.text-font{
+            padding: 5px;
+    font-size: 1.2em;
+    }`]
 })
 export class InventoryItemConponent {
     inventoryItems: FirebaseListObservable<Array<Item>>;
@@ -40,7 +46,8 @@ export class InventoryItemConponent {
         this.item = {
             name: '',
             quantity: '',
-            id: ''
+            id: '',
+            unit: ''
         }
     }
 

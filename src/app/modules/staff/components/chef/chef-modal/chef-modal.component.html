@@ -5,51 +5,106 @@
                 <h4 class="modal-title" id="defaultModalLabel">CHEF DETAILS</h4>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedChef.name != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.name">
-                            <label class="form-label">Name</label>
+                <form #chefForm="ngForm" role="form">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedChef.name != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedChef.name" name="chefName" #chefName="ngModel" required>
+                                <label class="form-label">Name</label>
+                            </div>
+                            <div *ngIf="chefName.errors && (chefName.dirty || chefName.touched)" class="text-danger text-font">
+                                <div [hidden]="!chefName.errors.required">
+                                    Please enter the name
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12" *ngIf="this.selectedChef.email == ''">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedChef.email != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.email">
-                            <label class="form-label">Email</label>
+                      <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedChef.email != '' ? 'focused' : '']">
+                                <input type="email" class="form-control" [(ngModel)]="this.selectedChef.email" name="chefEmail" #chefEmail="ngModel"
+                                    required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                <label class="form-label">Email</label>
+                            </div>
+                            <div *ngIf="chefEmail.errors && (chefEmail.dirty || chefEmail.touched)" class="text-danger text-font">
+                                <div [hidden]="!chefEmail.errors.required">
+                                    Please enter email address
+                                </div>
+                                <div [hidden]="!chefEmail.errors.pattern">
+                                    Please enter valid email
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedChef.contact != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.contact">
-                            <label class="form-label">Contact Number</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedChef.contact != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedChef.contact" name="chefContact" minlength="11" maxlength="11"
+                                    #chefContact="ngModel" required pattern="\d+">
+                                <label class="form-label">Contact Number</label>
+                            </div>
+                        </div>
+                        <div *ngIf="chefContact.errors && (chefContact.dirty || chefContact.touched)" class="text-danger text-font">
+                            <div [hidden]="!chefContact.errors.required">
+                                Please enter the contact
+                            </div>
+                            <div [hidden]="!chefContact.errors.pattern">
+                                Contact contain digit only
+                            </div>
+                            <div [hidden]="!chefContact.errors.maxlength">
+                                Contact cannot be more than 11 digit
+                            </div>
+                            <div [hidden]="!chefContact.errors.minlength">
+                                Contact must be atleast 11 digit long
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedChef.cnic != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.cnic">
-                            <label class="form-label">CNIC Nnmber</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedChef.cnic != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedChef.cnic" name="chefCnic" maxlength="13" minlength="13"
+                                    required pattern="\d+" #chefCnic="ngModel">
+                                <label class="form-label">CNIC Number</label>
+                            </div>
+                        </div>
+                        <div *ngIf="chefCnic.errors && (chefCnic.dirty || chefCnic.touched)" class="text-danger text-font">
+                            <div [hidden]="!chefCnic.errors.required">
+                                Please enter the cnic
+                            </div>
+                            <div [hidden]="!chefCnic.errors.pattern">
+                                Cnic contain digit only
+                            </div>
+                            <div [hidden]="!chefCnic.errors.maxlength">
+                                Cnic cannot be more than 13 digit
+                            </div>
+                            <div [hidden]="!chefCnic.errors.minlength">
+                                Cnic must be atleast 13 digit long
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group form-float">
-                        <div class="form-line" [ngClass]="[this.selectedChef.address != '' ? 'focused' : '']">
-                            <input type="text" class="form-control" [(ngModel)]="this.selectedChef.address">
-                            <label class="form-label">Address</label>
+                    <div class="col-sm-12">
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="[this.selectedChef.address != '' ? 'focused' : '']">
+                                <input type="text" class="form-control" [(ngModel)]="this.selectedChef.address" name="chefAddress" #chefAddress="ngModel"
+                                    required>
+                                <label class="form-label">Address</label>
+                            </div>
+                        </div>
+                        <div *ngIf="chefAddress.errors && (chefAddress.dirty || chefAddress.touched)" class="text-danger text-font">
+                            <div [hidden]="!chefAddress.errors.required">
+                                Please enter the address
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!chefForm.valid">CONFIRM</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <!--<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>

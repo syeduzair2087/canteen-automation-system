@@ -13,8 +13,16 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Email" required autofocus #txtEmail>
+                            <input type="email" class="form-control" name="txtEmail" placeholder="Email" role="form"  required autofocus #txtEmail>
                         </div>
+                        <!--<div *ngIf="txtEmail.value.errors && (txtEmail.value.dirty || txtEmail.value.touched)" class="text-danger text-font">
+                            <div [hidden]="!txtEmail.value.errors.required">
+                                Please enter the email
+                            </div>
+                            <div [hidden]="!txtEmail.value.errors.pattern">
+                                Please enter valid email
+                            </div>
+                        </div>-->
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">

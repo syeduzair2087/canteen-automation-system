@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FirebaseListObservable } from 'angularfire2';
 import loadTheme = require('../../../../../../js/admin');
 import { StaffMember } from '../../../../../models/staff-member.model';
@@ -7,7 +8,14 @@ import { StaffService } from '../../../../../services/staff-service';
 
 @Component({
     selector: 'admin-modal',
-    templateUrl: 'admin-modal.component.html'
+    templateUrl: 'admin-modal.component.html',
+    styles: [
+        `.onerror{
+    border: 1px solid red;}
+    .font-setting{
+            padding: 5px;
+    font-size: 1.2em;
+    }`]
 })
 
 export class AdminModalComponent {
@@ -54,4 +62,5 @@ export class AdminModalComponent {
             });
         }
     }
+    submitForm(){}
 }

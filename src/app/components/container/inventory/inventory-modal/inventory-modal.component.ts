@@ -1,9 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { InventoryService } from '../../../../services/inventory-service';
 import { Item } from '../../../../models/inventory.model';
 @Component({
     selector: 'inventory-modal',
-    templateUrl: 'inventory-modal.component.html'
+    templateUrl: 'inventory-modal.component.html',
+     styles: [
+        `.font-setting{
+            padding: 5px;
+    font-size: 1.2em;
+    }`]
 })
 export class InventoryModalComponent {
 

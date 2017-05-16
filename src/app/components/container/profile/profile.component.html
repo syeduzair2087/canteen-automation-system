@@ -71,74 +71,76 @@
             </div>
             <div class="body">
                 <div class="form-horizontal">
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-control-label">
-                            <label for="admin_name">Name</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="admin_name" class="form-control" placeholder="Enter your name" [(ngModel)]="staffMember.name" >
+                    <form>
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-control-label">
+                                <label for="admin_name">Name</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="admin_name" class="form-control" placeholder="Enter your name" [(ngModel)]="staffMember.name">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="email_address">Email</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" [(ngModel)]="staffMember.email" >
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="email_address">Email</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" [(ngModel)]="staffMember.email">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="contact_no">Contact</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="contact_no" class="form-control" placeholder="Enter your contact number" [(ngModel)]="staffMember.contact">
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="contact_no">Contact</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="contact_no" class="form-control" placeholder="Enter your contact number" [(ngModel)]="staffMember.contact">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="cnic_no">Cnic</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="cnic_no" [(ngModel)]="staffMember.cnic" class="form-control" placeholder="Enter your cnic number">
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="cnic_no">Cnic</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="cnic_no" [(ngModel)]="staffMember.cnic" class="form-control" placeholder="Enter your cnic number">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="address">Address</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="address" [(ngModel)]="staffMember.address" class="form-control" placeholder="Enter your address">
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                <label for="address">Address</label>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" id="address" [(ngModel)]="staffMember.address" class="form-control" placeholder="Enter your address">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row clearfix">
-                        <div class=" col-md-offset-11">
-                            <button type="button" (click)="UpdateAdminInfo()" class="btn btn-primary btn-block btn-lg waves-effect">Update</button>
+                        <div class="row clearfix">
+                            <div class=" col-md-offset-11">
+                                <button type="button" (click)="UpdateAdminInfo()" class="btn btn-primary btn-block btn-lg waves-effect">Update</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

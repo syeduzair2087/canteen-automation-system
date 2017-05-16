@@ -5,104 +5,121 @@
                 <h4 class="modal-title" id="defaultModalLabel">FOOD ITEM</h4>
             </div>
             <div class="modal-body">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtTitle [(ngModel)]="this.foodItem.food_title" placeholder="Title">
+                <form #foodForm="ngForm" role="form">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" #txtTitle="ngModel" [(ngModel)]="this.foodItem.food_title" placeholder="Title" name="txtTitle"
+                                    required>
+                            </div>
+                            <div *ngIf="txtTitle.errors && (txtTitle.dirty || txtTitle.touched)" class="text-danger text-font">
+                                <div [hidden]="!txtTitle.errors.required">
+                                    Please enter the name
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" #txtPrice [(ngModel)]="this.foodItem.food_price" placeholder="Price">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" #txtPrice="ngModel" name="txtPrice" [(ngModel)]="this.foodItem.food_price" placeholder="Price"
+                                    pattern="\d+" required>
+                            </div>
+                            <div *ngIf="txtPrice.errors && (txtPrice.dirty || txtPrice.touched)" class="text-danger text-font">
+                                <div [hidden]="!txtPrice.errors.required">
+                                    Please enter the price
+                                </div>
+                                <div [hidden]="!txtPrice.errors.pattern">
+                                    Price contain digits only
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-12" *ngIf="this.foodItem.food_prefs && this.foodItem.food_prefs.length > 0">
-                    <div class="body table-responsive">
-                        <h5> Food Preference </h5>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    
-                                    <th>TITLE</th>
-                                    <th>TYPE</th>
-                                    <th>VALUES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let pref of this.foodItem.food_prefs; let prefIndex = index">
-                                    <td>{{pref.pref_title}}</td>
-                                    <td>{{pref.pref_type}}</td>
-                                    <td>
-                                        <ul>
-                                            <li *ngFor="let prefValue of pref.pref_values">
-                                                {{prefValue}}
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="p-b-5">
-                                            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#preferenceModal" (click)="clickEdit(pref, prefIndex)">
+                    <div class="col-sm-12" *ngIf="this.foodItem.food_prefs && this.foodItem.food_prefs.length > 0">
+                        <div class="body table-responsive">
+                            <h5> Food Preference </h5>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+
+                                        <th>TITLE</th>
+                                        <th>TYPE</th>
+                                        <th>VALUES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pref of this.foodItem.food_prefs; let prefIndex = index">
+                                        <td>{{pref.pref_title}}</td>
+                                        <td>{{pref.pref_type}}</td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="let prefValue of pref.pref_values">
+                                                    {{prefValue}}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <div class="p-b-5">
+                                                <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#preferenceModal" (click)="clickEdit(pref, prefIndex)">
                                             EDIT
                                             </button>
-                                        </div>
-                                        <div class="p-b-5">
-                                            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="clickRemove(prefIndex)">
+                                            </div>
+                                            <div class="p-b-5">
+                                                <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="clickRemove(prefIndex)">
                                             REMOVE
                                             </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
-                
-                <div class="col-sm-12" *ngIf="this.foodItem.inventory_item && this.foodItem.inventory_item.length > 0">
-                    <div class="body table-responsive">
-                        <h5> Inventory Item </h5>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>      
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of this.foodItem.inventory_item; let itemIndex = index">
-                                    <td>{{item.name}}</td>
-                                    <td>{{item.quantity}}</td>
-                                    <td>
-                                        <!--<div class="p-b-5">
-                                            <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#preferenceModal" (click)="clickEditItem(item, itemIndex)">
-                                            EDIT
-                                            </button>
-                                        </div>-->
-                                        <div class="p-b-5">
-                                            <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="clickRemoveItem(itemIndex)">
+
+                    <div class="col-sm-12" *ngIf="this.foodItem.inventory_item && this.foodItem.inventory_item.length > 0">
+                        <div class="body table-responsive">
+                            <h5> Inventory Item </h5>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of this.foodItem.inventory_item; let itemIndex = index">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.quantity}}</td>
+                                        <td>
+                                            <div class="p-b-5">
+                                                <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="clickRemoveItem(itemIndex)">
                                             REMOVE
                                             </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#preferenceModal">ADD PREFERENCE</button>
+                        <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#inventoryItemModal">ADD INVENTORY ITEM</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!foodForm.valid">CONFIRM</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                <!--<button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
                 <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#preferenceModal">ADD PREFERENCE</button>
                 <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#inventoryItemModal">ADD INVENTORY ITEM</button>
-                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>
+                <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal">CONFIRM</button>-->
             </div>
         </div>
     </div>
 </div>
 <preference-form (prefObjectEvent)="receivePrefObject($event)" [prefObject]="this.prefObject"></preference-form>
-<inventoryItem-modal (inventoryItemEvent)="recivedInventoryItem($event)" [item]="this.item" ></inventoryItem-modal>
+<inventoryItem-modal (inventoryItemEvent)="recivedInventoryItem($event)" [item]="this.item"></inventoryItem-modal>

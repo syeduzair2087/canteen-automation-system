@@ -1,11 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FirebaseListObservable } from 'angularfire2';
 import { StaffMember } from '../../../../../models/staff-member.model';
 import { AccountService } from '../../../../../services/account-service';
 import { StaffService } from '../../../../../services/staff-service';
 @Component({
     selector: 'delivery-boy-modal',
-    templateUrl: 'delivery-boy-modal.component.html'
+    templateUrl: 'delivery-boy-modal.component.html',
+     styles: [
+        `.text-font{
+            padding: 5px;
+    font-size: 1.2em;
+    }`]
 })
 
 export class DeliveryBoyModalComponent {
