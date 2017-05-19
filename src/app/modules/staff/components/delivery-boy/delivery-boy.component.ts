@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2'
 import { StaffService } from '../../../../services/staff-service';
+import { ToastService } from '../../../../services/toast-service';
 import { StaffMember } from '../../../../models/staff-member.model';
 import loadTheme = require('../../../../../js/admin');
 import * as staffFilters from '../../../../pipes/filter-staff.pipe';
@@ -30,11 +31,11 @@ export class DeliveryBoyComponent {
         status: ''
     };
 
-    constructor(private staffService: StaffService) { }
+    constructor(private staffService: StaffService, private toastService: ToastService) { }
 
     ngOnInit() {
         this.deliveryBoyDetails = this.staffService.fetchDeliveryBoys();
-        
+
         setTimeout(() => {
             loadTheme();
         }, 10);
@@ -68,13 +69,15 @@ export class DeliveryBoyComponent {
 
     RemoveDeliveryBoy(key) {
         this.staffService.removeStaffMember('delivery_boys', key).then((success) => {
+            this.toastService.showToast('Delivery boy', 'Delivery boy remove successfully!', 'success');
         }).catch((error) => {
-            console.log(error);;
+            console.log(error);
+            this.toastService.showToast('Delivery boy', error, 'error');
         });
     }
 
-       onFilterTypeChange() {
-        this.filterStaffName= '';
+    onFilterTypeChange() {
+        this.filterStaffName = '';
         this.filterStaffEmail = '';
         this.filterStaffContact = '';
         this.filterStaffCnic = '';
@@ -85,10 +88,10 @@ export class DeliveryBoyComponent {
         }, 10);
     }
 
-    onDeliveryBoyStatusChange(){
-        if(this.deliveryBoyStatus == 'active')
-        this.deliveryBoyStatus = 'removed';
+    onDeliveryBoyStatusChange() {
+        if (this.deliveryBoyStatus == 'active')
+            this.deliveryBoyStatus = 'removed';
         else
-        this.deliveryBoyStatus = 'active';
+            this.deliveryBoyStatus = 'active';
     }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FirebaseApp } from 'angularfire2';
 import { StaffMember } from '../../models/staff-member.model';
 import { AccountService } from '../../services/account-service';
+import { ToastService } from '../../services/toast-service';
 import * as firebase from 'firebase';
 @Component({
     selector: 'navigation-component',
@@ -13,7 +14,9 @@ export class NavigationComponent {
     userName: string = '';
     userEmail: string = '';
     messaging: firebase.messaging.Messaging;
-    constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router) { }
+    constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService) { 
+        this.toastService.showToast('asdad', 'asdadasda', 'success')
+    }
 
     clickLogout() {
         this.accountService.logoutAdmin().then(() => {
@@ -36,7 +39,9 @@ export class NavigationComponent {
     GetNotification() {
         this.messaging.onMessage((payload) => {
             console.log('Message Recived: ');
-            console.log(payload);
+            console.log(payload.notification.body);
+            console.log(payload.notification.title);
+            this.toastService.showToast(payload.notification.title, payload.notification.body, 'success');
         })
     }
 

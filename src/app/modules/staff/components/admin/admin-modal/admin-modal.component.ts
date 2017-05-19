@@ -5,6 +5,7 @@ import loadTheme = require('../../../../../../js/admin');
 import { StaffMember } from '../../../../../models/staff-member.model';
 import { AccountService } from '../../../../../services/account-service';
 import { StaffService } from '../../../../../services/staff-service';
+import { ToastService } from '../../../../../services/toast-service';
 
 @Component({
     selector: 'admin-modal',
@@ -26,11 +27,12 @@ export class AdminModalComponent {
 
     @Input() selectedAdmin: StaffMember;
     @Input() staffService: StaffService;
+    @Input() toastService: ToastService;
 
     ////////EVENTS////////
 
     ngOnInit() {
-     console.log('click');
+        console.log('click');
         setTimeout(() => {
             loadTheme();
         }, 10)
@@ -44,23 +46,26 @@ export class AdminModalComponent {
             let key = this.selectedAdmin.$key;
             delete this.selectedAdmin.$key
             this.staffService.editStaffMember('admins', key, this.selectedAdmin).then((success) => {
-
+                this.toastService.showToast('Administrator', 'Admin edit successfully!', 'success');
             }).catch((error) => {
                 console.log(error);
+                this.toastService.showToast('Administrator', error, 'error');
             });
         }
         else {
             this.accountService.createUser(this.selectedAdmin.email, "u123456", this.selectedAdmin.name).then((userId: string) => {
                 console.log(userId);
                 this.staffService.addStaffMember('admins', userId, this.selectedAdmin).then((success) => {
-
+                    this.toastService.showToast('Administrator', 'Admin added successfully!', 'success');
                 }).catch((error) => {
                     console.log(error);
+                    this.toastService.showToast('Administrator', error, 'error');
                 });
             }).catch((error) => {
                 console.log(error);
+                this.toastService.showToast('Administrator', error, 'error');
             });
         }
     }
-    submitForm(){}
+    submitForm() { }
 }

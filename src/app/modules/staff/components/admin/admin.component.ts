@@ -4,6 +4,7 @@ import { StaffMember } from '../../../../models/staff-member.model';
 import { FirebaseListObservable } from 'angularfire2';
 import loadTheme = require('../../../../../js/admin');
 import * as staffFilters from '../../../../pipes/filter-staff.pipe';
+import { ToastService } from '../../../../services/toast-service';
 
 @Component({
     selector: 'admin-component',
@@ -32,10 +33,15 @@ export class AdminComponent {
         status: '',
     };
 
-    constructor(private staffService: StaffService) { }
+    constructor(private staffService: StaffService, private toastService: ToastService) { }
 
     ngOnInit() {
         this.adminDetails = this.staffService.fetchAdmins();
+        
+        this.adminDetails.forEach(element => {
+            console.log(element);
+        });
+
         this.adminId = localStorage.getItem('uid');
 
         setTimeout(() => {
@@ -72,8 +78,10 @@ export class AdminComponent {
     RemoveAdmin(key) {
         console.log(key);
         this.staffService.removeStaffMember('admins', key).then((success) => {
+            this.toastService.showToast('Administrator', 'Admin removed successfully!', 'success');
         }).catch((error) => {
             console.log(error);
+            this.toastService.showToast('Administrator', error.message,'error');
         });
     }
 

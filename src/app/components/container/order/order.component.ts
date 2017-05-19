@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import loadTheme = require('../../../../js/admin');
 import { OrderService } from '../../../services/order-service';
 import { UserService } from '../../../services/user-service';
+import { ToastService } from '../../../services/toast-service';
 import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
 import * as orderFilters from '../../../pipes/filter-order.pipe';
@@ -29,7 +30,7 @@ export class OrderComponent {
     filterId: number = null;
     printClick: boolean = false;
 
-    constructor(private orderService: OrderService, private userService: UserService, private router: Router) { }
+    constructor(private orderService: OrderService, private userService: UserService, private router: Router, private toastService: ToastService) { }
 
     ngOnInit() {
         this.orderSubscription = this.orderService.getOrderSubscription().subscribe((ordersData: Array<Order>) => {
@@ -64,11 +65,21 @@ export class OrderComponent {
     }
 
     clickAssignToChef(orderId: string) {
-        this.orderService.assignToChef(orderId).then((data) => { }).catch(() => { });
+        this.orderService.assignToChef(orderId).then((data) => {
+            this.toastService.showToast('Order', 'Order assigned to chef.', 'success');
+        }).catch((error) => {
+            this.toastService.showToast('Order', error, 'error');
+        });
     }
 
     clickAssignToDeliveryBoy(orderId: string) {
-        this.orderService.assignToDeliveryBoy(orderId).then((data) => { }).catch(() => { });
+        this.orderService.assignToDeliveryBoy(orderId).then((data) => {
+            console.log('ok');
+            this.toastService.showToast('Order', 'Order assigned to delivery boy.', 'success');
+        }).catch((error) => {
+            console.log('error');
+            this.toastService.showToast('Order', error, 'error');
+        });
     }
 
     clickOrder(orderId: string) {
@@ -91,7 +102,7 @@ export class OrderComponent {
         }, 10);
     }
 
-      print() {
+    print() {
         this.printClick = true;
 
         setTimeout(() => {

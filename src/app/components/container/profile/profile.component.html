@@ -71,7 +71,7 @@
             </div>
             <div class="body">
                 <div class="form-horizontal">
-                    <form>
+                    <form #profileForm="ngForm">
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-control-label">
                                 <label for="admin_name">Name</label>
@@ -79,7 +79,19 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="admin_name" class="form-control" placeholder="Enter your name" [(ngModel)]="staffMember.name">
+                                        <input type="text" id="admin_name" class="form-control" placeholder="Enter your name" [(ngModel)]="staffMember.name" name="name"
+                                            #name="ngModel" required minlength="3" maxlength="24">
+                                    </div>
+                                </div>
+                                <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger font-setting">
+                                    <div [hidden]="!name.errors.required">
+                                        Name is required
+                                    </div>
+                                    <div [hidden]="!name.errors.minlength">
+                                        Name must be atleast 3 character long
+                                    </div>
+                                    <div [hidden]="!name.errors.maxlength">
+                                        Name cannot be more than 24 character
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +103,16 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" [(ngModel)]="staffMember.email">
+                                        <input type="text" id="email_address" class="form-control" placeholder="Enter your email address" [(ngModel)]="staffMember.email"
+                                            name="adminEmail" #adminEmail="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                    </div>
+                                </div>
+                                <div *ngIf="adminEmail.errors && (adminEmail.dirty || adminEmail.touched)" class="text-danger font-setting">
+                                    <div [hidden]="!adminEmail.errors.required">
+                                        Please enter email address
+                                    </div>
+                                    <div [hidden]="!adminEmail.errors.pattern">
+                                        Please enter valid email
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +124,22 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="contact_no" class="form-control" placeholder="Enter your contact number" [(ngModel)]="staffMember.contact">
+                                        <input type="text" id="contact_no" class="form-control" placeholder="Enter your contact number" [(ngModel)]="staffMember.contact"
+                                            name="adminNumber" #adminNumber="ngModel" pattern="\d+" required minlength="11" maxlength="11">
+                                    </div>
+                                </div>
+                                <div *ngIf="adminNumber.errors && (adminNumber.dirty || adminNumber.touched)" class="text-danger font-setting">
+                                    <div [hidden]="!adminNumber.errors.required">
+                                        Please enter the number
+                                    </div>
+                                    <div [hidden]="!adminNumber.errors.minlength">
+                                        Number must be atleast 11 digit long
+                                    </div>
+                                    <div [hidden]="!adminNumber.errors.maxlength">
+                                        Number cannot be more than 13 digit
+                                    </div>
+                                    <div [hidden]="!adminNumber.errors.pattern">
+                                        Number can contain digit only
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +152,22 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="cnic_no" [(ngModel)]="staffMember.cnic" class="form-control" placeholder="Enter your cnic number">
+                                        <input type="text" id="cnic_no" [(ngModel)]="staffMember.cnic" class="form-control" placeholder="Enter your cnic number"
+                                            name="adminCnic" #adminCnic="ngModel" required minlength="13" maxlength="13" pattern="\d+">
+                                    </div>
+                                </div>
+                                <div *ngIf="adminCnic.errors && (adminCnic.dirty || adminCnic.touched)" class="text-danger font-setting">
+                                    <div [hidden]="!adminCnic.errors.required">
+                                        Please enter the cnic number
+                                    </div>
+                                    <div [hidden]="!adminCnic.errors.minlength">
+                                        Cnic number must be atleast 13 digit long
+                                    </div>
+                                    <div [hidden]="!adminCnic.errors.maxlength">
+                                        Cnic number cannot be more than 13 digit
+                                    </div>
+                                    <div [hidden]="!adminCnic.errors.pattern">
+                                        Cnic number can contain digit only
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +180,12 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="address" [(ngModel)]="staffMember.address" class="form-control" placeholder="Enter your address">
+                                        <input type="text" id="address" [(ngModel)]="staffMember.address" class="form-control" placeholder="Enter your address" name="adminAdress" #adminAdress="ngModel" required>
+                                    </div>
+                                </div>
+                                <div *ngIf="adminAdress.errors && (adminAdress.dirty || adminAdress.touched)" class="text-danger text-setting">
+                                    <div [hidden]="!adminAdress.errors.required">
+                                        Please enter the address
                                     </div>
                                 </div>
                             </div>
@@ -137,10 +193,10 @@
 
                         <div class="row clearfix">
                             <div class=" col-md-offset-11">
-                                <button type="button" (click)="UpdateAdminInfo()" class="btn btn-primary btn-block btn-lg waves-effect">Update</button>
+                                <button type="button" (click)="UpdateAdminInfo()" class="btn btn-primary btn-block btn-lg waves-effect" [disabled]="!profileForm.valid">Update</button>
                             </div>
                         </div>
-                    </form>
+                        </form>
                 </div>
             </div>
         </div>

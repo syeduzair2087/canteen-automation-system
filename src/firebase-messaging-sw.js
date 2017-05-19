@@ -11,7 +11,7 @@
   //   databaseURL: "https://canteenautomationsystem.firebaseio.com",
   //   // projectId: "canteenautomationsystem",
   //   storageBucket: "canteenautomationsystem.appspot.com",
-  //   messagingSenderId: "490551661425"  
+  //   messagingSenderId: "490551661425"  n
   // };
   // firebase.initializeApp(config);
 

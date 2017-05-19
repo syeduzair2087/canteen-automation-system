@@ -7,7 +7,7 @@ export class StaffService {
 
     fetchAdmins() {
         // return new Promise((res, rej) => {
-        return this.angularFire.database.list('roles/admins')
+        return this.angularFire.database.list('roles/admins');
         //     .subscribe((data: Array<Staff>) => {
         //         res(data);
         //     });
@@ -147,7 +147,7 @@ export class StaffService {
             this.angularFire.database.object('roles/' + role + '/' + userId).update({ status: 'removed' }).then(() => {
                 res();
             }).catch((error) => {
-                rej(error.message);
+                rej(error);
             });
         });
     }

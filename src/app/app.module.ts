@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { ToastyModule } from 'ng2-toasty';
+
 // PIPES
 import { FilterUserByNamePipe, FilterUserByEmailPipe, FilterUserByContactPipe, FilterUserByCabinPipe } from './pipes/filter-user.pipe';
 import { FilterFoodByNamePipe } from './pipes/filter-food.pipe';
@@ -42,7 +44,8 @@ import { UserService } from './services/user-service';
 import { StaffService } from './services/staff-service';
 import { OrderService } from './services/order-service';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
-import { InventoryService } from './services/inventory-service'
+import { InventoryService } from './services/inventory-service';
+import { ToastService } from './services/toast-service';
 
 
 //CONFIG
@@ -104,6 +107,7 @@ const firebaseAuthConfig = {
     RoutingModule,
     TagInputModule,
     StaffModule,
+    ToastyModule.forRoot(),
     AngularFireModule.initializeApp(config, firebaseAuthConfig)
   ],
   providers: [
@@ -114,7 +118,8 @@ const firebaseAuthConfig = {
     OrderService,
     LoginGuard,
     LogoutGuard,
-    InventoryService
+    InventoryService,
+    ToastService
   ],
   bootstrap: [AppComponent]
 })

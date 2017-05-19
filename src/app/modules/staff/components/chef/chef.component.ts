@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { StaffMember } from '../../../../models/staff-member.model';
 import { StaffService } from '../../../../services/staff-service';
+import { ToastService } from '../../../../services/toast-service';
 import loadTheme = require('../../../../../js/admin');
 import * as staffFilters from '../../../../pipes/filter-staff.pipe';
 
@@ -30,7 +31,7 @@ export class ChefComponent {
         contact: '',
         status: ''
     };
-    constructor(private staffService: StaffService) { }
+    constructor(private staffService: StaffService, private toastService: ToastService) { }
 
     ngOnInit() {
         this.ChefDetails = this.staffService.fetchChefs();
@@ -70,8 +71,10 @@ export class ChefComponent {
 
     RemoveChef(key) {
         this.staffService.removeStaffMember('chefs', key).then((success) => {
+            this.toastService.showToast('Chef', 'Chef remove successfully!', 'success');
         }).catch((error) => {
             console.log(error);
+            this.toastService.showToast('Chef', error, 'error');
         });
     }
 

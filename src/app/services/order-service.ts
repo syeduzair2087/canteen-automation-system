@@ -95,7 +95,7 @@ export class OrderService {
                     datalist.filter
                     res(datalist[Math.floor(Math.random() * datalist.length)]);
                 });
-            }).catch(() => rej());
+            }).catch((error) => rej(error.message));
         });
     }
 
@@ -111,12 +111,13 @@ export class OrderService {
                     this.angularFire.database.object('roles/chefs/' + data.$key).update({
                         job_count: <number>data.job_count + 1
                     }).then(() => {
+                        console.log('added successfully')
                         res();
-                    }).catch(() => {
-                        rej();
+                    }).catch((error) => {
+                        rej(error.message);
                     });
-                }).catch(() => {
-                    rej();
+                }).catch((error) => {
+                    rej(error.message);
                 });
             });
         });
@@ -131,15 +132,18 @@ export class OrderService {
                         staffMemberId: data.$key
                     }
                 }).then(() => {
+                    console.log(data.job_count + "  count");
                     this.angularFire.database.object('roles/delivery_boys/' + data.$key).update({
                         job_count: <number>data.job_count + 1
                     }).then(() => {
                         res();
-                    }).catch(() => {
-                        rej();
+                    }).catch((error) => {
+                        console.log('1 error')
+                        rej(error.message);
                     });
-                }).catch(() => {
-                    rej();
+                }).catch((error) => {
+                    console.log('1 error in update cuont')
+                    rej(error.message);
                 });
             });
         });
