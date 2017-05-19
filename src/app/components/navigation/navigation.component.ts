@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 })
 
 export class NavigationComponent {
+    orderArrive: number = 0;
     userName: string = '';
     userEmail: string = '';
     messaging: firebase.messaging.Messaging;
@@ -38,9 +39,11 @@ export class NavigationComponent {
 
     GetNotification() {
         this.messaging.onMessage((payload) => {
-            console.log('Message Recived: ');
-            console.log(payload.notification.body);
-            console.log(payload.notification.title);
+            // console.log('Message Recived: ');
+            // console.log(payload.notification.body);
+            // console.log(payload.notification.title);
+            // this.orderArrive++;
+            // console.log(this.orderArrive)
             this.toastService.showToast(payload.notification.title, payload.notification.body, 'success');
         })
     }
@@ -51,5 +54,9 @@ export class NavigationComponent {
         }).catch((error) => {
             console.log(error.message);
         })
+    }
+
+    resetOrderNumber(){
+        this.orderArrive = 0;
     }
 }
