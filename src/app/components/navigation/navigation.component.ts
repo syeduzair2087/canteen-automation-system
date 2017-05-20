@@ -16,7 +16,7 @@ export class NavigationComponent {
     userEmail: string = '';
     messaging: firebase.messaging.Messaging;
     constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService) { 
-        this.toastService.showToast('asdad', 'asdadasda', 'success')
+        // this.toastService.showToast('asdad', 'asdadasda', 'success')
     }
 
     clickLogout() {
@@ -39,11 +39,11 @@ export class NavigationComponent {
 
     GetNotification() {
         this.messaging.onMessage((payload) => {
-            // console.log('Message Recived: ');
-            // console.log(payload.notification.body);
-            // console.log(payload.notification.title);
-            // this.orderArrive++;
-            // console.log(this.orderArrive)
+             console.log('Message Recived: ');
+             console.log(payload.notification.body);
+             console.log(payload.notification.title);
+             this.orderArrive++;
+             console.log(this.orderArrive)
             this.toastService.showToast(payload.notification.title, payload.notification.body, 'success');
         })
     }

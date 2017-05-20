@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Order } from '../models/order.model';
+import { StaffMember } from '../models/staff-member.model';
 var querybase = require('querybase');
 var firebase = require('firebase');
 @Injectable()
@@ -67,33 +68,35 @@ export class OrderService {
         });
     }
 
-    getLeastJobCount(role: string) {
-        return new Promise((res, rej) => {
-            let countSubscription = this.angularFire.database.list('/roles/' + role, {
-                query: {
-                    orderByChild: 'job_count',
-                    limitToFirst: 1
+    // getLeastJobCount(role: string) {
+    //     return new Promise((res, rej) => {
+    //         let countSubscription = this.angularFire.database.list('/roles/' + role, {
+    //             query: {
+    //                 orderByChild: 'job_count',
+    //                 limitToFirst: 1
 
-                }
-            }).subscribe((data: any) => {
-                countSubscription.unsubscribe();
-                res(data[0].job_count);
-            });
-        });
-    }
+    //             }
+    //         }).subscribe((data: any) => {
+    //             countSubscription.unsubscribe();
+    //             res(data[0].job_count);
+    //         });
+    //     });
+    // }
 
     getStaffMemberToAssign(role: string) {
         return new Promise((res, rej) => {
             this.getLeastJobCount(role).then((data: number) => {
                 let staffsSubscription = this.angularFire.database.list('/roles/' + role, {
                     query: {
-                        orderByChild: 'job_count',
-                        equalTo: data
+                        orderByChild: 'status',
+                        equalTo: 'active'
                     }
                 }).subscribe((datalist: Array<any>) => {
-                    staffsSubscription.unsubscribe();;
-                    datalist.filter
-                    res(datalist[Math.floor(Math.random() * datalist.length)]);
+                    staffsSubscription.unsubscribe();
+                    let filterDataList = this.getActiveStaff(datalist, data);
+                    console.log('filter data:');
+                    console.log(filterDataList);
+                    res(filterDataList[Math.floor(Math.random() * filterDataList.length)]);
                 });
             }).catch((error) => rej(error.message));
         });
@@ -184,4 +187,30 @@ export class OrderService {
     //         console.log(dataList.sort((staff1 , staff2) => staff1.job_count - staff2.job_count))
     //     })
     // }
+    getActiveStaff(inputArray, jobCount) {
+        console.log(inputArray);
+        console.log("filter array");
+        return inputArray.filter((staff) => staff.job_count == jobCount);
+    }
+
+    getLeastJobCount(role) {
+        return new Promise((res) => {
+            let leastCount: number;
+
+            let chefSubscription = this.angularFire.database.list('roles/' + role, {
+                query: {
+                    orderByChild: 'status',
+                    equalTo: 'active'
+                }
+            }).subscribe((cheflist: Array<StaffMember>) => {
+                cheflist.map((chef: StaffMember) => {
+                    if (!leastCount || leastCount > chef.job_count) {
+                        leastCount = chef.job_count
+                    }
+                });
+                chefSubscription.unsubscribe();
+                res(leastCount);
+            });
+        })
+    }
 }

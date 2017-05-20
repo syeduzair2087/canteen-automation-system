@@ -16,7 +16,7 @@ import { ToastService } from '../../../../../services/toast-service';
 })
 
 export class ChefModalComponent {
-    constructor(private accountService: AccountService) { }
+    constructor(private accountService: AccountService) {}
 
     ////////INPUT////////
 
@@ -26,8 +26,7 @@ export class ChefModalComponent {
 
     ////////EVENTS////////
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     ////////BUTTONS////////
 

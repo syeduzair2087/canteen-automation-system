@@ -4,11 +4,12 @@ import { FoodItem } from '../../../../models/food.model';
 import { FoodPreference } from '../../../../models/preference.model';
 import { FoodService } from '../../../../services/food-service';
 import { Item } from '../../../../models/inventory.model';
-
+import { ToastService } from '../../../../services/toast-service';
+declare var $: any;
 @Component({
     selector: 'food-modal',
     templateUrl: 'food-modal.component.html',
-     styles: [
+    styles: [
         `.text-font{
             padding: 5px;
     font-size: 1.2em;
@@ -16,7 +17,7 @@ import { Item } from '../../../../models/inventory.model';
 })
 
 export class FoodModalComponent {
-    constructor() { }
+    constructor(private toastService: ToastService) { }
     ////////INPUTS////////
 
 
@@ -49,15 +50,21 @@ export class FoodModalComponent {
             this.foodItem.food_prefs.push(newPrefObject);
             console.log(newPrefObject);
         }
+        this.setScroll();
     }
 
     recivedInventoryItem(newItem: Item) {
         //  this.inventoryItem.push(newItem);
         // console.log(this.inventoryItem);
+        // document.getElementById('foodModal').classList.remove('modal-open');
+        // setTimeout(function() {
+        // document.getElementById('foodModal').classList.add('modal-open');    
+        // }, 5);
 
         this.foodItem.inventory_item.push(newItem);
         console.log(this.foodItem.inventory_item);
         this.nullItem();
+        this.setScroll();
     }
 
     ngOnInit() {
@@ -72,11 +79,15 @@ export class FoodModalComponent {
         if (this.foodItem.$key) {
             let key: string = this.foodItem.$key;
             delete this.foodItem.$key;
+            console.log(key);
             this.foodService.editFoodItem(key, this.foodItem).then(() => {
                 this.nullFoodItem();
             }).catch((error) => {
                 console.log(error);
+                this.toastService.showToast('Food', error, 'error');
             })
+            console.log(this.foodItem);
+
         }
 
         else {
@@ -84,6 +95,7 @@ export class FoodModalComponent {
                 this.nullFoodItem();
             }).catch((error) => {
                 console.log(error);
+                this.toastService.showToast('Food', error, 'error');
             })
         }
     }
@@ -133,5 +145,18 @@ export class FoodModalComponent {
             id: '',
             unit: ''
         }
+    }
+    cancelModal(cancelString) {
+        this.setScroll();
+        console.log(cancelString);
+
+    }
+
+    setScroll() {
+        $('.modal').on('hidden.bs.modal', function (e) {
+            if ($('.modal').hasClass('in')) {
+                $('body').addClass('modal-open');
+            }
+        });
     }
 }

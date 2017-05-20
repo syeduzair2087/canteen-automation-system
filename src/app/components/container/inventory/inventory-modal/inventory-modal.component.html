@@ -24,7 +24,7 @@
                             <div class="form-line" [ngClass]="[this.item.quantity != '' ? 'focused' : '']">
                                 <input type="text" class="form-control" [(ngModel)]="item.quantity" name="inventoryQuantity" pattern="\d+" #inventoryQuantity="ngModel"
                                     required>
-                                <label class="form-label">Quality</label>
+                                <label class="form-label">Quantity</label>
                             </div>
                             <div *ngIf="inventoryQuantity.errors && (inventoryQuantity.dirty || inventoryQuantity.touched)" class="text-danger text-font">
                                 <div [hidden]="!inventoryQuantity.errors.required">

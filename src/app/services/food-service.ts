@@ -22,10 +22,11 @@ export class FoodService {
 
     editFoodItem(key: string, foodItem: FoodItem) {
         return new Promise((res, rej) => {
+            console.log(foodItem)
             this.angularFire.database.object('/food/' + key + '/').update(foodItem).then((success) => {
                 res();
             }).catch((error) => {
-                rej(error);
+                rej(error.message);
             })
         })
     }

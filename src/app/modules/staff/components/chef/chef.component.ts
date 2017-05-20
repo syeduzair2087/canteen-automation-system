@@ -29,7 +29,8 @@ export class ChefComponent {
         address: '',
         cnic: '',
         contact: '',
-        status: ''
+        status: '',
+        job_count: 0
     };
     constructor(private staffService: StaffService, private toastService: ToastService) { }
 
@@ -52,7 +53,8 @@ export class ChefComponent {
             cnic: '',
             contact: '',
             address: '',
-            status: 'active'
+            status: 'active',
+            job_count: 0
         }
     }
 
@@ -65,7 +67,8 @@ export class ChefComponent {
             cnic: chef.cnic,
             contact: chef.contact,
             address: chef.address,
-            status: 'active'
+            status: 'active',
+            job_count: chef.job_count
         }
     }
 

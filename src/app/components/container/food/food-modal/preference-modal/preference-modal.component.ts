@@ -1,7 +1,7 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FoodPreference } from '../../../../../models/preference.model'
-
+declare var $: any;
 @Component({
     selector: 'preference-form',
     templateUrl: 'preference-modal.component.html',
@@ -18,6 +18,7 @@ export class PreferenceModalComponent {
     ////////OUTPUTS////////
 
     @Output() prefObjectEvent = new EventEmitter();
+    @Output() cancelEvent = new EventEmitter();
 
     ////////INPUTS////////
 
@@ -37,12 +38,14 @@ export class PreferenceModalComponent {
 
     clickConfirm(prefTitle: string, prefType: string, val: any) {
         console.log(this.prefObject);
+        $('#preferenceModal').modal('hide');
         this.prefObjectEvent.emit(this.prefObject);
         this.nullObject();
     }
 
     clickCancel() {
         this.nullObject();
+        this.cancelEvent.emit('modal close');
     }
 
     ////////METHODS////////

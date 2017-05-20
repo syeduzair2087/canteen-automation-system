@@ -37,11 +37,7 @@ export class AdminComponent {
 
     ngOnInit() {
         this.adminDetails = this.staffService.fetchAdmins();
-        
-        this.adminDetails.forEach(element => {
-            console.log(element);
-        });
-
+     
         this.adminId = localStorage.getItem('uid');
 
         setTimeout(() => {

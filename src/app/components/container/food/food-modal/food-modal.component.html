@@ -1,5 +1,5 @@
-<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" style="display: none; z-index:1400;">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="foodModal" tabindex="-1" role="dialog"  style="display: none; z-index:1400;" >
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="defaultModalLabel">FOOD ITEM</h4>
@@ -9,7 +9,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" #txtTitle="ngModel" [(ngModel)]="this.foodItem.food_title" placeholder="Title" name="txtTitle"
+                                <input type="text" class="form-control" #txtTitle="ngModel" [(ngModel)]="this.foodItem.food_title" placeholder="Title" name="txtTitle" id="txtTitle"
                                     required>
                             </div>
                             <div *ngIf="txtTitle.errors && (txtTitle.dirty || txtTitle.touched)" class="text-danger text-font">
@@ -121,5 +121,5 @@
         </div>
     </div>
 </div>
-<preference-form (prefObjectEvent)="receivePrefObject($event)" [prefObject]="this.prefObject"></preference-form>
-<inventoryItem-modal (inventoryItemEvent)="recivedInventoryItem($event)" [item]="this.item"></inventoryItem-modal>
+<preference-form (cancelEvent)="cancelModal($event)" (prefObjectEvent)="receivePrefObject($event)" [prefObject]="this.prefObject"></preference-form>
+<inventoryItem-modal (inventoryItemEvent)="recivedInventoryItem($event)" [item]="this.item" (cancelEvent)="cancelModal($event)"></inventoryItem-modal>

@@ -37,7 +37,7 @@
 
    <div class="col-md-3 p-t-5 pull-right">
     <input type="checkbox" id="showChefType" name="showChefType" class="filled-in chk-col-BLUE" (change)="onChefStatusChange()">
-    <label for="showChefType">Show remove chef</label>
+    <label for="showChefType">Show removed chef</label>
   </div>
 
   <div class="col-md-2 p-t-5 col-md-offset-4">
@@ -54,7 +54,7 @@
       <th>ADDRESS</th>
     </thead>
     <tbody>
-      <ng-container *ngFor="let chef of ChefDetails | async | filterStaffByName: filterStaffName | filterStaffByEmail: filterStaffEmail | filterStaffByContact: filterStaffContact | filterStaffByCnic: filterStaffCnic | filterStaffByAddress: filterStaffAddress">
+      <ng-container *ngFor="let chef of ChefDetails | async ">
         <ng-container *ngIf="chef.status == 'active' || chef.status == chefStatus">
         <tr [ngClass]="[chef.status == 'removed' ? 'bg-danger' : '']">
           <td>{{chef.name}}</td>

@@ -4,6 +4,7 @@ import { FirebaseListObservable } from 'angularfire2';
 import { InventoryFilterByName } from '../.../../../../../../pipes/filter-inventory-pipe';
 import { InventoryService } from '../../../../../services/inventory-service';
 import { Item } from '../../../../../models/inventory.model';
+declare var $: any;
 @Component({
     selector: 'inventoryItem-modal',
     templateUrl: 'inventory-item-modal.component.html',
@@ -19,6 +20,7 @@ export class InventoryItemConponent {
     ////////OUTPUTS////////
 
     @Output() inventoryItemEvent = new EventEmitter();
+     @Output() cancelEvent = new EventEmitter();
 
     ///////INPUTS//////////
 
@@ -40,6 +42,7 @@ export class InventoryItemConponent {
         }
         else
             console.log('Error while insertion');
+            $('#inventoryItemModal').modal('hide');
     }
 
     nullInventoryItem() {
@@ -57,6 +60,7 @@ export class InventoryItemConponent {
 
     clickCancel(){
         this.nullInventoryItem();
+        this.cancelEvent.emit('modal close');
     }
 
     selectedItem(inventoryItem) {
