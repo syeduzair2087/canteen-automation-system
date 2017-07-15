@@ -4,10 +4,11 @@ import { FirebaseApp } from 'angularfire2';
 import { StaffMember } from '../../models/staff-member.model';
 import { AccountService } from '../../services/account-service';
 import { ToastService } from '../../services/toast-service';
+import { LoaderService } from '../../services/loader-service';
 import * as firebase from 'firebase';
 @Component({
     selector: 'navigation-component',
-    templateUrl: 'navigation.component.html'
+    templateUrl: 'navigation.component.html',
 })
 
 export class NavigationComponent {
@@ -15,14 +16,19 @@ export class NavigationComponent {
     userName: string = '';
     userEmail: string = '';
     messaging: firebase.messaging.Messaging;
-    constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService) { 
+    constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService, private loaderService: LoaderService) { 
         // this.toastService.showToast('asdad', 'asdadasda', 'success')
     }
 
     clickLogout() {
+        this.loaderService.showLoader();
         this.accountService.logoutAdmin().then(() => {
+            this.loaderService.hideLoader();
             this.router.navigate(['/login']);
-        }).catch((error) => console.log(error));
+        }).catch((error) => {
+            this.loaderService.hideLoader();
+            console.log(error)
+        });    
     }
 
     ngOnInit() {

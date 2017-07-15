@@ -30,6 +30,8 @@ import { ProfileComponent } from './components/container/profile/profile.compone
 import { InventoryComponent } from './components/container/inventory/inventory.component';
 import { InventoryModalComponent } from './components/container/inventory/inventory-modal/inventory-modal.component';
 import { InventoryItemConponent } from './components/container/food/food-modal/inventory-item-modal/inventory-item-modal.component';
+import { LoaderComponent } from './components/container/loader/loader.component';
+
 //MODULES
 import { RoutingModule } from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
@@ -46,6 +48,7 @@ import { OrderService } from './services/order-service';
 import { LoginGuard, LogoutGuard } from './services/guard-service';
 import { InventoryService } from './services/inventory-service';
 import { ToastService } from './services/toast-service';
+import { LoaderService } from './services/loader-service';
 
 
 //CONFIG
@@ -98,7 +101,8 @@ const firebaseAuthConfig = {
     InventoryModalComponent,
     InventoryFilterByName,
     InventoryFilterByQuantity,
-    InventoryItemConponent
+    InventoryItemConponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -119,7 +123,8 @@ const firebaseAuthConfig = {
     LoginGuard,
     LogoutGuard,
     InventoryService,
-    ToastService
+    ToastService,
+    LoaderService
   ],
   bootstrap: [AppComponent]
 })

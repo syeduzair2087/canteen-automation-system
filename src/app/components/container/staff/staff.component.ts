@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { Router } from "@angular/router";
+declare var $: any;
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -12,6 +13,12 @@ export class StaffComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigate(['/home/staff/admin']);
+    // $('<div class="backdropClass" ></div>').appendTo(document.body);
+
+    // setTimeout(function() {
+    //   console.log('3000');
+    //   $('.backdropClass').remove();
+    // }, 3000);
   }
 
   navigateToAdmin() {

@@ -5,10 +5,12 @@ import { FirebaseListObservable } from 'angularfire2';
 import loadTheme = require('../../../../../js/admin');
 import * as staffFilters from '../../../../pipes/filter-staff.pipe';
 import { ToastService } from '../../../../services/toast-service';
+import { LoaderService } from '../../../../services/loader-service';
+// declare var $: any;
 
 @Component({
     selector: 'admin-component',
-    templateUrl: 'admin.component.html'
+    templateUrl: 'admin.component.html',
 })
 export class AdminComponent {
     filterStaffName: string = '';
@@ -20,6 +22,8 @@ export class AdminComponent {
 
     adminStatus: string = 'active';
     adminId: string;
+
+    // loader: boolean = false;
 
     adminDetails: FirebaseListObservable<Array<StaffMember>>;
 
@@ -33,12 +37,17 @@ export class AdminComponent {
         status: '',
     };
 
-    constructor(private staffService: StaffService, private toastService: ToastService) { }
+    constructor(private staffService: StaffService, private toastService: ToastService, private loaderService: LoaderService) { }
 
     ngOnInit() {
         this.adminDetails = this.staffService.fetchAdmins();
-     
+        
         this.adminId = localStorage.getItem('uid');
+// $(document.body).modal({ backdrop: 'static', keyboard: false });
+// setTimeout(function() {
+//     $('.modal-backdrop').remove();
+//     console.log('asa');
+// }, 5000);
 
         setTimeout(() => {
             loadTheme();
@@ -72,12 +81,22 @@ export class AdminComponent {
     }
 
     RemoveAdmin(key) {
+        // this.loader = true;
+        // $(document.body).modal({ backdrop: 'static', keyboard: false });
+        //  $('<div class="backdropClass" ></div>').appendTo(document.body);
+        this.loaderService.showLoader();
         console.log(key);
         this.staffService.removeStaffMember('admins', key).then((success) => {
+            this.loaderService.hideLoader();
+            // this.loader = false;
+            // $('.backdropClass').remove();
             this.toastService.showToast('Administrator', 'Admin removed successfully!', 'success');
         }).catch((error) => {
+            // this.loader = false;
+            // $('.backdropClass').remove();
+            this.loaderService.hideLoader();
             console.log(error);
-            this.toastService.showToast('Administrator', error.message,'error');
+            this.toastService.showToast('Administrator', error.message, 'error');
         });
     }
 

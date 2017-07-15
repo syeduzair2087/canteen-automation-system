@@ -5,6 +5,7 @@ import { FoodPreference } from '../../../../models/preference.model';
 import { FoodService } from '../../../../services/food-service';
 import { Item } from '../../../../models/inventory.model';
 import { ToastService } from '../../../../services/toast-service';
+import { LoaderService } from '../../../../services/loader-service';
 declare var $: any;
 @Component({
     selector: 'food-modal',
@@ -17,7 +18,8 @@ declare var $: any;
 })
 
 export class FoodModalComponent {
-    constructor(private toastService: ToastService) { }
+    // loader: boolean = false;
+    constructor(private toastService: ToastService, private loaderService: LoaderService) { }
     ////////INPUTS////////
 
 
@@ -71,30 +73,39 @@ export class FoodModalComponent {
         this.nullFoodItem();
         this.nullPreference();
         this.nullItem();
+        // this.loaderService.showLoader();
     }
 
     ////////BUTTONS////////
 
     clickConfirm() {
+        this.loaderService.showLoader();
         if (this.foodItem.$key) {
             let key: string = this.foodItem.$key;
             delete this.foodItem.$key;
             console.log(key);
             this.foodService.editFoodItem(key, this.foodItem).then(() => {
                 this.nullFoodItem();
+                this.loaderService.hideLoader();
+                $('#foodModal').modal('hide');
+                this.toastService.showToast('Food', 'Food Item edit successfully', 'success');
             }).catch((error) => {
                 console.log(error);
+                this.loaderService.hideLoader();
+                $('#foodModal').modal('hide');
                 this.toastService.showToast('Food', error, 'error');
             })
-            console.log(this.foodItem);
-
         }
-
         else {
             this.foodService.addFoodItem(this.foodItem).then(() => {
                 this.nullFoodItem();
+                this.loaderService.hideLoader();
+                $('#foodModal').modal('hide');
+                this.toastService.showToast('Food', 'Food Item added successfully', 'success');
             }).catch((error) => {
                 console.log(error);
+                this.loaderService.hideLoader();
+                $('#foodModal').modal('hide');  
                 this.toastService.showToast('Food', error, 'error');
             })
         }

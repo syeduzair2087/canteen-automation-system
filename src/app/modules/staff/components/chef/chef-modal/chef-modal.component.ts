@@ -5,10 +5,13 @@ import { StaffMember } from '../../../../../models/staff-member.model';
 import { AccountService } from '../../../../../services/account-service';
 import { StaffService } from '../../../../../services/staff-service';
 import { ToastService } from '../../../../../services/toast-service';
+import { LoaderService } from '../../../../../services/loader-service';
+declare var $: any;
+
 @Component({
     selector: 'chef-modal',
     templateUrl: 'chef-modal.component.html',
-     styles: [
+    styles: [
         `.text-font{
             padding: 5px;
     font-size: 1.2em;
@@ -16,13 +19,14 @@ import { ToastService } from '../../../../../services/toast-service';
 })
 
 export class ChefModalComponent {
-    constructor(private accountService: AccountService) {}
+    // loader: boolean = false;
+    constructor(private accountService: AccountService, private loaderService: LoaderService) { }
 
     ////////INPUT////////
 
     @Input() selectedChef: StaffMember;
     @Input() staffService: StaffService;
-    @Input() toastService: ToastService;  
+    @Input() toastService: ToastService;
 
     ////////EVENTS////////
 
@@ -31,12 +35,17 @@ export class ChefModalComponent {
     ////////BUTTONS////////
 
     clickConfirm() {
+        this.loaderService.showLoader();
         if (this.selectedChef.$key) {
             let key = this.selectedChef.$key;
             delete this.selectedChef.$key
             this.staffService.editStaffMember('chefs', key, this.selectedChef).then((success) => {
+                this.loaderService.hideLoader();
+                $('#chefModal').modal('hide');
                 this.toastService.showToast('Chef', 'Chef edit successfully!', 'success');
             }).catch((error) => {
+                this.loaderService.hideLoader();
+                $('#chefModal').modal('hide');
                 console.log(error);
                 this.toastService.showToast('Chef', error, 'error');
             })
@@ -44,12 +53,18 @@ export class ChefModalComponent {
         else {
             this.accountService.createUser(this.selectedChef.email, 'u123456', this.selectedChef.name).then((userId: string) => {
                 this.staffService.addStaffMember('chefs', userId, this.selectedChef).then((success) => {
+                    this.loaderService.hideLoader();
+                    $('#chefModal').modal('hide');
                     this.toastService.showToast('Chef', 'Chef added successfully!', 'success');
                 }).catch((error) => {
+                    this.loaderService.hideLoader();
+                    $('#chefModal').modal('hide');
                     console.log(error);
                     this.toastService.showToast('Chef', error, 'error');
                 });
             }).catch((error) => {
+                this.loaderService.hideLoader();
+                $('#chefModal').modal('hide');
                 console.log(error);
                 this.toastService.showToast('Chef', error, 'error');
             });

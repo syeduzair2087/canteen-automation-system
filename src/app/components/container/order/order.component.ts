@@ -8,6 +8,7 @@ import { Order } from '../../../models/order.model';
 import { User } from '../../../models/user.model';
 import * as orderFilters from '../../../pipes/filter-order.pipe';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '../../../services/loader-service';
 
 @Component({
     selector: 'order-component',
@@ -30,7 +31,7 @@ export class OrderComponent {
     filterId: number = null;
     printClick: boolean = false;
 
-    constructor(private orderService: OrderService, private userService: UserService, private router: Router, private toastService: ToastService) { }
+    constructor(private orderService: OrderService, private userService: UserService, private router: Router, private toastService: ToastService, private loaderService: LoaderService) { }
 
     ngOnInit() {
         this.orderSubscription = this.orderService.getOrderSubscription().subscribe((ordersData: Array<Order>) => {
@@ -65,18 +66,24 @@ export class OrderComponent {
     }
 
     clickAssignToChef(orderId: string) {
+        this.loaderService.showLoader();
         this.orderService.assignToChef(orderId).then((data) => {
+            this.loaderService.hideLoader();
             this.toastService.showToast('Order', 'Order assigned to chef.', 'success');
         }).catch((error) => {
+            this.loaderService.hideLoader();
             this.toastService.showToast('Order', error, 'error');
         });
     }
 
     clickAssignToDeliveryBoy(orderId: string) {
+        this.loaderService.showLoader();
         this.orderService.assignToDeliveryBoy(orderId).then((data) => {
+            this.loaderService.hideLoader();
             console.log('ok');
             this.toastService.showToast('Order', 'Order assigned to delivery boy.', 'success');
         }).catch((error) => {
+            this.loaderService.hideLoader();
             console.log('error');
             this.toastService.showToast('Order', error, 'error');
         });

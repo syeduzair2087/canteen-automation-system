@@ -36,7 +36,7 @@ export class FoodService {
             this.angularFire.database.list('/food/' + key).remove().then((succss) => {
                 res();
             }).catch((error) => {
-                rej(error);
+                rej(error.message);
             })
         })
     }

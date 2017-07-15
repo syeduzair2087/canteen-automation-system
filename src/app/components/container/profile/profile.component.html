@@ -144,7 +144,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                 <label for="cnic_no">Cnic</label>
@@ -180,7 +179,8 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="address" [(ngModel)]="staffMember.address" class="form-control" placeholder="Enter your address" name="adminAdress" #adminAdress="ngModel" required>
+                                        <input type="text" id="address" [(ngModel)]="staffMember.address" class="form-control" placeholder="Enter your address" name="adminAdress"
+                                            #adminAdress="ngModel" required>
                                     </div>
                                 </div>
                                 <div *ngIf="adminAdress.errors && (adminAdress.dirty || adminAdress.touched)" class="text-danger text-setting">
@@ -192,11 +192,11 @@
                         </div>
 
                         <div class="row clearfix">
-                            <div class=" col-md-offset-11">
+                            <div class=" col-md-offset-10">
                                 <button type="button" (click)="UpdateAdminInfo()" class="btn btn-primary btn-block btn-lg waves-effect" [disabled]="!profileForm.valid">Update</button>
                             </div>
                         </div>
-                        </form>
+                    </form>
                 </div>
             </div>
         </div>

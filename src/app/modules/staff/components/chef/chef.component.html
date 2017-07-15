@@ -1,3 +1,16 @@
+<!--<div class="loader" *ngIf="loader">
+  <div class="preloader pl-size-xl">
+    <div class="spinner-layer">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div>
+      <div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
 <div class="row">
   <div class="col-md-2 p-t-5">
     <select class="form-control show-tick" [(ngModel)]="filterBy" (change)="onFilterTypeChange()">
@@ -35,13 +48,14 @@
     </div>
   </div>
 
-   <div class="col-md-3 p-t-5 pull-right">
+  <div class="col-md-3 p-t-5 pull-right">
     <input type="checkbox" id="showChefType" name="showChefType" class="filled-in chk-col-BLUE" (change)="onChefStatusChange()">
     <label for="showChefType">Show removed chef</label>
   </div>
 
   <div class="col-md-2 p-t-5 col-md-offset-4">
-    <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickAddChef()">ADD CHEF</button>
+    <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#chefModal" data-backdrop="static"
+      data-keyboard="false" (click)="clickAddChef()">ADD CHEF</button>
   </div>
 </div>
 <div class="body table-responsive">
@@ -56,28 +70,29 @@
     <tbody>
       <ng-container *ngFor="let chef of ChefDetails | async ">
         <ng-container *ngIf="chef.status == 'active' || chef.status == chefStatus">
-        <tr [ngClass]="[chef.status == 'removed' ? 'bg-danger' : '']">
-          <td>{{chef.name}}</td>
-          <td>{{chef.email}}</td>
-          <td>{{chef.contact}}</td>
-          <td>{{chef.cnic}}</td>
-          <td>{{chef.address}}</td>
-          <td>
-            <ng-container *ngIf='chef.status == "active"'>
-              <div class="row p-b-5 p-r-5">
-                <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#chefModal" (click)="clickEditChef(chef)">
+          <tr [ngClass]="[chef.status == 'removed' ? 'bg-danger' : '']">
+            <td>{{chef.name}}</td>
+            <td>{{chef.email}}</td>
+            <td>{{chef.contact}}</td>
+            <td>{{chef.cnic}}</td>
+            <td>{{chef.address}}</td>
+            <td>
+              <ng-container *ngIf='chef.status == "active"'>
+                <div class="row p-b-5 p-r-5">
+                  <button class="btn btn-lg btn-primary btn-block waves-effect" data-backdrop="static" data-keyboard="false" data-toggle="modal"
+                    data-target="#chefModal" (click)="clickEditChef(chef)">
                              EDIT
                             </button>
-              </div>
-              <div class="row p-b-5 p-r-5">
-                <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="RemoveChef(chef.$key)">
+                </div>
+                <div class="row p-b-5 p-r-5">
+                  <button class="btn btn-lg btn-danger btn-block waves-effect" (click)="RemoveChef(chef.$key)">
                             REMOVE
                             </button>
-              </div>
-            </ng-container>
-          </td>
-        </tr>
-      </ng-container>
+                </div>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
       </ng-container>
     </tbody>
   </table>

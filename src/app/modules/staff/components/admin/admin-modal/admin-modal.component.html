@@ -44,11 +44,14 @@
                             </div>
                         </div>
                     </div>
+
+
+
                     <div class="col-sm-12">
                         <div class="form-group form-float">
                             <div class="form-line" [ngClass]="[this.selectedAdmin.contact != '' ? 'focused' : '']">
                                 <input type="text" pattern="\d+" class="form-control" [(ngModel)]="this.selectedAdmin.contact" name="adminNumber" id="adminNumber"
-                                    #adminNumber="ngModel" required minlength="11" maxlength="11">
+                                    #adminNumber="ngModel" required minlength="11" maxlength="12">
                                 <label class="form-label">Contact Number</label>
                             </div>
                             <div *ngIf="adminNumber.errors && (adminNumber.dirty || adminNumber.touched)" class="text-danger font-setting">
@@ -59,7 +62,7 @@
                                     Number must be atleast 11 digit long
                                 </div>
                                 <div [hidden]="!adminNumber.errors.maxlength">
-                                    Number cannot be more than 13 digit
+                                    Number cannot be more than 12 digit
                                 </div>
                                 <div [hidden]="!adminNumber.errors.pattern">
                                     Number can contain digit only
@@ -71,7 +74,7 @@
                         <div class="form-group form-float">
                             <div class="form-line" [ngClass]="[this.selectedAdmin.cnic != '' ? 'focused' : '']">
                                 <input type="text" pattern="\d+" class="form-control" [(ngModel)]="this.selectedAdmin.cnic" name="adminCnic" #adminCnic="ngModel"
-                                    maxlength="13" minlength="13" required>
+                                    maxlength="14" minlength="13" required>
                                 <label class="form-label">CNIC Number</label>
                             </div>
                             <div *ngIf="adminCnic.errors && (adminCnic.dirty || adminCnic.touched)" class="text-danger font-setting">
@@ -82,7 +85,7 @@
                                     Cnic number must be atleast 13 digit long
                                 </div>
                                 <div [hidden]="!adminCnic.errors.maxlength">
-                                    Cnic number cannot be more than 13 digit
+                                    Cnic number cannot be more than 14 digit
                                 </div>
                                 <div [hidden]="!adminCnic.errors.pattern">
                                     Cnic number can contain digit only
@@ -90,6 +93,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--<div class="row col-md-offset-3" *ngIf="loader" style="position: absolute;margin-top:30%;">
+                        <div class="preloader pl-size-xl  col-md-0  col-md-offset-7 ">
+                            <div class="spinner-layer">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+
                     <div class="col-sm-12">
                         <div class="form-group form-float">
                             <div class="form-line" [ngClass]="[this.selectedAdmin.address != '' ? 'focused' : '']">
@@ -106,7 +124,7 @@
                     </div>
                     <div class="pull-right">
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
-                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!adminForm.valid">CONFIRM</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!adminForm.valid || loader">CONFIRM</button>
                     </div>
                 </form>
             </div>

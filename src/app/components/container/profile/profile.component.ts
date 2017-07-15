@@ -4,13 +4,14 @@ import loadTheme = require('../../../../js/admin');
 import { AccountService } from '../../../services/account-service';
 import { StaffService } from '../../../services/staff-service';
 import { ToastService } from '../../../services/toast-service';
+import { LoaderService } from '../../../services/loader-service';
 import { StaffMember } from '../../../models/staff-member.model';
 import { Subscription } from 'rxjs';
-
+// declare var $: any;
 @Component({
     selector: 'profile-component',
     templateUrl: 'profile.component.html',
-      styles: [
+    styles: [
         `.onerror{
     border: 1px solid red;}
     .font-setting{
@@ -20,6 +21,8 @@ import { Subscription } from 'rxjs';
 })
 
 export class ProfileComponent {
+    // loader: boolean = false;
+
     staffMember: StaffMember = {
         name: '',
         email: '',
@@ -28,19 +31,22 @@ export class ProfileComponent {
         cnic: '',
         status: ''
     }
-    constructor(private accountService: AccountService, private staffService: StaffService, private toastService: ToastService) { }
+    constructor(private accountService: AccountService, private staffService: StaffService, private toastService: ToastService, private loaderService: LoaderService) { }
 
     ngOnInit() {
         this.loadAdminData();
     }
 
     UpdateAdminInfo() {
+        this.loaderService.showLoader();
         let key = this.staffMember.$key;
         delete this.staffMember.$key;
         this.staffService.editStaffMember('admins', key, this.staffMember).then((success) => {
+            this.loaderService.hideLoader();
             this.toastService.showToast('Profile', 'Profile updated successfully!', 'success');
             this.loadAdminData();
         }).catch((error) => {
+            this.loaderService.hideLoader();
             console.log(error);
             this.toastService.showToast('Profile', error, 'error');
         })
@@ -49,7 +55,6 @@ export class ProfileComponent {
     loadAdminData() {
         this.accountService.getStaffDetail().then((data: StaffMember) => {
             this.staffMember = data;
-            console.log(this.staffMember)
         })
     }
 }

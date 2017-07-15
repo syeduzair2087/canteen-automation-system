@@ -1,6 +1,4 @@
 <div class="row">
-  <!--<div class="col-sm-4 p-t-15">
-  </div>-->
   <div class="col-md-2 p-t-5">
     <select class="form-control show-tick" [(ngModel)]="filterBy" (change)="onFilterTypeChange()">
                                         <option value="name">Name</option>
@@ -42,10 +40,12 @@
   </div>
 
   <div class="col-md-3 p-t-5 col-md-offset-3">
-    <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickAddAdmin()">ADD ADMINISTRATOR</button>
+    <button class="btn btn-lg btn-block btn-primary waves-effect" data-toggle="modal" data-target="#adminModal" data-backdrop="static"
+      data-keyboard="false" (click)="clickAddAdmin()">ADD ADMINISTRATOR</button>
   </div>
 </div>
-<div class="body table-responsive">
+
+<div class="body table-responsive ">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -69,7 +69,8 @@
               <td>
                 <ng-container *ngIf="admin.status == 'active'">
                   <div class="row p-b-5 p-r-5">
-                    <button class="btn btn-lg btn-primary btn-block waves-effect" data-toggle="modal" data-target="#adminModal" (click)="clickEditAdmin(admin)">
+                    <button class="btn btn-lg btn-primary btn-block waves-effect" data-backdrop="static" data-keyboard="false" data-toggle="modal"
+                      data-target="#adminModal" (click)="clickEditAdmin(admin)">
                             EDIT
                             </button>
                   </div>
@@ -92,4 +93,4 @@
     </h4>
   </div>
 </div>
-<admin-modal [staffService]="staffService" [selectedAdmin]="selectedAdmin" [toastService]="toastService" ></admin-modal>
+<admin-modal [staffService]="staffService" [selectedAdmin]="selectedAdmin" [toastService]="toastService"></admin-modal>

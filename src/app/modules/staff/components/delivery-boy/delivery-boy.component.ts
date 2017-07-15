@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2'
 import { StaffService } from '../../../../services/staff-service';
 import { ToastService } from '../../../../services/toast-service';
+import { LoaderService } from '../../../../services/loader-service';
 import { StaffMember } from '../../../../models/staff-member.model';
 import loadTheme = require('../../../../../js/admin');
 import * as staffFilters from '../../../../pipes/filter-staff.pipe';
-
+// declare var $: any;
 @Component({
     selector: 'delivery-boy-component',
     templateUrl: 'delivery-boy.component.html'
@@ -21,6 +22,8 @@ export class DeliveryBoyComponent {
 
     deliveryBoyDetails: FirebaseListObservable<Array<StaffMember>>;
 
+    // loader: boolean = false;
+
     selectedDeliveryBoy: StaffMember = {
         $key: '',
         name: '',
@@ -31,7 +34,7 @@ export class DeliveryBoyComponent {
         status: ''
     };
 
-    constructor(private staffService: StaffService, private toastService: ToastService) { }
+    constructor(private staffService: StaffService, private toastService: ToastService, private loaderService: LoaderService) { }
 
     ngOnInit() {
         this.deliveryBoyDetails = this.staffService.fetchDeliveryBoys();
@@ -68,9 +71,18 @@ export class DeliveryBoyComponent {
     }
 
     RemoveDeliveryBoy(key) {
+        // this.loader = true;
+        // $('<div class="backdropClass" ></div>').appendTo(document.body);
+        this.loaderService.showLoader();
         this.staffService.removeStaffMember('delivery_boys', key).then((success) => {
+            // this.loader = false;
+            // $('.backdropClass').remove();
+            this.loaderService.hideLoader();
             this.toastService.showToast('Delivery boy', 'Delivery boy remove successfully!', 'success');
         }).catch((error) => {
+            // this.loader = false;
+            // $('.backdropClass').remove();
+            this.loaderService.hideLoader();
             console.log(error);
             this.toastService.showToast('Delivery boy', error, 'error');
         });

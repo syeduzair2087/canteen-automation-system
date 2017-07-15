@@ -1,4 +1,4 @@
-<div class="modal fade" id="foodModal" tabindex="-1" role="dialog"  style="display: none; z-index:1400;" >
+<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" style="display: none; z-index:1400;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,8 +9,8 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" #txtTitle="ngModel" [(ngModel)]="this.foodItem.food_title" placeholder="Title" name="txtTitle" id="txtTitle"
-                                    required>
+                                <input type="text" class="form-control" #txtTitle="ngModel" [(ngModel)]="this.foodItem.food_title" placeholder="Title" name="txtTitle"
+                                    id="txtTitle" required>
                             </div>
                             <div *ngIf="txtTitle.errors && (txtTitle.dirty || txtTitle.touched)" class="text-danger text-font">
                                 <div [hidden]="!txtTitle.errors.required">
@@ -35,7 +35,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-12" *ngIf="this.foodItem.food_prefs && this.foodItem.food_prefs.length > 0">
                         <div class="body table-responsive">
                             <h5> Food Preference </h5>
@@ -108,7 +107,7 @@
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
                         <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#preferenceModal">ADD PREFERENCE</button>
                         <button type="button" class="btn btn-link waves-effect" data-toggle="modal" data-target="#inventoryItemModal">ADD INVENTORY ITEM</button>
-                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()" data-dismiss="modal" [disabled]="!foodForm.valid">CONFIRM</button>
+                        <button type="button" class="btn btn-link waves-effect" (click)="clickConfirm()"  >CONFIRM</button>
                     </div>
                 </form>
             </div>

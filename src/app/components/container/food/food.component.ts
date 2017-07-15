@@ -4,21 +4,24 @@ import { FirebaseListObservable } from 'angularfire2';
 import { FoodItem } from '../../../models/food.model';
 import { FilterFoodByNamePipe } from '../../../pipes/filter-food.pipe';
 import loadTheme = require('../../../../js/admin');
-
+import { ToastService } from '../../../services/toast-service';
+import { LoaderService } from '../../../services/loader-service';
+// declare var $: any;
 @Component({
     selector: 'food-component',
     templateUrl: 'food.component.html'
 })
 
 export class FoodComponent {
-    constructor(private foodService: FoodService) { }
+    // loader: boolean = false;
+    constructor(private foodService: FoodService, private toastService: ToastService, private loaderService: LoaderService) { }
 
     ////////DECLARATIONS////////
 
     foodList: FirebaseListObservable<Array<FoodItem>>;
     foodItem: FoodItem;
     filterFoodName: string = '';
-    
+
 
     ////////EVENTS////////
 
@@ -65,8 +68,13 @@ export class FoodComponent {
     }
 
     clickRemove(key: string) {
-        this.foodService.deleteFoodItem(key).catch((error) => {
-            console.log(error);
+        this.loaderService.showLoader();
+        this.foodService.deleteFoodItem(key).then(() => {
+            this.loaderService.hideLoader();
+            this.toastService.showToast('Food', 'Food Item removed successfully!', 'success');
+        }).catch((error) => {
+            this.loaderService.hideLoader();
+            this.toastService.showToast('Food', error, 'error');
         })
     }
 }
