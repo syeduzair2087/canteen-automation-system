@@ -79,18 +79,18 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="admin_name" class="form-control" placeholder="Enter your name" [(ngModel)]="staffMember.name" name="name"
-                                            #name="ngModel" required minlength="3" maxlength="24">
+                                        <input type="text" id="admin_name" class="form-control" placeholder="Enter your name" [(ngModel)]="staffMember.name" name="admin_name"
+                                            #admin_name="ngModel" required minlength="3" maxlength="24">
                                     </div>
                                 </div>
-                                <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger font-setting">
-                                    <div [hidden]="!name.errors.required">
+                                <div *ngIf="admin_name.errors && (admin_name.dirty || admin_name.touched)" class="text-danger font-setting">
+                                    <div [hidden]="!admin_name.errors.required">
                                         Name is required
                                     </div>
-                                    <div [hidden]="!name.errors.minlength">
+                                    <div [hidden]="!admin_name.errors.minlength">
                                         Name must be atleast 3 character long
                                     </div>
-                                    <div [hidden]="!name.errors.maxlength">
+                                    <div [hidden]="!admin_name.errors.maxlength">
                                         Name cannot be more than 24 character
                                     </div>
                                 </div>

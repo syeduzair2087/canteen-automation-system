@@ -54,7 +54,10 @@ export class ProfileComponent {
 
     loadAdminData() {
         this.accountService.getStaffDetail().then((data: StaffMember) => {
+            console.log('loadAdminData');
+            console.log(data)
             this.staffMember = data;
         })
+        
     }
 }

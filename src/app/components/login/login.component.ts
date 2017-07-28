@@ -36,6 +36,7 @@ export class LoginComponent {
             this.router.navigate(['/home']);
         }).catch((error) => {
             console.log(error)
+            this.loaderService.hideLoader();
             // this.loader = false;
             // $('.backdropClass').remove();
             this.toastService.showToast('Login', error, 'error');

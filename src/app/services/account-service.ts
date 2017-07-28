@@ -77,12 +77,14 @@ export class AccountService {
     }
 
     getData() {
-        return new Promise((res, rej) => {
-            let userDataSubscription = this.angularFire.database.object('/roles/admins/' + localStorage.getItem('uid')).subscribe((data: StaffMember) => {
-                res(data);
-                userDataSubscription.unsubscribe();
-            });
-        })
+        // return new Promise((res, rej) => {
+        //     let userDataSubscription = this.angularFire.database.object('/roles/admins/' + localStorage.getItem('uid')).subscribe((data: StaffMember) => {
+        //         res(data);
+        //         userDataSubscription.unsubscribe();
+        //     });
+        // })
+
+        return this.angularFire.database.object('/roles/admins/' + localStorage.getItem('uid'))
     }
 
     getStaffDetail() {
@@ -114,6 +116,9 @@ export class AccountService {
             console.log(error.message);
         })
     }
+
+
+
 
     addNotificationToken(token: string) {
         return new Promise((res, rej) => {

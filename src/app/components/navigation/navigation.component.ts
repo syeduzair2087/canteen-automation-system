@@ -6,6 +6,7 @@ import { AccountService } from '../../services/account-service';
 import { ToastService } from '../../services/toast-service';
 import { LoaderService } from '../../services/loader-service';
 import * as firebase from 'firebase';
+import { Subscription } from 'rxjs';
 @Component({
     selector: 'navigation-component',
     templateUrl: 'navigation.component.html',
@@ -15,6 +16,7 @@ export class NavigationComponent {
     orderArrive: number = 0;
     userName: string = '';
     userEmail: string = '';
+    userSubscription : Subscription; 
     messaging: firebase.messaging.Messaging;
     constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService, private loaderService: LoaderService) { 
         // this.toastService.showToast('asdad', 'asdadasda', 'success')
@@ -22,6 +24,7 @@ export class NavigationComponent {
 
     clickLogout() {
         this.loaderService.showLoader();
+        this.userSubscription.unsubscribe();
         this.accountService.logoutAdmin().then(() => {
             this.loaderService.hideLoader();
             this.router.navigate(['/login']);
@@ -32,10 +35,22 @@ export class NavigationComponent {
     }
 
     ngOnInit() {
-        this.accountService.getData().then((data: StaffMember) => {
-            this.userName = data.name;
+        // this.accountService.getData().then((data: StaffMember) => {
+        //     this.userName = data.name;
+        //     this.userEmail = data.email;
+        // }).catch(() => { });
+
+        this.userSubscription = this.accountService.getData().subscribe((data: StaffMember) => {
             this.userEmail = data.email;
-        }).catch(() => { });
+            this.userName = data.name;
+            console.log(data)
+        });
+
+setTimeout(function() {
+this.userName = 'sadsad'    
+}, 90000);
+// this.userName = 'sadsad'
+
         this.messaging = firebase.messaging(this.firebaseApp);
         this.GetNotification();
             this.messaging.onTokenRefresh(() => {

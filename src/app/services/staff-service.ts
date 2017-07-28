@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
 import { StaffMember } from '../models/staff-member.model';
 @Injectable()
 export class StaffService {
@@ -105,7 +105,28 @@ export class StaffService {
     editStaffMember(role: string, userId: string, member: StaffMember) {
         return new Promise((res, rej) => {
             this.angularFire.database.object('roles/' + role + '/' + userId).update(member).then(() => {
-                res();
+                if (role == 'admins') {
+                    this.angularFire.auth.subscribe((user: FirebaseAuthState) => {
+                        if (user) {
+                            user.auth.updateProfile({
+                                displayName: member.name,
+                                photoURL: ''
+                            }).then(() => {
+                                user.auth.updateEmail(member.email).then(() => {
+                                    res();
+                                }).catch((error) => {
+                                    rej(error.message);
+                                })
+                            }).catch((error) => {
+                                rej(error.message)
+                            })
+                        }
+                    })
+                }
+                else {
+                    res();
+                }
+
             }).catch((error) => {
                 rej(error.message);
             });
@@ -161,7 +182,7 @@ export class StaffService {
             if (state === 'Assigned to Chef' || state === 'Accepted by Chef' || state === 'Order Ready') {
                 role = 'chefs';
             }
-                                                                        
+
             else if (state === 'Assigned to Delivery Boy' || state === 'Received by Delivery Boy' || state === 'Order Delivered') {
                 role = 'delivery_boys';
             }
