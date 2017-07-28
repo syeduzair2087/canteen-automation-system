@@ -16,9 +16,9 @@ export class NavigationComponent {
     orderArrive: number = 0;
     userName: string = '';
     userEmail: string = '';
-    userSubscription : Subscription; 
+    userSubscription: Subscription;
     messaging: firebase.messaging.Messaging;
-    constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService, private loaderService: LoaderService) { 
+    constructor( @Inject(FirebaseApp) private firebaseApp, private accountService: AccountService, private router: Router, private toastService: ToastService, private loaderService: LoaderService) {
         // this.toastService.showToast('asdad', 'asdadasda', 'success')
     }
 
@@ -31,7 +31,7 @@ export class NavigationComponent {
         }).catch((error) => {
             this.loaderService.hideLoader();
             console.log(error)
-        });    
+        });
     }
 
     ngOnInit() {
@@ -46,25 +46,22 @@ export class NavigationComponent {
             console.log(data)
         });
 
-setTimeout(function() {
-this.userName = 'sadsad'    
-}, 90000);
-// this.userName = 'sadsad'
+        
 
         this.messaging = firebase.messaging(this.firebaseApp);
         this.GetNotification();
-            this.messaging.onTokenRefresh(() => {
-              this.registerRefreshNotificationToken();
-            });
+        this.messaging.onTokenRefresh(() => {
+            this.registerRefreshNotificationToken();
+        });
     }
 
     GetNotification() {
         this.messaging.onMessage((payload) => {
-             console.log('Message Recived: ');
-             console.log(payload.notification.body);
-             console.log(payload.notification.title);
-             this.orderArrive++;
-             console.log(this.orderArrive)
+            console.log('Message Recived: ');
+            console.log(payload.notification.body);
+            console.log(payload.notification.title);
+            this.orderArrive++;
+            console.log(this.orderArrive)
             this.toastService.showToast(payload.notification.title, payload.notification.body, 'success');
         })
     }
@@ -77,7 +74,7 @@ this.userName = 'sadsad'
         })
     }
 
-    resetOrderNumber(){
+    resetOrderNumber() {
         this.orderArrive = 0;
     }
 }
