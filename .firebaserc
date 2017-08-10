@@ -1,5 +1,6 @@
 {
   "projects": {
-    "admin": "canteen-admin"
+    "admin": "canteen-admin",
+    "default": "canteen-admin"
   }
 }

@@ -86,6 +86,7 @@ export class OrderService {
     getStaffMemberToAssign(role: string) {
         return new Promise((res, rej) => {
             this.getLeastJobCount(role).then((data: number) => {
+                // console.log('number of least job '+ data);
                 let staffsSubscription = this.angularFire.database.list('/roles/' + role, {
                     query: {
                         orderByChild: 'status',
@@ -94,8 +95,8 @@ export class OrderService {
                 }).subscribe((datalist: Array<any>) => {
                     staffsSubscription.unsubscribe();
                     let filterDataList = this.getActiveStaff(datalist, data);
-                    console.log('filter data:');
-                    console.log(filterDataList);
+                    // console.log('filter data:' );
+                    // console.log(filterDataList);
                     res(filterDataList[Math.floor(Math.random() * filterDataList.length)]);
                 });
             }).catch((error) => rej(error.message));
@@ -135,7 +136,7 @@ export class OrderService {
                         staffMemberId: data.$key
                     }
                 }).then(() => {
-                    console.log(data.job_count + "  count");
+                    // console.log(data.job_count + "  count");
                     this.angularFire.database.object('roles/delivery_boys/' + data.$key).update({
                         job_count: <number>data.job_count + 1
                     }).then(() => {
@@ -188,8 +189,8 @@ export class OrderService {
     //     })
     // }
     getActiveStaff(inputArray, jobCount) {
-        console.log(inputArray);
-        console.log("filter array");
+        // console.log(inputArray);
+        // console.log("filter array");
         return inputArray.filter((staff) => staff.job_count == jobCount);
     }
 
@@ -205,7 +206,7 @@ export class OrderService {
             }).subscribe((cheflist: Array<StaffMember>) => {
                 cheflist.map((chef: StaffMember) => {
                     if (!leastCount || leastCount > chef.job_count) {
-                        leastCount = chef.job_count
+                        leastCount = chef.job_count;
                     }
                 });
                 chefSubscription.unsubscribe();
